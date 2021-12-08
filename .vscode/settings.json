@@ -1,0 +1,13 @@
+{
+	"editor.detectIndentation": false,
+	"editor.insertSpaces": false,
+	"editor.renderWhitespace": "all",
+	"editor.rulers": [80, 120],
+	"files.eol": "\n",
+	"files.insertFinalNewline": true,
+	"files.trimTrailingWhitespace": true,
+	"javascript.preferences.quoteStyle": "single",
+	"javascript.validate.enable": true,
+	"js/ts.implicitProjectConfig.checkJs": true,
+	"typescript.preferences.quoteStyle": "single"
+}

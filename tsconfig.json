@@ -1,0 +1,25 @@
+{
+	"compilerOptions": {
+		// Config
+		"allowJs": true,
+		"checkJs": true,
+		"module": "ESNext",
+		"target": "ESNext",
+		// Emit
+		"noEmit": true,
+		"noEmitHelpers": true,
+		// Type Checking
+		"alwaysStrict": true,
+		"strict": true,
+		"noImplicitAny": true,
+		"noImplicitOverride": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"noUnusedParameters": true,
+		"useDefineForClassFields": true,
+		// Types
+		"typeRoots": ["@setup", "node_modules/@types"],
+	},
+	"exclude": ["**/__skip__", "dist/", "node_modules/", "**/node_modules/*"],
+	"include": ["**/*.js", "**/*.ts"],
+}
