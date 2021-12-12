@@ -14,14 +14,17 @@
  * @returns The key of the first property in the object that passes the test.
  * Otherwise, undefined.
  */
-export function findKey(object: AnyObject, callbackFn: ObjectPropertyCallbackFn): string | undefined {
+export function findKey<T extends AnyObject>(
+	object: T,
+	callback: (prop: T[keyof T], key: keyof T, object: T) => boolean,
+): string | undefined {
 	const keys = Object.keys(object);
 	const keyCount = keys.length;
 
 	for (let index = 0; index < keyCount; index++) {
 		const key = keys[index];
 
-		if (callbackFn(object[key], key, object)) {
+		if (callback(object[key], key, object)) {
 			return key;
 		}
 	}

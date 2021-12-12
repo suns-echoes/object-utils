@@ -14,14 +14,17 @@
  * @returns The the first property in the object that satisfies the provided
  * testing function. Otherwise, undefined is returned.
  */
-export function find(object: AnyObject, callbackFn: ObjectPropertyCallbackFn): any | undefined {
+export function find<T extends AnyObject>(
+	object: T,
+	callback: (prop: T[keyof T], key: keyof T, object: T) => boolean,
+): any | undefined {
 	const keys = Object.keys(object);
 	const keyCount = keys.length;
 
 	for (let index = 0; index < keyCount; index++) {
 		const key = keys[index];
 
-		if (callbackFn(object[key], key, object)) {
+		if (callback(object[key], key, object)) {
 			return object[key];
 		}
 	}
