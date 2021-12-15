@@ -98,7 +98,6 @@ describe('volatileDeepProxy', () => {
 		};
 
 		expect(fail).to.throw(Error);
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore
 		expect(v.y).to.be.undefined;
 	});

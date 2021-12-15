@@ -4,6 +4,5 @@ import * as sinonChai from 'sinon-chai';
 
 chai.use(sinonChai);
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 global.sinon = sinon;

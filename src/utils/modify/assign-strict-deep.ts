@@ -10,8 +10,8 @@ function _assignStrictOneDeep(target: AnyObject, source: AnyObject): void {
 			const targetProp = target[key];
 			const sourceProp = source[key];
 
-			if (typeof targetProp === 'object' && targetProp !== null && !Array.isArray(targetProp) &&
-				typeof sourceProp === 'object' && sourceProp !== null && !Array.isArray(sourceProp)
+			if (typeof targetProp === 'object' && targetProp !== null && !Array.isArray(targetProp)
+				&& typeof sourceProp === 'object' && sourceProp !== null && !Array.isArray(sourceProp)
 			) {
 				_assignStrictOneDeep(targetProp, sourceProp);
 			}
