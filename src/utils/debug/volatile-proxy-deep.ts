@@ -22,6 +22,6 @@ const volatileDeepHandler = {
 	},
 };
 
-export function volatileDeepProxy<T extends AnyArray | AnyObject>(target: T): T {
+export function volatileProxyDeep<T extends AnyArray | AnyObject>(target: T): T {
 	return new Proxy(target, volatileDeepHandler as unknown as ProxyHandler<any>);
 }
