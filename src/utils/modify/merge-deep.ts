@@ -1,4 +1,4 @@
-function _assignOneArrayDeep(target: any[], source: any[]): void {
+function _mergeOneArrayDeep(target: any[], source: any[]): void {
 	const commonLength = Math.min(target.length, source.length);
 	const sourceLength = source.length;
 	let index = 0;
@@ -8,12 +8,12 @@ function _assignOneArrayDeep(target: any[], source: any[]): void {
 		const sourceItem = source[index];
 
 		if (Array.isArray(targetItem) && Array.isArray(sourceItem)) {
-			_assignOneArrayDeep(targetItem, sourceItem);
+			_mergeOneArrayDeep(targetItem, sourceItem);
 		}
 		else if (typeof targetItem === 'object' && targetItem !== null && typeof sourceItem === 'object' && sourceItem !== null) {
-			_assignOneDeep(targetItem, sourceItem);
+			_mergeOneDeep(targetItem, sourceItem);
 		}
-		else {
+		else if (source[index] !== undefined) {
 			target[index] = source[index];
 		}
 	}
@@ -23,7 +23,7 @@ function _assignOneArrayDeep(target: any[], source: any[]): void {
 	}
 }
 
-function _assignOneDeep(target: AnyObject, source: AnyObject): void {
+function _mergeOneDeep(target: AnyObject, source: AnyObject): void {
 	const sourceKeys = Object.keys(source);
 	const sourceKeyCount = sourceKeys.length;
 
@@ -35,12 +35,12 @@ function _assignOneDeep(target: AnyObject, source: AnyObject): void {
 			const sourceProp = source[key];
 
 			if (Array.isArray(targetProp) && Array.isArray(sourceProp)) {
-				_assignOneArrayDeep(targetProp, sourceProp);
+				_mergeOneArrayDeep(targetProp, sourceProp);
 			}
 			else if (typeof targetProp === 'object' && targetProp !== null && typeof sourceProp === 'object' && sourceProp !== null) {
-				_assignOneDeep(targetProp, sourceProp);
+				_mergeOneDeep(targetProp, sourceProp);
 			}
-			else {
+			else if (source[key] !== undefined) {
 				target[key] = source[key];
 			}
 		}
@@ -50,7 +50,7 @@ function _assignOneDeep(target: AnyObject, source: AnyObject): void {
 	}
 }
 
-export function assignDeep(target: AnyObject, ...sources: AnyObject[]): AnyObject {
+export function mergeDeep(target: AnyObject, ...sources: AnyObject[]): AnyObject {
 	if (typeof target === 'object' && target !== null) {
 		const sourceCount = sources.length;
 
@@ -58,10 +58,10 @@ export function assignDeep(target: AnyObject, ...sources: AnyObject[]): AnyObjec
 			const source = sources[index];
 
 			if (Array.isArray(target) && Array.isArray(source)) {
-				_assignOneArrayDeep(target, source);
+				_mergeOneArrayDeep(target, source);
 			}
 			else if (typeof source === 'object' && source !== null) {
-				_assignOneDeep(target, source);
+				_mergeOneDeep(target, source);
 			}
 		}
 	}

@@ -1,9 +1,8 @@
 function _assignStrictOneDeep(target: AnyObject, source: AnyObject): void {
 	const sourceKeys = Object.keys(source);
 	const sourceKeyCount = sourceKeys.length;
-	let index = 0;
 
-	for (; index < sourceKeyCount; index++) {
+	for (let index = 0; index < sourceKeyCount; index++) {
 		const key = sourceKeys[index];
 
 		if (key in target) {
@@ -28,9 +27,8 @@ function _assignStrictOneDeep(target: AnyObject, source: AnyObject): void {
 export function assignStrictDeep(target: AnyObject, ...sources: AnyObject[]): AnyObject {
 	if (typeof target === 'object' && target !== null && !Array.isArray(target)) {
 		const sourceCount = sources.length;
-		let index = 0;
 
-		for (; index < sourceCount; index++) {
+		for (let index = 0; index < sourceCount; index++) {
 			const source = sources[index];
 
 			if (typeof source === 'object' && source !== null && !Array.isArray(source)) {
