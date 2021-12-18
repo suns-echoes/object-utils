@@ -1,7 +1,8 @@
 export function _blackhole(matter: any, gone: WeakSet<AnyObject>): void {
+	let index = 0;
+
 	if (Array.isArray(matter) && matter.length > 0) {
 		const itemCount = matter.length;
-		let index = 0;
 
 		for (; index < itemCount; index++) {
 			const element = matter[index];
@@ -18,9 +19,8 @@ export function _blackhole(matter: any, gone: WeakSet<AnyObject>): void {
 
 	const keys = (<(ObjectKey | symbol)[]>Object.keys(matter)).concat(Object.getOwnPropertySymbols(matter));
 	const keyCount = keys.length;
-	let index = 0;
 
-	for (; index < keyCount; index++) {
+	for (index = 0; index < keyCount; index++) {
 		const key = keys[index];
 		const element = matter[key];
 
