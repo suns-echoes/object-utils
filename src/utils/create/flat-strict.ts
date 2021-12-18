@@ -1,4 +1,4 @@
-function _flatStrict(target: AnyObject, source: AnyObject, delimiter = '.', pathKey = ''): void {
+function _flatStrict(target: AnyObject, source: AnyObject, delimiter: string, pathKey: string): void {
 	const pathRoot = pathKey !== '' ? `${pathKey}${delimiter}` : '';
 	const keys = Object.keys(source);
 	const keyCount = keys.length;
@@ -21,7 +21,7 @@ export function flatStrict(source: AnyObject, delimiter = '.'): AnyObject | null
 	if (typeof source === 'object' && source !== null && !Array.isArray(source)) {
 		const target = {};
 
-		_flatStrict(target, source, delimiter);
+		_flatStrict(target, source, delimiter, '');
 
 		return target;
 	}

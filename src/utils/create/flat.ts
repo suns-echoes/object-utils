@@ -1,5 +1,5 @@
-function _flat(target: AnyObject, source: AnyArray | AnyObject, delimiter = '.', pathKey = ''): void {
-	const pathRoot = pathKey !== '' ? `${pathKey}${delimiter}` : '';
+function _flat(target: AnyObject, source: AnyArray | AnyObject, delimiter: string, pathKey: string): void {
+	const rootKey = pathKey !== '' ? `${pathKey}${delimiter}` : '';
 	let index = 0;
 
 	if (Array.isArray(source)) {
@@ -9,10 +9,10 @@ function _flat(target: AnyObject, source: AnyArray | AnyObject, delimiter = '.',
 			const prop = source[index];
 
 			if (typeof prop === 'object' && prop !== null) {
-				_flat(target, prop, delimiter, `${pathRoot}${index}`);
+				_flat(target, prop, delimiter, `${rootKey}${index}`);
 			}
 			else {
-				target[`${pathRoot}${index}`] = prop;
+				target[`${rootKey}${index}`] = prop;
 			}
 		}
 	}
@@ -25,10 +25,10 @@ function _flat(target: AnyObject, source: AnyArray | AnyObject, delimiter = '.',
 			const prop = source[key];
 
 			if (typeof prop === 'object' && prop !== null) {
-				_flat(target, prop, delimiter, `${pathRoot}${key}`);
+				_flat(target, prop, delimiter, `${rootKey}${key}`);
 			}
 			else {
-				target[`${pathRoot}${key}`] = prop;
+				target[`${rootKey}${key}`] = prop;
 			}
 		}
 	}
@@ -38,7 +38,7 @@ export function flat(source: AnyArray | AnyObject, delimiter = '.'): AnyObject |
 	if (typeof source === 'object' && source !== null) {
 		const target = {};
 
-		_flat(target, source, delimiter);
+		_flat(target, source, delimiter, '');
 
 		return target;
 	}
