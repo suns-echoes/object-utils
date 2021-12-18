@@ -2,9 +2,8 @@ function _flatStrict(target: AnyObject, source: AnyObject, delimiter: string, pa
 	const pathRoot = pathKey !== '' ? `${pathKey}${delimiter}` : '';
 	const keys = Object.keys(source);
 	const keyCount = keys.length;
-	let index = 0;
 
-	for (; index < keyCount; index++) {
+	for (let index = 0; index < keyCount; index++) {
 		const key = keys[index];
 		const prop = source[key];
 

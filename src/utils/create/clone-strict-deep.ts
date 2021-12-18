@@ -1,9 +1,8 @@
 function _cloneStrictDeep(target: AnyObject, source: AnyObject): void {
 	const keys = Object.keys(source);
 	const keyConut = keys.length;
-	let index = 0;
 
-	for (; index < keyConut; index++) {
+	for (let index = 0; index < keyConut; index++) {
 		const key = keys[index];
 		const sourceProp = source[key];
 

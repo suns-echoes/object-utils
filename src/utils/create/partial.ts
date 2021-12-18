@@ -5,9 +5,8 @@ export function partial<T extends AnyObject>(
 	const copy: AnyObject = {};
 	const sourceKeys = Object.keys(source);
 	const sourceKeyCount = sourceKeys.length;
-	let index = 0;
 
-	for (; index < sourceKeyCount; index++) {
+	for (let index = 0; index < sourceKeyCount; index++) {
 		const sourceKey = sourceKeys[index];
 
 		if (keys.includes(sourceKey)) {
