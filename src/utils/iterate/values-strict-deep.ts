@@ -1,9 +1,8 @@
 function _valuesStrictDeep(values: AnyArray, source: AnyObject): void {
-	let index = 0;
 	const keys = Object.keys(source);
 	const keyCount = keys.length;
 
-	for (; index < keyCount; index++) {
+	for (let index = 0; index < keyCount; index++) {
 		const key = keys[index];
 		const prop = source[key];
 
