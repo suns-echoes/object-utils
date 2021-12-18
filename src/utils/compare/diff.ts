@@ -2,7 +2,7 @@ import { Missing, Same } from '../constants';
 
 export { Missing, Same } from '../constants';
 
-function _diffArrayDeep(a: any[], b: any[], missing: any): any[] | typeof Same {
+function _diffArray(a: any[], b: any[], missing: any): any[] | typeof Same {
 	const lengthA = a.length;
 	const lengthB = b.length;
 	const lengthDiff = lengthA - lengthB;
@@ -13,29 +13,24 @@ function _diffArrayDeep(a: any[], b: any[], missing: any): any[] | typeof Same {
 
 	for (let index = 0; index < commonLength; index++) {
 		if (index in b) {
+			const bItem = b[index];
+
 			if (index in a) {
 				const aItem = a[index];
-				const bItem = b[index];
-				let diff: any = bItem;
+				let diffValue: any = bItem;
 
 				if (aItem === bItem) {
-					diff = Same;
-				}
-				else if (Array.isArray(aItem) && Array.isArray(bItem)) {
-					diff = _diffArrayDeep(aItem, bItem, missing);
-				}
-				else if (typeof aItem === 'object' && aItem !== null && typeof bItem === 'object' && bItem !== null) {
-					diff = _diffDeep(aItem, bItem, missing);
+					diffValue = Same;
 				}
 
-				diffArray[index] = diff;
+				diffArray[index] = diffValue;
 
-				if (diff !== Same) {
+				if (diffValue !== Same) {
 					isSame = false;
 				}
 			}
 			else {
-				diffArray[index] = b[index];
+				diffArray[index] = bItem;
 				isSame = false;
 			}
 		}
@@ -48,7 +43,7 @@ function _diffArrayDeep(a: any[], b: any[], missing: any): any[] | typeof Same {
 	return isSame ? Same : diffArray;
 }
 
-function _diffDeep(a: AnyObject, b: AnyObject, missing: any): AnyObject | typeof Same {
+function _diff(a: AnyObject, b: AnyObject, missing: any): AnyObject | typeof Same {
 	const diffObject: AnyObject = {};
 	const allKeys = [...new Set(Object.keys(a).concat(Object.keys(b)))];
 	const keyCount = allKeys.length;
@@ -58,30 +53,25 @@ function _diffDeep(a: AnyObject, b: AnyObject, missing: any): AnyObject | typeof
 		const key = allKeys[index];
 
 		if (key in b) {
+			const bProp = b[key];
+
 			if (key in a) {
 				const aProp = a[key];
-				const bProp = b[key];
 
-				let diff: any = bProp;
+				let diffValue: any = bProp;
 
 				if (aProp === bProp) {
-					diff = Same;
-				}
-				else if (Array.isArray(aProp) && Array.isArray(bProp)) {
-					diff = _diffArrayDeep(aProp, bProp, missing);
-				}
-				else if (typeof aProp === 'object' && aProp !== null && typeof bProp === 'object' && bProp !== null) {
-					diff = _diffDeep(aProp, bProp, missing);
+					diffValue = Same;
 				}
 
-				diffObject[key] = diff;
+				diffObject[key] = diffValue;
 
-				if (diff !== Same) {
+				if (diffValue !== Same) {
 					isSame = false;
 				}
 			}
 			else {
-				diffObject[key] = b[key];
+				diffObject[key] = bProp;
 				isSame = false;
 			}
 		}
@@ -96,7 +86,7 @@ function _diffDeep(a: AnyObject, b: AnyObject, missing: any): AnyObject | typeof
 
 /**
  * Find difference between two entities.
- * Objects and arrays will go through deep comparison.
+ * Objects and arrays will go through shallow comparison.
  * In case of no difference in property or value, "Same" symbol will be
  * returned.
  * Unless provided different value the "Missing" symbol will be returned when
@@ -106,15 +96,15 @@ function _diffDeep(a: AnyObject, b: AnyObject, missing: any): AnyObject | typeof
  * @returns Structure or value representing changes made between "a" and "b"
  * entities.
  */
-export function diffDeep(a: any, b: any, missing = Missing): any {
+export function diff(a: any, b: any, missing = Missing): any {
 	if (a === b) {
 		return Same;
 	}
 	else if (Array.isArray(a) && Array.isArray(b)) {
-		return _diffArrayDeep(a, b, missing);
+		return _diffArray(a, b, missing);
 	}
 	else if (typeof a === 'object' && a !== null && typeof b === 'object' && b !== null) {
-		return _diffDeep(a, b, missing);
+		return _diff(a, b, missing);
 	}
 
 	return b;
