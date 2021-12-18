@@ -1,7 +1,8 @@
 export function freezeDeep(target: AnyArray | AnyObject): void {
+	let index = 0;
+
 	if (Array.isArray(target)) {
 		const itemCount = target.length;
-		let index = 0;
 
 		for (; index < itemCount; index++) {
 			const item = target[index];
@@ -14,7 +15,6 @@ export function freezeDeep(target: AnyArray | AnyObject): void {
 	else {
 		const keys = Object.keys(target);
 		const keyCount = keys.length;
-		let index = 0;
 
 		for (; index < keyCount; index++) {
 			const key = keys[index];
