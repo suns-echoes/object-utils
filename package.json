@@ -1,6 +1,6 @@
 {
 	"name": "@suns-echoes/object-utils",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "The library of useful utilities for objects manipulations.",
 	"keywords": [
 		"object",
