@@ -1,7 +1,7 @@
 {
 	"name": "object-utils",
-	"version": "0.0.1",
-	"description": "Library of useful utilities for objects manipulations.",
+	"version": "0.1.0",
+	"description": "The library of useful utilities for objects manipulations.",
 	"keywords": [
 		"object",
 		"utilities",
