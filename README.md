@@ -4,7 +4,7 @@ README
 About project
 -------------
 
-Library of useful utilities for objects manipulations.
+The library of useful utilities for objects manipulations.
 
 Project commands
 ----------------
