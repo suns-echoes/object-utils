@@ -5,6 +5,6 @@
 		"sourceMap": true,
 		"target": "ESNext",
 		// Types
-		"typeRoots": ["setup/", "node_modules/@types/"],
+		"typeRoots": ["./setup/", "./node_modules/@types/"],
 	},
 }
