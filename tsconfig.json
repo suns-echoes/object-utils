@@ -3,8 +3,6 @@
 		// Config
 		"allowJs": true,
 		"checkJs": true,
-		"module": "ESNext",
-		"target": "ESNext",
 		// Emit
 		"noEmit": true,
 		"noEmitHelpers": true,
@@ -18,8 +16,8 @@
 		"noUnusedParameters": true,
 		"useDefineForClassFields": true,
 		// Types
-		"typeRoots": ["@setup", "node_modules/@types"],
+		"typeRoots": ["node_modules/@types"],
 	},
-	"exclude": ["**/__skip__", "dist/", "node_modules/", "**/node_modules/*"],
+	"exclude": ["**/__skip__/", "dist/", "node_modules/"],
 	"include": ["**/*.js", "**/*.ts"],
 }

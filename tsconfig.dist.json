@@ -3,6 +3,9 @@
 	"compilerOptions": {
 		"noEmit": false,
 		"outDir": "dist",
-		"rootDir": ".",
-	}
+		"rootDir": "./src",
+		"target": "ESNext",
+	},
+	"exclude": ["**.spec.ts"],
+	"include": ["src/**/*.js", "src/**/*.ts"],
 }
