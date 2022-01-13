@@ -1,0 +1,9 @@
+{
+	"compilerOptions": {
+		// Config
+		"module": "ESNext",
+		"target": "ESNext",
+	},
+	"exclude": ["**/__skip__/", "**/node_modules/*"],
+	"include": ["**/*.js"],
+}

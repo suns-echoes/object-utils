@@ -21,6 +21,6 @@
 		// Types
 		"typeRoots": ["node_modules/@types/"],
 	},
-	"exclude": ["./dist/", "./scripts", "**/__skip__/", "**/node_modules/"],
+	"exclude": ["**/node_modules/"],
 	"include": ["**/*.js", "**/*.ts"],
 }

@@ -1,4 +1,4 @@
-export function _blackhole(matter: any, gone: WeakSet<AnyObject>): void {
+function _blackhole(matter: any, gone: WeakSet<AnyObject>): void {
 	let index = 0;
 
 	if (Array.isArray(matter) && matter.length > 0) {

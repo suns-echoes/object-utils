@@ -5,22 +5,11 @@
 		"browser": true
 	},
 	"extends": [
-		"eslint:recommended",
-		"plugin:@typescript-eslint/recommended"
+		"eslint:recommended"
 	],
-	"globals": {
-		"after": "readonly",
-		"before": "readonly",
-		"Chai": "readonly",
-		"chai": "readonly",
-		"describe": "readonly",
-		"expect": "readonly",
-		"it": "readonly"
+	"parserOptions": {
+		"sourceType": "module"
 	},
-	"parser": "@typescript-eslint/parser",
-	"plugins": [
-		"@typescript-eslint"
-	],
 	"rules": {
 		"arrow-parens": ["error", "always"],
 		"brace-style": ["error", "stroustrup"],
@@ -31,26 +20,26 @@
 		"eol-last": ["error", "always"],
 		"eqeqeq": ["error", "always"],
 		"func-call-spacing": ["error", "never"],
-		"indent": "off",
+		"indent": ["error", "tab", { "SwitchCase": 1 }],
 		"key-spacing": ["error", { "multiLine": { "beforeColon": false, "afterColon": true }, "align": { "beforeColon": false, "afterColon": true, "on": "value" } }],
 		"keyword-spacing": ["error", { "after": true, "before": true }],
 		"linebreak-style": ["error", "unix"],
 		"lines-between-class-members": ["off"],
-		"new-cap": ["error", { "newIsCap": true }],
 		"no-alert": "error",
 		"no-class-assign": "error",
 		"no-cond-assign": "error",
 		"no-console": ["error", { "allow": ["warn", "error"] }],
 		"no-const-assign": "error",
 		"no-debugger": "error",
+		"no-empty": ["error", { "allowEmptyCatch": true }],
 		"no-extra-semi": "error",
 		"no-func-assign": "error",
 		"no-global-assign": "error",
 		"no-multiple-empty-lines": ["error", { "max": 2 }],
-		"no-shadow": "off",
+		"no-shadow": "error",
 		"no-this-before-super": "error",
 		"no-trailing-spaces": "error",
-		"no-undef": "off", // TS takes care of it
+		"no-undef": "error",
 		"no-unreachable": "error",
 		"no-useless-constructor": "error",
 		"no-var": "error",
@@ -67,9 +56,9 @@
 		"rest-spread-spacing": ["error", "never"],
 		"semi-spacing": ["error", { "before": false, "after": true }],
 		"semi-style": ["error", "last"],
-		"semi": "off",
+		"semi": "error",
 		"space-before-blocks": "error",
-		"space-before-function-paren": "off",
+		"space-before-function-paren": ["error", { "anonymous": "always", "named": "never", "asyncArrow": "always" }],
 		"space-in-parens": ["error", "never"],
 		"space-infix-ops": "error",
 		"space-unary-ops": ["error", { "words": true, "nonwords": false }],
@@ -77,26 +66,57 @@
 		"template-curly-spacing": ["error", "never"],
 		"template-tag-spacing": ["error", "never"],
 
-		"@typescript-eslint/array-type": ["error", { "default": "array" }],
-		"@typescript-eslint/ban-ts-comment": "off",
-		"@typescript-eslint/explicit-function-return-type": ["error"],
-		"@typescript-eslint/indent": ["error", "tab", { "SwitchCase": 1 }],
-		"@typescript-eslint/lines-between-class-members": ["error", "always", { "exceptAfterOverload": true, "exceptAfterSingleLine": true }],
-		"@typescript-eslint/member-delimiter-style": ["error", { "multiline": { "delimiter": "comma", "requireLast": true }, "singleline": { "delimiter": "comma", "requireLast": false }, "multilineDetection": "brackets" }],
-		"@typescript-eslint/no-empty-interface": "off",
-		"@typescript-eslint/no-explicit-any": "off",
-		"@typescript-eslint/no-non-null-assertion": "off",
-		"@typescript-eslint/no-shadow": ["error", { "ignoreTypeValueShadow": true, "ignoreFunctionTypeParameterNameValueShadow": true }],
-		"@typescript-eslint/padding-line-between-statements": ["error",
-			{ "blankLine": "always", "prev": ["var", "let", "const", "import"], "next": "*" },
-			{ "blankLine": "any", "prev": ["var", "let", "const"], "next": ["var", "let", "const"] },
-			{ "blankLine": "any", "prev": "import", "next": "import" },
-			{ "blankLine": "always", "prev": "*", "next": ["return", "export", "interface", "type"] },
-			{ "blankLine": "any", "prev": "export", "next": "export" },
-			{ "blankLine": "any", "prev": ["interface", "type"], "next": ["interface", "type"] }
-		],
-		"@typescript-eslint/semi": ["error", "always", { "omitLastInOneLineBlock": true }],
-		"@typescript-eslint/space-before-function-paren": ["error", { "anonymous": "always", "named": "never", "asyncArrow": "always" }],
-		"@typescript-eslint/triple-slash-reference": "off"
-	}
+		"new-cap": ["error"]
+	},
+	"overrides": [
+		{
+			"extends": [
+				"eslint:recommended",
+				"plugin:@typescript-eslint/recommended"
+			],
+			"files": ["*.ts"],
+			"globals": {
+				"after": "readonly",
+				"before": "readonly",
+				"Chai": "readonly",
+				"chai": "readonly",
+				"describe": "readonly",
+				"expect": "readonly",
+				"it": "readonly"
+			},
+			"parser": "@typescript-eslint/parser",
+			"plugins": [
+				"@typescript-eslint"
+			],
+			"rules": {
+				"indent": "off",
+				"no-shadow": "off",
+				"no-undef": "off",
+				"semi": "off",
+				"space-before-function-paren": "off",
+
+				"@typescript-eslint/array-type": ["error", { "default": "array" }],
+				"@typescript-eslint/ban-ts-comment": "off",
+				"@typescript-eslint/explicit-function-return-type": ["error"],
+				"@typescript-eslint/indent": ["error", "tab", { "SwitchCase": 1 }],
+				"@typescript-eslint/lines-between-class-members": ["error", "always", { "exceptAfterOverload": true, "exceptAfterSingleLine": true }],
+				"@typescript-eslint/member-delimiter-style": ["error", { "multiline": { "delimiter": "comma", "requireLast": true }, "singleline": { "delimiter": "comma", "requireLast": false }, "multilineDetection": "brackets" }],
+				"@typescript-eslint/no-empty-interface": "off",
+				"@typescript-eslint/no-explicit-any": "off",
+				"@typescript-eslint/no-non-null-assertion": "off",
+				"@typescript-eslint/no-shadow": ["error", { "ignoreTypeValueShadow": true, "ignoreFunctionTypeParameterNameValueShadow": true }],
+				"@typescript-eslint/padding-line-between-statements": ["error",
+					{ "blankLine": "always", "prev": ["var", "let", "const", "import"], "next": "*" },
+					{ "blankLine": "any", "prev": ["var", "let", "const"], "next": ["var", "let", "const"] },
+					{ "blankLine": "any", "prev": "import", "next": "import" },
+					{ "blankLine": "always", "prev": "*", "next": ["return", "export", "interface", "type"] },
+					{ "blankLine": "any", "prev": "export", "next": "export" },
+					{ "blankLine": "any", "prev": ["interface", "type"], "next": ["interface", "type"] }
+				],
+				"@typescript-eslint/semi": ["error", "always", { "omitLastInOneLineBlock": true }],
+				"@typescript-eslint/space-before-function-paren": ["error", { "anonymous": "always", "named": "never", "asyncArrow": "always" }],
+				"@typescript-eslint/triple-slash-reference": "off"
+			}
+		}
+	]
 }
