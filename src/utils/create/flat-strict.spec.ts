@@ -2,13 +2,112 @@ import { flatStrict } from './flat-strict';
 
 
 describe('flatStrict', () => {
-	it('returns flatten object', () => {
-		const o = { a: [1, null, { b: true }], c: { d: false, e: 2 } };
+	it('returns fully flatten object', () => {
+		const a = [
+			1,
+			[
+				2,
+				{
+					b: 3,
+					c: {
+						d: 4,
+					},
+				},
+			],
+		];
+
+		const i = [
+			7,
+			8,
+		];
+
+		const o = {
+			a,
+			e: {
+				f: 5,
+				g: {
+					h: 6,
+					i,
+				},
+			},
+		};
+
+		expect(flatStrict(o, -1)).to.be.eql({
+			'a':     a,
+			'e.f':   5,
+			'e.g.h': 6,
+			'e.g.i': i,
+		});
+	});
+
+	it('returns one-level flatten object', () => {
+		const a = [
+			1,
+			[
+				2,
+				{
+					b: 3,
+					c: {
+						d: 4,
+					},
+				},
+			],
+		];
+
+		const g = [
+			6,
+			7,
+		];
+
+		const o = {
+			a,
+			e: {
+				f: 5,
+				g,
+			},
+		};
 
 		expect(flatStrict(o)).to.be.eql({
-			'a':   [1, null, { b: true }],
-			'c.d': false,
-			'c.e': 2,
+			'a':   a,
+			'e.f': 5,
+			'e.g': g,
+		});
+	});
+
+	it('returns deppest flatten object properties', () => {
+		const a = [
+			1,
+			[
+				2,
+				{
+					b: 3,
+					c: {
+						d: 4,
+					},
+				},
+			],
+		];
+
+		const i = [
+			7,
+			8,
+		];
+
+		const o = {
+			a,
+			e: {
+				f: 5,
+				g: {
+					a: 6,
+					i,
+				},
+			},
+		};
+
+		expect(flatStrict(o, -1, false)).to.be.eql({
+			'a': 6,
+			'f': 5,
+			'i': i,
 		});
 	});
 
