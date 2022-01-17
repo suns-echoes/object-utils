@@ -44,6 +44,12 @@ function _eql(a: AnyObject, b: AnyObject): boolean {
 	return true;
 }
 
+/**
+ * Performs shallow equality check of two objects.
+ * @param a The first object to compare.
+ * @param b The second object to compare.
+ * @returns The "true" if objects are equal, "false" otherwise.
+ */
 export function eql(a: any, b: any): boolean {
 	if (a === b) {
 		return true;

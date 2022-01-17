@@ -101,9 +101,9 @@ function _diffDeep(a: AnyObject, b: AnyObject, missing: any): AnyObject | typeof
  * returned.
  * Unless provided different value the "Missing" symbol will be returned when
  * property is present in the "a" entity but missing in the "b" entity.
- * @param a First entity.
- * @param b Second entity.
- * @returns Structure or value representing changes made between "a" and "b"
+ * @param a The first entity.
+ * @param b The second entity.
+ * @returns The structure or value representing changes made between "a" and "b"
  * entities.
  */
 export function diffDeep(a: any, b: any, missing = Missing): any {
