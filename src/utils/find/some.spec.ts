@@ -1,5 +1,6 @@
 import { some } from './some';
 
+
 describe('some', () => {
 	it('returns true if any property passes the test', () => {
 		const o = { a: 1, b: false, c: 8, d: null, e: 'yy', f: undefined };

@@ -1,5 +1,6 @@
 import { forEachStrictDeep } from './for-each-strict-deep';
 
+
 describe('forEachStrictDeep', () => {
 	it('iterates through every property and sub-property (string path key)', () => {
 		const o = { a: [1, null, { b: true }], c: { d: false, e: 2 } };

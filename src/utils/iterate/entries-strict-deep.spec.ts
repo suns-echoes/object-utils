@@ -1,5 +1,6 @@
 import { entriesStrictDeep } from './entries-strict-deep';
 
+
 describe('entriesStrictDeep', () => {
 	it('iterates through every property and sub-property (string path key)', () => {
 		const o = { a: [1, null, { b: true }], c: { d: false, e: 2 } };

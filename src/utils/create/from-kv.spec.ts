@@ -1,5 +1,6 @@
 import { fromKV } from './from-kv';
 
+
 describe('fromKV', () => {
 	it('returns new object with properties provided in array', () => {
 		const a = [['a', 1], ['b', 2], ['c', 3]];

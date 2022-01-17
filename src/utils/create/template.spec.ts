@@ -1,5 +1,6 @@
 import { template } from './template';
 
+
 describe('template', () => {
 	it('returns template from object', () => {
 		const o = { a: [1, null, { b: true }], c: { d: false, e: 2 } };

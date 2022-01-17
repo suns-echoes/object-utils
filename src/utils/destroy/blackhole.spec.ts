@@ -1,5 +1,6 @@
 import { blackhole } from './blackhole';
 
+
 describe('blackhole', () => {
 	it('disintegrates all objects references', () => {
 		function f():void {

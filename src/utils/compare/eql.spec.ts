@@ -1,5 +1,6 @@
 import { eql } from './eql';
 
+
 describe('eql', () => {
 	it('returns "true" for two equal inputs', () => {
 		expect(eql(1, 1)).to.be.true;

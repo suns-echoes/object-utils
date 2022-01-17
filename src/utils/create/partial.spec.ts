@@ -1,5 +1,6 @@
 import { partial } from './partial';
 
+
 describe('partial', () => {
 	it('returns new object with selected properties', () => {
 		const o: AnyObject = { a: 1, b: false, c: 8, d: null, e: 'yy', f: undefined };

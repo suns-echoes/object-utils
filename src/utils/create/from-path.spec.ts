@@ -1,5 +1,6 @@
 import { fromPath } from './from-path';
 
+
 describe('fromPath', () => {
 	it('returns object that reflects given string path', () => {
 		expect(fromPath('')).to.be.eql({});

@@ -1,5 +1,6 @@
 import { volatileProxy } from './volatile-proxy';
 
+
 describe('volatileProxy', () => {
 	it('throws on property reassign', () => {
 		const a = { x: 'y' };

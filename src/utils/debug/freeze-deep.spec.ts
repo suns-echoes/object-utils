@@ -1,5 +1,6 @@
 import { freezeDeep } from './freeze-deep';
 
+
 describe('freezeDeep', () => {
 	it('fails to set object property', () => {
 		const a: AnyObject = { x: 'y' };

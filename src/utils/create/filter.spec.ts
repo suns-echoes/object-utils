@@ -1,5 +1,6 @@
 import { filter } from './filter';
 
+
 describe('filter', () => {
 	it('returns new object with filtered properties', () => {
 		const o: AnyObject = { a: 1, b: false, c: 8, d: null, e: 'yy', f: undefined };

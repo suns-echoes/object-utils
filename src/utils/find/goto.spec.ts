@@ -1,5 +1,6 @@
 import { goto } from './goto';
 
+
 describe('goto', () => {
 	it('returns element targeted by given string path', () => {
 		const o = { a: { b: { c: { d: 'ok' } } } };

@@ -1,5 +1,6 @@
 import { keyOf } from './key-of';
 
+
 describe('keyOf', () => {
 	it('returns key of searched element', () => {
 		const e = {};

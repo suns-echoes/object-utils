@@ -1,5 +1,6 @@
 import { forEach } from './for-each';
 
+
 describe('forEach', () => {
 	it('iterates through every property', () => {
 		const o = { a: 1, b: false, c: 8, d: null, e: 'yy', f: undefined };

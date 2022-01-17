@@ -1,5 +1,6 @@
 import { flatStrict } from './flat-strict';
 
+
 describe('flatStrict', () => {
 	it('returns flatten object', () => {
 		const o = { a: [1, null, { b: true }], c: { d: false, e: 2 } };

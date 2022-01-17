@@ -1,5 +1,6 @@
 import { any } from './any';
 
+
 describe('any', () => {
 	it('returns true if any property passes the test', () => {
 		const o: AnyObject = { a: 1, b: false, c: 8, d: null, e: 'yy', f: undefined };

@@ -1,5 +1,6 @@
 import { findKey } from './find-key';
 
+
 describe('findKey', () => {
 	it('returns key of searched property', () => {
 		const o = { a: 1, b: false, c: 8, d: null, e: 'yy', f: undefined };

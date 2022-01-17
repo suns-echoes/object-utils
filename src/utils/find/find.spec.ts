@@ -1,5 +1,6 @@
 import { find } from './find';
 
+
 describe('find', () => {
 	it('returns first property that passes the test', () => {
 		const o = { a: 1, b: false, c: 8, d: null, e: 'yy', f: undefined };

@@ -1,5 +1,6 @@
 import { templateStrict } from './template-strict';
 
+
 describe('templateStrict', () => {
 	it('returns templateStrict from object', () => {
 		const o = { a: [1, null, { b: true }], c: { d: false, e: 2 } };

@@ -1,5 +1,6 @@
 import { isCyclic } from './is-cyclic';
 
+
 describe('isCyclic', () => {
 	it('returns false for non-cyclic object', () => {
 		const o = { a: { b: { x: {}, xp: {} }, x: {} }, x: {} };

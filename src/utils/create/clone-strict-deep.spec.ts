@@ -1,5 +1,6 @@
 import { cloneStrictDeep } from './clone-strict-deep';
 
+
 describe('cloneStrictDeep', () => {
 	it('returns new cloned object', () => {
 		const a = [1, 2, 3];

@@ -1,5 +1,6 @@
 import { of } from './of';
 
+
 describe('of', () => {
 	it('returns new object from strings', () => {
 		expect(of('a', 1, 'b', true, 'c', null)).to.be.eql({ a: 1, b: true, c: null });
