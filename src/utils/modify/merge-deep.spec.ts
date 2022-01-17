@@ -145,7 +145,7 @@ describe('mergeDeep', () => {
 		expect(dest).not.to.be.equal(source);
 	});
 
-	it('returns modified target array', () => {
+	it('does not overwrite values with undefined', () => {
 		const source0 = [
 			[
 				1,

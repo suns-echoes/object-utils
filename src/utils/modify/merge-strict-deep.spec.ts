@@ -143,4 +143,28 @@ describe('mergeStrictDeep', () => {
 		expect(ret).to.be.equal(dest);
 		expect(dest).not.to.be.equal(source);
 	});
+
+	it('does not overwrite values with undefined', () => {
+		const source0 = {
+			a: 1,
+			b: 2,
+		};
+		const source1 = {
+			a: undefined,
+			b: 4,
+			c: 8,
+		};
+
+		const dest = {};
+		const ret = mergeStrictDeep(dest, source0, source1);
+
+		expect(ret).to.be.equal(dest);
+		expect(dest).not.to.be.equal(source0);
+		expect(dest).not.to.be.equal(source1);
+		expect(ret).to.be.eql({
+			a: 1,
+			b: 4,
+			c: 8,
+		});
+	});
 });
