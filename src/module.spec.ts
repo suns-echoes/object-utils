@@ -1,8 +1,8 @@
 import { lstatSync, readdirSync } from 'fs';
-import Lib from './index';
-
-import { ObjectUtils as NamedLib } from './object-utils';
 import { join } from 'path';
+
+import Lib from './index';
+import { ObjectUtils as NamedLib } from './object-utils';
 
 const sourceFilesFilter = /^.+?(?<!\.spec)\.(?:js|ts)$/;
 

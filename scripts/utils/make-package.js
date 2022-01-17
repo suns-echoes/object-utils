@@ -1,5 +1,6 @@
 import { config } from '../config/config.js';
 
+
 export function makePackage(fileContent) {
 	const packageData = JSON.parse(fileContent);
 	const distPackageData = {};

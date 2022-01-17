@@ -1,6 +1,7 @@
 import { lstatSync, mkdirSync, readdirSync, copyFileSync } from 'fs';
 import { join } from 'path';
 
+
 export function copyFilesSync(src, dest, filter) {
 	if (lstatSync(src).isDirectory()) {
 		mkdirSync(dest, { recursive: true });

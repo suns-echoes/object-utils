@@ -1,6 +1,7 @@
 import { existsSync, readdirSync, readFileSync, writeFileSync } from 'fs';
 import { basename, dirname, join } from 'path';
 
+
 function findImports(source) {
 	const matchIdentifierPart = '[a-zA-Z_$][\\w$]*';
 	const matchModuleAliasPart = `\\*\\s+as\\s+${matchIdentifierPart}`;
@@ -105,6 +106,7 @@ function shouldAddFileExtension(rootpath, filepath) {
 
 	return false;
 }
+
 
 export function addFileExtensionsToImports(sourceFilePath) {
 	const code = readFileSync(sourceFilePath, { encoding: 'utf8' });

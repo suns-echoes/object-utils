@@ -1,6 +1,7 @@
 import { lstatSync, readdirSync } from 'fs';
 import { join } from 'path';
 
+
 export function findFilesSync(path, filter, _files = []) {
 	const stat = lstatSync(path);
 

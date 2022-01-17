@@ -1,5 +1,6 @@
 import { makePackage } from '../utils/make-package.js';
 
+
 export const config = {
 	dist: './dist/',
 	src:  './src/',
