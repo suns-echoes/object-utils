@@ -42,9 +42,9 @@ describe('diff', () => {
 
 	it('returns differences (new values) for two different object inputs', () => {
 		const o = { aa: 1, bb: [1, 2, 3], cc: {} };
-		const a = { a: [1, 2], o };
-		const b = { a: [1, 2, 3], b: true, o };
-		const d = { a: [1, 2, 3], b: true, o: Same };
+		const a = { a: [1, 2], o, x: { y: 'z' } };
+		const b = { a: [1, 2, 3], b: true, o, x: { y: 'z' }  };
+		const d = { a: [1, 2, 3], b: true, o: Same, x: { y: 'z' }  };
 
 		expect(diff(a, b)).to.be.eql(d);
 		expect(diff(null, undefined)).to.be.equal(undefined);
