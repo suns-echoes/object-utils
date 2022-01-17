@@ -2,7 +2,7 @@ function _forEachDeep(
 	object: AnyArray | AnyObject,
 	callback: AnyFunction,
 	delimiter: string | undefined,
-	pathKey: string | string[],
+	pathKey: KeyPath | PathKeys,
 ): void {
 	const rootKey = delimiter ? (pathKey !== '' ? `${pathKey}${delimiter}` : '') : pathKey;
 	let index = 0;

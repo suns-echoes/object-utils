@@ -2,7 +2,7 @@ function _entriesStrictDeep(
 	entries: AnyArray,
 	source: AnyObject,
 	delimiter: string | undefined,
-	pathKey: string | string[],
+	pathKey: KeyPath | PathKeys,
 ): void {
 	const rootKey = delimiter ? (pathKey !== '' ? `${pathKey}${delimiter}` : '') : pathKey;
 	const keys = Object.keys(source);

@@ -17,7 +17,7 @@ function _blackhole(matter: any, gone: WeakSet<AnyObject>): void {
 		matter.length = 0;
 	}
 
-	const keys = (<(ObjectKey | symbol)[]>Object.keys(matter)).concat(Object.getOwnPropertySymbols(matter));
+	const keys = (<(string | symbol)[]>Object.keys(matter)).concat(Object.getOwnPropertySymbols(matter));
 	const keyCount = keys.length;
 
 	for (index = 0; index < keyCount; index++) {

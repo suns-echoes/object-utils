@@ -1,7 +1,7 @@
 type SymbolIndexableObject = Record<string | symbol, any>;
 
 function _isCyclic(object: SymbolIndexableObject, beenThere: WeakSet<SymbolIndexableObject>): boolean {
-	const keys = (<(ObjectKey | symbol)[]>Object.keys(object)).concat(Object.getOwnPropertySymbols(object));
+	const keys = (<(string | symbol)[]>Object.keys(object)).concat(Object.getOwnPropertySymbols(object));
 	const keyCount = keys.length;
 
 	for (let index = 0; index < keyCount; index++) {

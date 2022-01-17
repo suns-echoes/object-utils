@@ -1,4 +1,4 @@
-export function goto(origin: AnyObject, path?: string | string[], delimiter = '.'): any {
+export function goto(origin: AnyObject, path?: KeyPath | PathKeys, delimiter = '.'): any {
 	if (!path || path.length === 0 || path.length === 1 && path[0] === '') {
 		return origin;
 	}
