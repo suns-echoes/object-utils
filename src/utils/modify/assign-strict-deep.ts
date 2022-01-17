@@ -24,6 +24,14 @@ function _assignStrictOneDeep(target: AnyObject, source: AnyObject): void {
 	}
 }
 
+/**
+ * Performs deep copy of all enumerable own properties from one or more source
+ * objects to a target object. This is strict version which treats arrays as
+ * non-object values. It returns the modified target object.
+ * @param target The object to which assing properties from sources.
+ * @param sources The objects providing source properties.
+ * @returns The modified target object.
+ */
 export function assignStrictDeep(target: AnyObject, ...sources: AnyObject[]): AnyObject {
 	if (typeof target === 'object' && target !== null && !Array.isArray(target)) {
 		const sourceCount = sources.length;

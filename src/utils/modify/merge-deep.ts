@@ -50,6 +50,14 @@ function _mergeOneDeep(target: AnyObject, source: AnyObject): void {
 	}
 }
 
+/**
+ * Performs deep copy of all enumerable own properties from one or more source
+ * objects to a target object but does not overwrite existing values with
+ * undefined. It returns the modified target object.
+ * @param target The object to which assing properties from sources.
+ * @param sources The objects providing source properties.
+ * @returns The modified target object.
+ */
 export function mergeDeep(target: AnyObject, ...sources: AnyObject[]): AnyObject {
 	if (typeof target === 'object' && target !== null) {
 		const sourceCount = sources.length;
