@@ -151,8 +151,7 @@ describe('mergeStrictDeep', () => {
 		};
 		const source1 = {
 			a: undefined,
-			b: 4,
-			c: 8,
+			c: 4,
 		};
 
 		const dest = {};
@@ -163,8 +162,8 @@ describe('mergeStrictDeep', () => {
 		expect(dest).not.to.be.equal(source1);
 		expect(ret).to.be.eql({
 			a: 1,
-			b: 4,
-			c: 8,
+			b: 2,
+			c: 4,
 		});
 	});
 });

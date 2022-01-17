@@ -156,6 +156,7 @@ describe('mergeDeep', () => {
 					11,
 					22,
 				],
+				b: 2,
 			},
 			true,
 		];
@@ -170,9 +171,22 @@ describe('mergeDeep', () => {
 		const dest: any[] = [];
 		const ret = mergeDeep(dest, source0, source1);
 
-		expect(ret).to.be.eql(source0);
 		expect(ret).to.be.equal(dest);
 		expect(dest).not.to.be.equal(source0);
 		expect(dest).not.to.be.equal(source1);
+		expect(ret).to.be.eql([
+			[
+				1,
+				2,
+			],
+			{
+				a: [
+					11,
+					22,
+				],
+				b: 2,
+			},
+			true,
+		]);
 	});
 });

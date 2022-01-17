@@ -161,4 +161,42 @@ describe('assignDeep', () => {
 		expect(ret).to.be.equal(dest);
 		expect(dest).not.to.be.equal(source);
 	});
+
+	it('does overwrites values with undefined', () => {
+		const source0 = [
+			[
+				1,
+				2,
+			],
+			{
+				a: [
+					11,
+					22,
+				],
+				b: 2,
+			},
+			true,
+		];
+		const source1 = [
+			undefined,
+			{
+				a: undefined,
+			},
+		];
+
+		const dest: any[] = [];
+		const ret = assignDeep(dest, source0, source1);
+
+		expect(ret).to.be.equal(dest);
+		expect(dest).not.to.be.equal(source0);
+		expect(dest).not.to.be.equal(source1);
+		expect(ret).to.be.eql([
+			undefined,
+			{
+				a: undefined,
+				b: 2,
+			},
+			true,
+		]);
+	});
 });

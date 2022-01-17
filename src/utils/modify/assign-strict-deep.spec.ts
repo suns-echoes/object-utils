@@ -134,4 +134,27 @@ describe('assignStrictDeep', () => {
 		expect(ret).to.be.equal(dest);
 		expect(dest).not.to.be.equal(source0);
 	});
+
+	it('does overwrites values with undefined', () => {
+		const source0 = {
+			a: 1,
+			b: 2,
+		};
+		const source1 = {
+			a: undefined,
+			c: 4,
+		};
+
+		const dest = {};
+		const ret = assignStrictDeep(dest, source0, source1);
+
+		expect(ret).to.be.equal(dest);
+		expect(dest).not.to.be.equal(source0);
+		expect(dest).not.to.be.equal(source1);
+		expect(ret).to.be.eql({
+			a: undefined,
+			b: 2,
+			c: 4,
+		});
+	});
 });
