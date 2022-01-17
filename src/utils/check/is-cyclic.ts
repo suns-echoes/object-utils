@@ -19,6 +19,11 @@ function _isCyclic(object: SymbolIndexableObject, beenThere: WeakSet<SymbolIndex
 	return false;
 }
 
+/**
+ * Checks if object has cyclic references.
+ * @param o The object to check for cyclic references.
+ * @returns The "true" if has cyclic references, "false" otherwise.
+ */
 export function isCyclic(o: object): boolean {
 	return _isCyclic(o, new WeakSet().add(o));
 }
