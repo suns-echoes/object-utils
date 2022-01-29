@@ -13,12 +13,23 @@ describe('diffStrictDeep', () => {
 		expect(diffStrictDeep(null, null)).to.be.equal(Same);
 	});
 
-	it('returns "Missing" when second input ommits props', () => {
+	it('returns default "Missing" when second input ommits props', () => {
 		const a = { aa: true };
 		const b = {};
 		const d = { aa: Missing };
 
 		const diff = diffStrictDeep(a, b);
+
+		expect(diff).to.be.eql(d);
+	});
+
+	it('returns custom missing when second input ommits props', () => {
+		const MISSING = 'MISSING';
+		const a = { aa: true };
+		const b = {};
+		const d = { aa: MISSING };
+
+		const diff = diffStrictDeep(a, b, MISSING);
 
 		expect(diff).to.be.eql(d);
 	});

@@ -29,16 +29,17 @@ describe('diff', () => {
 		expect(diff(a, b)).to.be.eql(d);
 	});
 
-	it('returns "Missing" when second input ommits array items', () => {
+	it('returns custom missing when second input ommits array items', () => {
+		const MISSING = 'MISSING';
 		const sparse = [1];
 
 		sparse[2] = 3;
 
 		const a = [1, 2, 3];
 		const b = sparse;
-		const d = [Same, Missing, Same];
+		const d = [Same, MISSING, Same];
 
-		expect(diff(a, b)).to.be.eql(d);
+		expect(diff(a, b, MISSING)).to.be.eql(d);
 	});
 
 	it('returns differences (new values) for two different object inputs', () => {

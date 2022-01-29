@@ -33,16 +33,17 @@ describe('diffDeep', () => {
 		expect(diff).to.be.eql(d);
 	});
 
-	it('returns "Missing" when second input ommits array items', () => {
+	it('returns custom missing when second input ommits array items', () => {
+		const MISSING = 'MISSING';
 		const sparse = [1];
 
 		sparse[2] = 3;
 
 		const a = [[1, 2, 3], true];
 		const b = [sparse];
-		const d = [[Same, Missing, Same], Missing];
+		const d = [[Same, MISSING, Same], MISSING];
 
-		const diff = diffDeep(a, b);
+		const diff = diffDeep(a, b, MISSING);
 
 		expect(diff).to.be.eql(d);
 	});

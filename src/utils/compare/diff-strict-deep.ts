@@ -1,6 +1,8 @@
 import { Missing, Same } from '../constants';
 
+
 export { Missing, Same } from '../constants';
+
 
 function _diffStrictDeep(a: AnyObject, b: AnyObject, missing: any): AnyObject | typeof Same {
 	const diffObject: AnyObject = {};
@@ -49,19 +51,18 @@ function _diffStrictDeep(a: AnyObject, b: AnyObject, missing: any): AnyObject | 
 }
 
 /**
- * Find difference between two entities.
- * Objects will go through deep comparison but the arrays will be checked for
- * instance equality.
+ * Find deep difference between two entities. This is strict version which
+ * treats arrays as non-object values.
  * In case of no difference in property or value, "Same" symbol will be
- * returned.
- * Unless provided different value the "Missing" symbol will be returned when
- * property is present in the "a" entity but missing in the "b" entity.
+ * returned. The "Missing" symbol will be returned when property is present in
+ * the "a" entity but missing in the "b" entity, unless provided different value
+ * for missing properties.
  * @param a The first entity.
  * @param b The second entity.
- * @returns The structure or value representing changes made between "a" and "b"
+ * @returns A structure or value representing changes made between "a" and "b"
  * entities.
  */
-export function diffStrictDeep(a: any, b: any, missing = Missing): any {
+export function diffStrictDeep(a: any, b: any, missing: any = Missing): any {
 	if (a === b) {
 		return Same;
 	}
