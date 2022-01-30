@@ -1,10 +1,10 @@
-import { volatileProxyDeep } from './volatile-proxy-deep';
+import { volatileProxy } from './invariable-proxy';
 
 
-describe('volatileProxyDeep', () => {
+describe('volatileProxy', () => {
 	it('throws on property reassign', () => {
 		const a = { x: 'y' };
-		const v = volatileProxyDeep(a);
+		const v = volatileProxy(a);
 
 		const fail = (): void => {
 			v.x = '';
@@ -16,7 +16,7 @@ describe('volatileProxyDeep', () => {
 
 	it('throws on array item reassign', () => {
 		const a = ['y'];
-		const v = volatileProxyDeep(a);
+		const v = volatileProxy(a);
 
 		const fail = (): void => {
 			v[0] = '';
@@ -28,7 +28,7 @@ describe('volatileProxyDeep', () => {
 
 	it('throws on delete object property', () => {
 		const a: AnyObject = { x: 'y' };
-		const v = volatileProxyDeep(a);
+		const v = volatileProxy(a);
 
 		const fail = (): void => {
 			delete v.x;
@@ -40,7 +40,7 @@ describe('volatileProxyDeep', () => {
 
 	it('throws on delete array item', () => {
 		const a = ['y'];
-		const v = volatileProxyDeep(a);
+		const v = volatileProxy(a);
 
 		const fail = (): void => {
 			delete v[0];
@@ -52,7 +52,7 @@ describe('volatileProxyDeep', () => {
 
 	it('throws on add object property', () => {
 		const a: AnyObject = { x: 'y' };
-		const v = volatileProxyDeep(a);
+		const v = volatileProxy(a);
 
 		const fail = (): void => {
 			v.y = 1;
@@ -64,7 +64,7 @@ describe('volatileProxyDeep', () => {
 
 	it('throws on add array item', () => {
 		const a: AnyArray = ['y'];
-		const v = volatileProxyDeep(a);
+		const v = volatileProxy(a);
 
 		const fail = (): void => {
 			v[1] = 1;
@@ -76,7 +76,7 @@ describe('volatileProxyDeep', () => {
 
 	it('throws on object define property', () => {
 		const a: AnyObject = { x: 'y' };
-		const v = volatileProxyDeep(a);
+		const v = volatileProxy(a);
 
 		const fail = (): void => {
 			Object.defineProperty(v, 'y', {
@@ -90,7 +90,7 @@ describe('volatileProxyDeep', () => {
 
 	it('throws on array define property', () => {
 		const a = ['y'];
-		const v = volatileProxyDeep(a);
+		const v = volatileProxy(a);
 
 		const fail = (): void => {
 			Object.defineProperty(v, 'y', {
@@ -105,7 +105,7 @@ describe('volatileProxyDeep', () => {
 
 	it('throws on object prototype set', () => {
 		const a = { x: 'y' };
-		const v = volatileProxyDeep(a);
+		const v = volatileProxy(a);
 
 		const fail = (): void => {
 			Object.setPrototypeOf(v, {});
@@ -116,7 +116,7 @@ describe('volatileProxyDeep', () => {
 
 	it('throws on array prototype set', () => {
 		const a = ['y'];
-		const v = volatileProxyDeep(a);
+		const v = volatileProxy(a);
 
 		const fail = (): void => {
 			Object.setPrototypeOf(v, {});
@@ -125,27 +125,21 @@ describe('volatileProxyDeep', () => {
 		expect(fail).to.throw(Error);
 	});
 
-	it('affect properties', () => {
+	it('don\'t affect properties', () => {
 		const a = { x: { y: 'z' } };
-		const v = volatileProxyDeep(a);
+		const v = volatileProxy(a);
 
-		const fail = (): void => {
-			v.x.y = 't';
-		};
+		v.x.y = 't';
 
-		expect(fail).to.throw(Error);
-		expect(v.x.y).to.be.equal('z');
+		expect(v.x.y).to.be.equal('t');
 	});
 
-	it('affect items', () => {
+	it('don\'t affect items', () => {
 		const a = [['z']];
-		const v = volatileProxyDeep(a);
+		const v = volatileProxy(a);
 
-		const fail = (): void => {
-			v[0][0] = 't';
-		};
+		v[0][0] = 't';
 
-		expect(fail).to.throw(Error);
-		expect(v[0][0]).to.be.equal('z');
+		expect(v[0][0]).to.be.equal('t');
 	});
 });

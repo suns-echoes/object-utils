@@ -16,6 +16,13 @@ const volatileHandler = {
 	},
 };
 
+
+/**
+ * Creates object proxy which will throw an error on any modification attempt on
+ * top level.
+ * @param target The object to be proxied.
+ * @returns An object proxy.
+ */
 export function volatileProxy<T extends AnyArray | AnyObject>(target: T): T {
 	return new Proxy(target, volatileHandler as unknown as ProxyHandler<any>);
 }

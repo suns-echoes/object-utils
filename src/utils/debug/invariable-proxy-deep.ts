@@ -22,6 +22,13 @@ const volatileDeepHandler = {
 	},
 };
 
+
+/**
+ * Creates object proxy which will throw an error on any modification attempt on
+ * any level.
+ * @param target The object to be proxied.
+ * @returns An object proxy.
+ */
 export function volatileProxyDeep<T extends AnyArray | AnyObject>(target: T): T {
 	return new Proxy(target, volatileDeepHandler as unknown as ProxyHandler<any>);
 }
