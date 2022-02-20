@@ -13,7 +13,7 @@ export function makePackage(fileContent) {
 
 	let copyKeys = Object.keys(packageData);
 
-	if (whitelist && whitelist.length) {
+	if (whitelist && whitelist.length && !whitelist.includes('*')) {
 		copyKeys = copyKeys.filter((key) => whitelist.includes(key));
 	}
 
