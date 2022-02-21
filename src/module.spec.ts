@@ -4,6 +4,7 @@ import { join } from 'path';
 import Lib from './index';
 import { ObjectUtils as NamedLib } from './object-utils';
 
+
 const sourceFilesFilter = /^.+?(?<!\.spec)\.(?:js|ts)$/;
 
 async function findMethods(path: string, url: string, _members: string[] = []): Promise<string[]> {
@@ -27,6 +28,8 @@ async function findMethods(path: string, url: string, _members: string[] = []): 
 
 	return [...new Set(_members)];
 }
+
+
 describe('Module', () => {
 	it('exports all existing methods', async () => {
 		const exportedMethods = Object.keys(NamedLib);
