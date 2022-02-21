@@ -14,8 +14,6 @@ describe('eqlDeep', () => {
 		const b = { a: [1], b: true, c: { d: 1 } };
 
 		expect(eqlDeep(a, b)).to.be.true;
-		expect(eqlDeep(null, null)).to.be.true;
-		expect(eqlDeep(undefined, undefined)).to.be.true;
 	});
 
 	it('returns "true" for two equal array inputs', () => {

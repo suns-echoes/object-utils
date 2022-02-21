@@ -52,7 +52,7 @@ function _diffStrictDeep(a: AnyObject, b: AnyObject, missing: any): AnyObject | 
 
 /**
  * Find deep difference between two entities. This is strict version which
- * treats arrays as non-object values.
+ * compares arrays by reference and not by item values.
  * In case of no difference in property or value, "Same" symbol will be
  * returned. The "Missing" symbol will be returned when property is present in
  * the "a" entity but missing in the "b" entity, unless provided different value
