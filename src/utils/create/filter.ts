@@ -3,7 +3,7 @@
  * the provided function.
  * @param source The object on which to perform filtering.
  * @param callback The predicate function to test each property of the object.
- * Return a value that coerces to "true" to keep the property, or to "false"
+ * Return a value that coerces to "true" to keep the property or to "false"
  * otherwise.
  * It accepts three arguments:
  *   * prop - The current property being processed in the object.

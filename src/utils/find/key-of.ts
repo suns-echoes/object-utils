@@ -1,3 +1,12 @@
+/**
+ * Returns the key of the first property in the object that matches the
+ * "searchElement" value. Otherwise, it returns "undefined", indicating that no
+ * property matches.
+ * @param object The object on which to perform search.
+ * @param searchElement The value to search for.
+ * @returns The key of the first property in the object that matches provided
+ * value or "undefined" otherwise.
+ */
 export function keyOf(object: AnyObject, searchElement: any): string | undefined {
 	const keys = Object.keys(object);
 	const keyCount = keys.length;

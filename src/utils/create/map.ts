@@ -3,7 +3,7 @@
  * function.
  * @param source The object on which to perform mapping.
  * @param callback The predicate function to map each property of the object.
- * Return a value that coerces to "true" to keep the property, or to "false"
+ * Return a value that coerces to "true" to keep the property or to "false"
  * otherwise.
  * It accepts three arguments:
  *   * prop - The current property being processed in the object.
