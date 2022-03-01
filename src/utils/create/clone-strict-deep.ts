@@ -16,12 +16,20 @@ function _cloneStrictDeep(target: AnyObject, source: AnyObject): void {
 }
 
 
-export function cloneStrictDeep(source: AnyObject): AnyObject {
-	const copy: AnyObject = {};
-
+/**
+ * Creates deep clone of source object. This is strict version which
+ * compares arrays by references and not by item values.
+ * @param source The object to be cloned.
+ * @returns An object clone or "null" for non-object input.
+ */
+export function cloneStrictDeep(source: AnyObject): AnyObject | null {
 	if (typeof source === 'object' && source !== null && !Array.isArray(source)) {
+		const copy: AnyObject = {};
+
 		_cloneStrictDeep(copy, source);
+
+		return copy;
 	}
 
-	return copy;
+	return null;
 }

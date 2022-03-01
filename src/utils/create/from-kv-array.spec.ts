@@ -7,4 +7,9 @@ describe('fromKVArray', () => {
 
 		expect(fromKVArray(a)).to.be.eql({ a: 1, b: 2, c: 3 });
 	});
+
+	it('returns empty object for invalid input', () => {
+		// @ts-ignore
+		expect(fromKVArray(null)).to.be.eql({});
+	});
 });

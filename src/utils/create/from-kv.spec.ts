@@ -29,4 +29,9 @@ describe('fromKV', () => {
 
 		expect(fromKV(g())).to.be.eql({ a: 1, b: 2, c: 3 });
 	});
+
+	it('returns empty object for invalid input', () => {
+		// @ts-ignore
+		expect(fromKV(null)).to.be.eql({});
+	});
 });

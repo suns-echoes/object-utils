@@ -22,7 +22,7 @@ function _flatStrict(target: AnyObject, source: AnyObject, depth: number, delimi
  * the specified depth. If delimiter is specified (not falsy) the sub-keys will
  * be concatenated using it. Otherwise deepest level properties will overwrite
  * higher level properties that have the same key. This is strict version which
- * treats arrays as non-object values.
+ * compares arrays by references and not by item values.
  * @param source The source object.
  * @param depth The maximum number of levels of flattening, set to "-1" for no
  * limit.
@@ -31,7 +31,7 @@ function _flatStrict(target: AnyObject, source: AnyObject, depth: number, delimi
  * same key.
  * @returns A new flattened object or "null" if source is not an object.
  */
-export function flatStrict(source: AnyObject, depth = 1, delimiter: string | false = '.'): AnyObject | null {
+export function flatStrict(source: AnyObject, depth = -1, delimiter: string | false = '.'): AnyObject | null {
 	if (typeof source === 'object' && source !== null && !Array.isArray(source)) {
 		const target = {};
 

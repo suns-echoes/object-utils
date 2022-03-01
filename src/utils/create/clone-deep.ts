@@ -17,12 +17,22 @@ function _cloneDeep(target: AnyObject, source: AnyObject): void {
 	}
 }
 
-export function cloneDeep(source: AnyObject): AnyObject {
-	const copy: AnyObject = Array.isArray(source) ? [] : {};
 
+/**
+ * Creates deep clone of source object.
+ * @param source The object to be cloned.
+ * @returns An object clone or "null" if the "source" was not type of "object".
+ */
+export function cloneDeep(source: AnyObject): AnyObject | null {
 	if (typeof source === 'object' && source !== null) {
-		_cloneDeep(copy, source);
+		const copy: AnyObject = Array.isArray(source) ? [] : {};
+
+		if (typeof source === 'object') {
+			_cloneDeep(copy, source);
+		}
+
+		return copy;
 	}
 
-	return copy;
+	return null;
 }

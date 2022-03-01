@@ -71,7 +71,7 @@ describe('flat', () => {
 			},
 		};
 
-		expect(flat(o)).to.be.eql({
+		expect(flat(o, 1)).to.be.eql({
 			'a.0': 1,
 			'a.1': a[1],
 			'e.f': 5,
@@ -119,7 +119,7 @@ describe('flat', () => {
 		});
 	});
 
-	it('returns null if source is not an object', () => {
+	it('returns "null" if source is not an object', () => {
 		// @ts-ignore
 		expect(flat('wot?!')).to.be.null;
 	});

@@ -1,9 +1,11 @@
 /**
- *
- * @param items
- *     1. ('key1', value1, ...)
- *     2. (['key1', value1, ...], ...)
- *     4. ({ 'key1': value1, ... }, ...)
+ * Creates new object from list of:
+ *   * arrays with key/value pairs (i.e.: ['key1', value1, 'key2', value2, ...])
+ *   * objects
+ *   * key/value pairs (i.e.: 'key1', value1, 'key2', value2, ...)
+ * @param items The list of items form which new object will be created.
+ * Example:
+ * ('key1', value1, ['key2', value2, ...], { 'key3': value3, ... }, ...)
  */
 export function of(...items: (AnyArray | AnyObject | string | any)[]): AnyObject {
 	const itemCount = items.length;

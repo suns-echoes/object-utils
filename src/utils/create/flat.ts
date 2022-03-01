@@ -51,7 +51,7 @@ function _flat(
  * same key.
  * @returns A new flattened object or "null" if source is not an object.
  */
-export function flat(source: AnyArray | AnyObject, depth = 1, delimiter: string | false = '.'): AnyObject | null {
+export function flat(source: AnyArray | AnyObject, depth = -1, delimiter: string | false = '.'): AnyObject | null {
 	if (typeof source === 'object' && source !== null) {
 		const target = {};
 

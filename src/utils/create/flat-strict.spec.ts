@@ -111,7 +111,7 @@ describe('flatStrict', () => {
 		});
 	});
 
-	it('returns null if source is not an object or is an array', () => {
+	it('returns "null" if source is not an object or is an array', () => {
 		// @ts-ignore
 		expect(flatStrict('wot?!')).to.be.null;
 		expect(flatStrict(['wot?!'])).to.be.null;

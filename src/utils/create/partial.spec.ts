@@ -10,4 +10,14 @@ describe('partial', () => {
 		expect(c).not.to.be.equal(o);
 		expect(c).to.be.eql({ a: 1, c: 8, e: 'yy' });
 	});
+
+	it('returns "null" for non-object source', () => {
+		// @ts-ignore
+		expect(partial('wot?!', [])).to.be.null;
+	});
+
+	it('returns "null" for invalid keys', () => {
+		// @ts-ignore
+		expect(partial({}, 'wot?!')).to.be.null;
+	});
 });

@@ -13,7 +13,15 @@ function _templateStrict(target: AnyObject, source: AnyObject): void {
 	}
 }
 
-export function templateStrict(source: AnyArray | AnyObject): AnyArray | AnyObject | null {
+
+/**
+ * Creates new object without properties other than sub-objects based on
+ * "source" object structure. This is strict version which compares arrays by
+ * references and not by item values.
+ * @param source The object used as template.
+ * @returns A new object with structure based on template.
+ */
+export function templateStrict(source: AnyObject): AnyObject | null {
 	if (typeof source === 'object' && source !== null && !Array.isArray(source)) {
 		const templateObject = {};
 
