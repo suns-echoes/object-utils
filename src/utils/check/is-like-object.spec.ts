@@ -1,7 +1,7 @@
 import { isLikeObject } from './is-like-object';
 
 
-describe.only('isLikeObject', () => {
+describe('isLikeObject', () => {
 	it('returns true for objects', () => {
 		expect(isLikeObject(new Boolean(''))).to.be.true;
 		expect(isLikeObject(new Number(''))).to.be.true;

@@ -8,6 +8,7 @@ import { diffDeep } from './utils/compare/diff-deep';
 import { diffStrictDeep } from './utils/compare/diff-strict-deep';
 import { eql } from './utils/compare/eql';
 import { eqlDeep } from './utils/compare/eql-deep';
+import { eqlStrictDeep } from './utils/compare/eql-strict-deep';
 
 import { cloneDeep } from './utils/create/clone-deep';
 import { cloneStrictDeep } from './utils/create/clone-strict-deep';
@@ -20,12 +21,14 @@ import { fromPath } from './utils/create/from-path';
 import { map } from './utils/create/map';
 import { of } from './utils/create/of';
 import { partial } from './utils/create/partial';
+import { squash } from './utils/create/squash';
+import { squashReverse } from './utils/create/squash-reverse';
 import { template } from './utils/create/template';
 import { templateStrict } from './utils/create/template-strict';
 
 import { freezeDeep } from './utils/debug/freeze-deep';
-import { volatileProxy } from './utils/debug/volatile-proxy';
-import { volatileProxyDeep } from './utils/debug/volatile-proxy-deep';
+import { invariableProxy } from './utils/debug/invariable-proxy';
+import { invariableProxyDeep } from './utils/debug/invariable-proxy-deep';
 
 import { blackhole } from './utils/destroy/blackhole';
 
@@ -66,6 +69,7 @@ export const ObjectUtils = {
 	diffStrictDeep,
 	eql,
 	eqlDeep,
+	eqlStrictDeep,
 	// create
 	cloneDeep,
 	cloneStrictDeep,
@@ -78,12 +82,14 @@ export const ObjectUtils = {
 	map,
 	of,
 	partial,
+	squash,
+	squashReverse,
 	template,
 	templateStrict,
 	// debug
 	freezeDeep,
-	volatileProxy,
-	volatileProxyDeep,
+	invariableProxy,
+	invariableProxyDeep,
 	// destroy
 	blackhole,
 	// find

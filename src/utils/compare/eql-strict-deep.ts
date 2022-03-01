@@ -34,7 +34,7 @@ function _eqlStrictDeep(a: AnyObject, b: AnyObject): boolean {
 
 /**
  * Performs deep equality check of two objects. This is strict version which
- * compares arrays by reference and not by item values.
+ * compares arrays by references and not by item values.
  * @param a The first object to compare.
  * @param b The second object to compare.
  * @returns The "true" if objects are equal, "false" otherwise.

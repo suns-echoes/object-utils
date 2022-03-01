@@ -1,7 +1,7 @@
 import { eqlStrictDeep } from './eql-strict-deep';
 
 
-describe.only('eqlStrictDeep', () => {
+describe('eqlStrictDeep', () => {
 	it('returns "true" for two equal inputs', () => {
 		expect(eqlStrictDeep(1, 1)).to.be.true;
 		expect(eqlStrictDeep('a', 'a')).to.be.true;
