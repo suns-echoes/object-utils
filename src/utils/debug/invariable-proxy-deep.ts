@@ -1,4 +1,4 @@
-const volatileDeepHandler = {
+const invariableDeepHandler = {
 	get(target: AnyObject, key: string): any {
 		const prop = target[key];
 
@@ -29,6 +29,6 @@ const volatileDeepHandler = {
  * @param target The object to be proxied.
  * @returns An object proxy.
  */
-export function volatileProxyDeep<T extends AnyArray | AnyObject>(target: T): T {
-	return new Proxy(target, volatileDeepHandler as unknown as ProxyHandler<any>);
+export function invariableProxyDeep<T extends AnyArray | AnyObject>(target: T): T {
+	return new Proxy(target, invariableDeepHandler as unknown as ProxyHandler<any>);
 }

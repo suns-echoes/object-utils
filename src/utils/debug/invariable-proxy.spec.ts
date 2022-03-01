@@ -1,10 +1,10 @@
-import { volatileProxy } from './invariable-proxy';
+import { invariableProxy } from './invariable-proxy';
 
 
-describe('volatileProxy', () => {
+describe('invariableProxy', () => {
 	it('throws on property reassign', () => {
 		const a = { x: 'y' };
-		const v = volatileProxy(a);
+		const v = invariableProxy(a);
 
 		const fail = (): void => {
 			v.x = '';
@@ -16,7 +16,7 @@ describe('volatileProxy', () => {
 
 	it('throws on array item reassign', () => {
 		const a = ['y'];
-		const v = volatileProxy(a);
+		const v = invariableProxy(a);
 
 		const fail = (): void => {
 			v[0] = '';
@@ -28,7 +28,7 @@ describe('volatileProxy', () => {
 
 	it('throws on delete object property', () => {
 		const a: AnyObject = { x: 'y' };
-		const v = volatileProxy(a);
+		const v = invariableProxy(a);
 
 		const fail = (): void => {
 			delete v.x;
@@ -40,7 +40,7 @@ describe('volatileProxy', () => {
 
 	it('throws on delete array item', () => {
 		const a = ['y'];
-		const v = volatileProxy(a);
+		const v = invariableProxy(a);
 
 		const fail = (): void => {
 			delete v[0];
@@ -52,7 +52,7 @@ describe('volatileProxy', () => {
 
 	it('throws on add object property', () => {
 		const a: AnyObject = { x: 'y' };
-		const v = volatileProxy(a);
+		const v = invariableProxy(a);
 
 		const fail = (): void => {
 			v.y = 1;
@@ -64,7 +64,7 @@ describe('volatileProxy', () => {
 
 	it('throws on add array item', () => {
 		const a: AnyArray = ['y'];
-		const v = volatileProxy(a);
+		const v = invariableProxy(a);
 
 		const fail = (): void => {
 			v[1] = 1;
@@ -76,7 +76,7 @@ describe('volatileProxy', () => {
 
 	it('throws on object define property', () => {
 		const a: AnyObject = { x: 'y' };
-		const v = volatileProxy(a);
+		const v = invariableProxy(a);
 
 		const fail = (): void => {
 			Object.defineProperty(v, 'y', {
@@ -90,7 +90,7 @@ describe('volatileProxy', () => {
 
 	it('throws on array define property', () => {
 		const a = ['y'];
-		const v = volatileProxy(a);
+		const v = invariableProxy(a);
 
 		const fail = (): void => {
 			Object.defineProperty(v, 'y', {
@@ -105,7 +105,7 @@ describe('volatileProxy', () => {
 
 	it('throws on object prototype set', () => {
 		const a = { x: 'y' };
-		const v = volatileProxy(a);
+		const v = invariableProxy(a);
 
 		const fail = (): void => {
 			Object.setPrototypeOf(v, {});
@@ -116,7 +116,7 @@ describe('volatileProxy', () => {
 
 	it('throws on array prototype set', () => {
 		const a = ['y'];
-		const v = volatileProxy(a);
+		const v = invariableProxy(a);
 
 		const fail = (): void => {
 			Object.setPrototypeOf(v, {});
@@ -127,7 +127,7 @@ describe('volatileProxy', () => {
 
 	it('don\'t affect properties', () => {
 		const a = { x: { y: 'z' } };
-		const v = volatileProxy(a);
+		const v = invariableProxy(a);
 
 		v.x.y = 't';
 
@@ -136,7 +136,7 @@ describe('volatileProxy', () => {
 
 	it('don\'t affect items', () => {
 		const a = [['z']];
-		const v = volatileProxy(a);
+		const v = invariableProxy(a);
 
 		v[0][0] = 't';
 

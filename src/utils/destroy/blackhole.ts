@@ -34,6 +34,12 @@ function _blackhole(matter: any, gone: WeakSet<AnyObject>): void {
 	}
 }
 
+
+/**
+ * Breaks all references and set all properties to undefined. Circular reference
+ * safe.
+ * @param matter Value to be deeply dereferenced.
+ */
 export function blackhole(matter: any): void {
 	if (matter instanceof Object || typeof matter === 'object' && matter !== null) {
 		_blackhole(matter, new WeakSet().add(matter));

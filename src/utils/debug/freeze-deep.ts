@@ -1,3 +1,7 @@
+/**
+ * Deeply freezes the target object.
+ * @param target The object to freeze.
+ */
 export function freezeDeep(target: AnyArray | AnyObject): void {
 	let index = 0;
 

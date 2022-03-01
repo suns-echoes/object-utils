@@ -1,4 +1,4 @@
-const volatileHandler = {
+const invariableHandler = {
 	get(target: AnyObject, key: string): any {
 		return target[key] || undefined;
 	},
@@ -23,6 +23,6 @@ const volatileHandler = {
  * @param target The object to be proxied.
  * @returns An object proxy.
  */
-export function volatileProxy<T extends AnyArray | AnyObject>(target: T): T {
-	return new Proxy(target, volatileHandler as unknown as ProxyHandler<any>);
+export function invariableProxy<T extends AnyArray | AnyObject>(target: T): T {
+	return new Proxy(target, invariableHandler as unknown as ProxyHandler<any>);
 }
