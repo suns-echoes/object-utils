@@ -32,6 +32,11 @@ import { invariableProxyDeep } from './utils/debug/invariable-proxy-deep';
 
 import { blackhole } from './utils/destroy/blackhole';
 
+import { entriesDeep } from './utils/extract/entries-deep';
+import { entriesStrictDeep } from './utils/extract/entries-strict-deep';
+import { valuesDeep } from './utils/extract/values-deep';
+import { valuesStrictDeep } from './utils/extract/values-strict-deep';
+
 import { any } from './utils/find/any';
 import { every } from './utils/find/every';
 import { find } from './utils/find/find';
@@ -42,13 +47,9 @@ import { includes } from './utils/find/includes';
 import { keyOf } from './utils/find/key-of';
 import { some } from './utils/find/some';
 
-import { entriesDeep } from './utils/iterate/entries-deep';
-import { entriesStrictDeep } from './utils/iterate/entries-strict-deep';
 import { forEach } from './utils/iterate/for-each';
 import { forEachDeep } from './utils/iterate/for-each-deep';
 import { forEachStrictDeep } from './utils/iterate/for-each-strict-deep';
-import { valuesDeep } from './utils/iterate/values-deep';
-import { valuesStrictDeep } from './utils/iterate/values-strict-deep';
 
 import { assignDeep } from './utils/modify/assign-deep';
 import { assignStrictDeep } from './utils/modify/assign-strict-deep';
@@ -92,6 +93,11 @@ export const ObjectUtils = {
 	invariableProxyDeep,
 	// destroy
 	blackhole,
+	// extract
+	entriesDeep,
+	entriesStrictDeep,
+	valuesDeep,
+	valuesStrictDeep,
 	// find
 	any,
 	every,
@@ -103,13 +109,9 @@ export const ObjectUtils = {
 	keyOf,
 	some,
 	// iterate
-	entriesDeep,
-	entriesStrictDeep,
 	forEach,
 	forEachDeep,
 	forEachStrictDeep,
-	valuesDeep,
-	valuesStrictDeep,
 	// modify
 	assignDeep,
 	assignStrictDeep,

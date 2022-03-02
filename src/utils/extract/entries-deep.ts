@@ -48,6 +48,17 @@ function _entriesDeep(
 	}
 }
 
+
+/**
+ * Returns an array of [key, value] pairs of source object own enumerable
+ * properties including nested ones.
+ * @param source The object whose properties are to be returned.
+ * @param delimiter Optional string value to use as delimiter in string "key"
+ * path. If not specified the "key" will be an array of strings representing
+ * property path.
+ * @returns An array containing [key, value] pairs for each property or "null"
+ * when input is invalid.
+ */
 export function entriesDeep(source: AnyArray | AnyObject): [string[], any][] | null;
 export function entriesDeep(source: AnyArray | AnyObject, delimiter: string): [string, any][] | null;
 export function entriesDeep(source: AnyArray | AnyObject, delimiter = ''): AnyArray | null {
