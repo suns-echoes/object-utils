@@ -7,8 +7,8 @@
  * the function returns "true", indicating that the satisfying property was
  * found.
  * It takes three arguments:
- *   * property - The current property being processed in the object.
- *   * key - The key of the current property being processed in the object.
+ *   * prop - The current processed property.
+ *   * key - The key of the current processed property.
  *   * object - The object on which findKey() was called.
  * @returns The the first property in the object that satisfies the provided
  * testing function, "undefined" otherwise.

@@ -6,8 +6,8 @@
  * Return a value that coerces to "true" to for valid property or to "false"
  * otherwise.
  * It accepts three arguments:
- *   * prop - The current property being processed in the object.
- *   * key - The key of the current property being processed in the object.
+ *   * prop - The current processed property.
+ *   * key - The key of the current processed property.
  *   * object - The object on which every() was called.
  * @returns A "true" if all properties pass the test or "false" otherwise.
  */

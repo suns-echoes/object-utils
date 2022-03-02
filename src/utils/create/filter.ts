@@ -6,8 +6,8 @@
  * Return a value that coerces to "true" to keep the property or to "false"
  * otherwise.
  * It accepts three arguments:
- *   * prop - The current property being processed in the object.
- *   * key - The key of the current property being processed in the object.
+ *   * prop - The current processed property.
+ *   * key - The key of the current processed property.
  *   * object - The object on which filter() was called.
  * @returns A new object with the properties that pass the test. If no
  * properties pass the test, an empty object will be returned or "null" if
