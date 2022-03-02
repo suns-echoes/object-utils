@@ -28,6 +28,21 @@ function _forEachStrictDeep(
 	}
 }
 
+
+/**
+ * Executes the provided function once for each property (including nested
+ * properties). This is strict version which treats arrays as non-object values.
+ * @param object The object on which to execute the "callback".
+ * @param callback The function to execute on each property.
+ * It accepts three arguments:
+ *   * prop - The current processed property.
+ *   * key - The key of the current processed property. If the "delimiter" is
+ *   provided "key" will be a delimited string and array of strings otherwise.
+ *   * object - The object on which forEachStrictDeep() was called.
+ * @param delimiter Optional string value to use as delimiter in callback "key"
+ * parameter. If not specified the "key" will be an array of strings
+ * representing property path.
+ */
 export function forEachStrictDeep(
 	object: AnyObject,
 	callback: (prop: any, key: string[], object: AnyObject) => void,
