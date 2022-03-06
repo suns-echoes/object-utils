@@ -26,10 +26,11 @@ function _mergeOneStrictDeep(target: AnyObject, source: AnyObject): void {
 
 /**
  * Performs deep copy of all enumerable own properties from one or more source
- * objects to a target object but does not overwrite existing values with
- * undefined. This is strict version which treats arrays as
- * non-object values. It returns the modified target object.
- * @param target The object to which assing properties from sources.
+ * objects to the target object but does not overwrite existing values when
+ * source property has the "undefined" value assigned to it. It returns the
+ * modified target object. This is strict version which compares arrays by
+ * references and not by item values.
+ * @param target The object to which merge the properties.
  * @param sources The objects providing source properties.
  * @returns The modified target object.
  */
