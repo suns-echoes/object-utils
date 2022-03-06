@@ -53,6 +53,7 @@ import { forEachStrictDeep } from './utils/iterate/for-each-strict-deep';
 
 import { assignDeep } from './utils/modify/assign-deep';
 import { assignStrictDeep } from './utils/modify/assign-strict-deep';
+import { defineInternalProperties } from './utils/modify/define-internal-properties';
 import { mergeDeep } from './utils/modify/merge-deep';
 import { mergeStrictDeep } from './utils/modify/merge-strict-deep';
 
@@ -115,6 +116,7 @@ export const ObjectUtils = {
 	// modify
 	assignDeep,
 	assignStrictDeep,
+	defineInternalProperties,
 	mergeDeep,
 	mergeStrictDeep,
 };
