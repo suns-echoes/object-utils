@@ -18,7 +18,9 @@ async function findMethods(path: string, url: string, _members: string[] = []): 
 			Object.keys(
 				await import(`${url}${entity}`),
 			).forEach((key) => {
-				_members.push(key);
+				if (key.charAt(0) !== '_') {
+					_members.push(key);
+				}
 			});
 		}
 		else if (stat.isDirectory()) {
