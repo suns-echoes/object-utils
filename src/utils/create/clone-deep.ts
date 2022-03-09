@@ -1,4 +1,4 @@
-function _cloneDeep(target: AnyObject, source: AnyObject): void {
+export function _cloneDeep(target: AnyObject, source: AnyObject): void {
 	const keys = Object.keys(source);
 	const keyConut = keys.length;
 
