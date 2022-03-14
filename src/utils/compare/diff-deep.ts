@@ -114,7 +114,7 @@ export function diffDeep(a: any, b: any, missing: any = Missing): any {
 	else if (Array.isArray(a) && Array.isArray(b)) {
 		return _diffArrayDeep(a, b, missing);
 	}
-	else if (typeof a === 'object' && a !== null && typeof b === 'object' && b !== null) {
+	else if (a !== null && typeof a === 'object' && b !== null && typeof b === 'object') {
 		return _diffDeep(a, b, missing);
 	}
 

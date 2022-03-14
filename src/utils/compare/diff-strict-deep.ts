@@ -66,8 +66,8 @@ export function diffStrictDeep(a: any, b: any, missing: any = Missing): any {
 	if (a === b) {
 		return Same;
 	}
-	else if (typeof a === 'object' && a !== null && !Array.isArray(a)
-		&& typeof b === 'object' && b !== null && !Array.isArray(b)
+	else if (a !== null && typeof a === 'object' && !Array.isArray(a)
+		&& b !== null && typeof b === 'object' && !Array.isArray(b)
 	) {
 		return _diffStrictDeep(a, b, missing);
 	}

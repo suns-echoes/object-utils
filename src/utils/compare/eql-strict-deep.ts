@@ -43,8 +43,8 @@ export function eqlStrictDeep(a: any, b: any): boolean {
 	if (a === b) {
 		return true;
 	}
-	else if (typeof a === 'object' && a !== null && !Array.isArray(a)
-		&& typeof b === 'object' && b !== null && !Array.isArray(b)) {
+	else if (a !== null && typeof a === 'object' && !Array.isArray(a)
+		&& b !== null && typeof b === 'object' && !Array.isArray(b)) {
 		return _eqlStrictDeep(a, b);
 	}
 

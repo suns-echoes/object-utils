@@ -57,7 +57,7 @@ export function eql(a: any, b: any): boolean {
 	else if (Array.isArray(a) && Array.isArray(b)) {
 		return _eqlArray(a, b);
 	}
-	else if (typeof a === 'object' && a !== null && typeof b === 'object' && b !== null) {
+	else if (a !== null && typeof a === 'object' && b !== null && typeof b === 'object') {
 		return _eql(a, b);
 	}
 
