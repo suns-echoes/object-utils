@@ -11,6 +11,7 @@ import { eqlDeep } from './utils/compare/eql-deep';
 import { eqlStrictDeep } from './utils/compare/eql-strict-deep';
 
 import { cloneDeep } from './utils/create/clone-deep';
+import { cloneExDeep } from './utils/create/clone-ex-deep';
 import { cloneStrictDeep } from './utils/create/clone-strict-deep';
 import { filter } from './utils/create/filter';
 import { flat } from './utils/create/flat';
@@ -76,6 +77,7 @@ export const ObjectUtils = {
 	// create
 	cloneDeep,
 	cloneStrictDeep,
+	cloneExDeep,
 	filter,
 	flat,
 	flatStrict,
