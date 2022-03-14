@@ -85,7 +85,7 @@ describe('safeAssignExDeepDiff', () => {
 		expect(diff).to.be.equal(target);
 	});
 
-	it('overwrites object and array with primitives and returns diff tree', () => {
+	it('overwrites object and array with primitives and returns target as diff tree', () => {
 		const target = {
 			arr: [[], {}],
 			obj: { a: [], o: {} },
@@ -102,7 +102,7 @@ describe('safeAssignExDeepDiff', () => {
 		expect(diff).to.be.equal(target);
 	});
 
-	it('overwrites primitive with object and array and returns diff tree', () => {
+	it('overwrites primitive with object and array and returns target as diff tree', () => {
 		const target = {
 			arr: [0, 0],
 			obj: { a: 0, o: 0 },
@@ -119,7 +119,7 @@ describe('safeAssignExDeepDiff', () => {
 		expect(diff).to.be.equal(target);
 	});
 
-	it('overwrites object with array and returns diff tree', () => {
+	it('overwrites object with array and returns target as diff tree', () => {
 		const target = {
 			arr: [[], {}],
 			obj: { a: [], o: {} },
