@@ -159,7 +159,7 @@ describe('safeAssignDeepDiff', () => {
 		const target = getTestData(false, true);
 		const source = getTestData(false, true, 'new_');
 
-		const diff = safeAssignDeepDiff(target, source, true);
+		const diff = safeAssignDeepDiff(target, source);
 
 		expect(target).to.be.eql(source);
 		expect(target[3]).not.to.be.equal(source[3]);
@@ -177,7 +177,7 @@ describe('safeAssignDeepDiff', () => {
 		const source = getTestData(false, true, 'new_');
 		const result = getTestData(true, false, 'new_');
 
-		const diff = safeAssignDeepDiff(target, source, true);
+		const diff = safeAssignDeepDiff(target, source);
 
 		expect(target).to.be.eql(result);
 		expect(target[3]).not.to.be.equal(source[3]);
@@ -294,7 +294,7 @@ describe('safeAssignDeepDiff', () => {
 		expect(diff).to.be.equal(Same);
 	});
 
-	it('reassigns part of object object and array trees and returns diff tree', () => {
+	it('reassigns part of object and array trees and returns diff tree', () => {
 		const target = getTestData();
 
 		const arr = [];
