@@ -42,13 +42,13 @@ export function __cloneStrictDeep(target: AnyObject, source: AnyObject): void {
  * @param source The object to be cloned.
  * @returns An object clone or "null" if the "source" was not an "object".
  */
-export function cloneStrictDeep(source: AnyArray | AnyObject): AnyArray | AnyObject | null {
+export function cloneStrictDeep<T extends ObjectLike>(source: T): T | null {
 	if (source !== null && typeof source === 'object') {
 		const isArray = Array.isArray(source);
-		const copy = isArray ? new Array(source.length) : {};
+		const copy = <T>(isArray ? new Array(source.length) : {});
 
 		isArray
-			? __cloneStrictDeep_array(<AnyArray>copy, source)
+			? __cloneStrictDeep_array(<AnyArray><unknown>copy, source)
 			: __cloneStrictDeep(copy, source);
 
 		return copy;
