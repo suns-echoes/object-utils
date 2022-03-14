@@ -9,7 +9,7 @@ export function __cloneDeep_array(target: AnyArray, source: AnyArray, preserveSp
 				? __cloneDeep_array(target[index] = new Array(sourceItem.length), sourceItem, preserveSparseArrays)
 				: __cloneDeep(target[index] = {}, sourceItem, preserveSparseArrays);
 		}
-		else if (index in source || preserveSparseArrays) {
+		else if (index in source || !preserveSparseArrays) {
 			target[index] = sourceItem;
 		}
 	}
