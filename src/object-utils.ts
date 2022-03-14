@@ -59,6 +59,7 @@ import { mergeDeep } from './utils/modify/merge-deep';
 import { mergeStrictDeep } from './utils/modify/merge-strict-deep';
 import { safeAssignDeepDiff } from './utils/modify/safe-assign-deep-diff';
 import { safeAssignExDeepDiff } from './utils/modify/safe-assign-ex-deep-diff';
+import { safeAssignStrictDeepDiff } from './utils/modify/safe-assign-strict-deep-diff';
 
 
 export const ObjectUtils = {
@@ -125,4 +126,5 @@ export const ObjectUtils = {
 	mergeStrictDeep,
 	safeAssignDeepDiff,
 	safeAssignExDeepDiff,
+	safeAssignStrictDeepDiff,
 };
