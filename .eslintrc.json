@@ -21,7 +21,7 @@
 		"eqeqeq": ["error", "always"],
 		"func-call-spacing": ["error", "never"],
 		"indent": ["error", "tab", { "SwitchCase": 1 }],
-		"key-spacing": ["error", { "multiLine": { "beforeColon": false, "afterColon": true }, "align": { "beforeColon": false, "afterColon": true, "on": "value" } }],
+		"key-spacing": ["off", { "multiLine": { "beforeColon": false, "afterColon": true }, "align": { "beforeColon": false, "afterColon": true, "on": "value" } }],
 		"keyword-spacing": ["error", { "after": true, "before": true }],
 		"linebreak-style": ["error", "unix"],
 		"lines-between-class-members": ["off"],

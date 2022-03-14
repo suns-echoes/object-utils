@@ -78,7 +78,7 @@ describe('mergeStrictDeep', () => {
 				},
 				v: 'true:1',
 			},
-			v:  true,
+			v: true,
 			aa: [[[], {}]],
 		});
 
@@ -94,7 +94,7 @@ describe('mergeStrictDeep', () => {
 					2222,
 				],
 			},
-			v:  false,
+			v: false,
 			aa: [[0, { x: 'y' }]],
 		};
 
@@ -117,7 +117,7 @@ describe('mergeStrictDeep', () => {
 				},
 				v: 'true:1',
 			},
-			v:  false,
+			v: false,
 			aa: [[0, { x: 'y' }]],
 		});
 	});
