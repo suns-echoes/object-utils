@@ -4,7 +4,7 @@ export function __cloneStrictDeep_array(target: AnyArray, source: AnyArray): voi
 	for (let index = 0; index < length; index++) {
 		const sourceItem = source[index];
 
-		if (typeof sourceItem === 'object' && sourceItem !== null) {
+		if (sourceItem !== null && typeof sourceItem === 'object') {
 			Array.isArray(sourceItem)
 				? __cloneStrictDeep_array(target[index] = new Array(sourceItem.length), sourceItem)
 				: __cloneStrictDeep(target[index] = {}, sourceItem);
@@ -23,7 +23,7 @@ export function __cloneStrictDeep(target: AnyObject, source: AnyObject): void {
 		const key = keys[keyIndex];
 		const sourceProp = source[key];
 
-		if (typeof sourceProp === 'object' && sourceProp !== null) {
+		if (sourceProp !== null && typeof sourceProp === 'object') {
 			Array.isArray(sourceProp)
 				? __cloneStrictDeep_array(target[key] = new Array(sourceProp.length), sourceProp)
 				: __cloneStrictDeep(target[key] = {}, sourceProp);

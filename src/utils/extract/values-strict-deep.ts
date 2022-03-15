@@ -6,7 +6,7 @@ function _valuesStrictDeep(values: AnyArray, object: AnyObject): void {
 		const key = keys[index];
 		const prop = object[key];
 
-		if (typeof prop === 'object' && prop !== null && !Array.isArray(prop)) {
+		if (prop !== null && typeof prop === 'object' && !Array.isArray(prop)) {
 			_valuesStrictDeep(values, prop);
 		}
 		else {
@@ -24,7 +24,7 @@ function _valuesStrictDeep(values: AnyArray, object: AnyObject): void {
  * invalid.
  */
 export function valuesStrictDeep(object: AnyObject): AnyArray | null {
-	if (typeof object === 'object' && object !== null && !Array.isArray(object)) {
+	if (object !== null && typeof object === 'object' && !Array.isArray(object)) {
 		const values: AnyArray = [];
 
 		_valuesStrictDeep(values, object);

@@ -6,7 +6,7 @@ export function __cloneExDeep(target: AnyObject, source: AnyObject): void {
 		const key = keys[index];
 		const sourceProp = source[key];
 
-		if (typeof sourceProp === 'object' && sourceProp !== null && !Array.isArray(sourceProp)) {
+		if (sourceProp !== null && typeof sourceProp === 'object' && !Array.isArray(sourceProp)) {
 			__cloneExDeep(target[key] = {}, sourceProp);
 		}
 		else {
@@ -24,7 +24,7 @@ export function __cloneExDeep(target: AnyObject, source: AnyObject): void {
  * @returns An object clone or "null" if the "source" was not type of "object".
  */
 export function cloneExDeep(source: AnyObject): AnyObject | null {
-	if (typeof source === 'object' && source !== null && !Array.isArray(source)) {
+	if (source !== null && typeof source === 'object' && !Array.isArray(source)) {
 		const copy = {};
 
 		__cloneExDeep(copy, source);

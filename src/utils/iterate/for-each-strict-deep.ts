@@ -12,7 +12,7 @@ function _forEachStrictDeep(
 		const key = keys[index];
 		const prop = object[key];
 
-		if (typeof prop === 'object' && prop !== null && !Array.isArray(prop)) {
+		if (prop !== null && typeof prop === 'object' && !Array.isArray(prop)) {
 			_forEachStrictDeep(
 				prop, callback, delimiter,
 				delimiter ? `${rootKey}${key}` : [...rootKey, key],
@@ -58,7 +58,7 @@ export function forEachStrictDeep(
 	| ((prop: any, key: string, object: AnyObject) => void),
 	delimiter = '',
 ): void {
-	if (typeof object === 'object' && object !== null && !Array.isArray(object)) {
+	if (object !== null && typeof object === 'object' && !Array.isArray(object)) {
 		_forEachStrictDeep(object, callback, delimiter, delimiter ? '' : []);
 	}
 }

@@ -10,7 +10,7 @@ function _assignOneArrayDeep(target: any[], source: any[]): void {
 		if (Array.isArray(targetItem) && Array.isArray(sourceItem)) {
 			_assignOneArrayDeep(targetItem, sourceItem);
 		}
-		else if (typeof targetItem === 'object' && targetItem !== null && typeof sourceItem === 'object' && sourceItem !== null) {
+		else if (targetItem !== null && typeof targetItem === 'object' && sourceItem !== null && typeof sourceItem === 'object') {
 			_assignOneDeep(targetItem, sourceItem);
 		}
 		else {
@@ -37,7 +37,7 @@ function _assignOneDeep(target: AnyObject, source: AnyObject): void {
 			if (Array.isArray(targetProp) && Array.isArray(sourceProp)) {
 				_assignOneArrayDeep(targetProp, sourceProp);
 			}
-			else if (typeof targetProp === 'object' && targetProp !== null && typeof sourceProp === 'object' && sourceProp !== null) {
+			else if (targetProp !== null && typeof targetProp === 'object' && sourceProp !== null && typeof sourceProp === 'object') {
 				_assignOneDeep(targetProp, sourceProp);
 			}
 			else {
@@ -58,7 +58,7 @@ function _assignOneDeep(target: AnyObject, source: AnyObject): void {
  * @returns The modified target object.
  */
 export function assignDeep(target: AnyObject, ...sources: AnyObject[]): AnyObject {
-	if (typeof target === 'object' && target !== null) {
+	if (target !== null && typeof target === 'object') {
 		const sourceCount = sources.length;
 
 		for (let index = 0; index < sourceCount; index++) {
@@ -67,7 +67,7 @@ export function assignDeep(target: AnyObject, ...sources: AnyObject[]): AnyObjec
 			if (Array.isArray(target) && Array.isArray(source)) {
 				_assignOneArrayDeep(target, source);
 			}
-			else if (typeof source === 'object' && source !== null) {
+			else if (source !== null && typeof source === 'object') {
 				_assignOneDeep(target, source);
 			}
 		}

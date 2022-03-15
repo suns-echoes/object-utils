@@ -1,12 +1,12 @@
 /**
  * Creates squashed copy of "source" object and its prototypes. Squash will be
- * performed from oldest prototype to "source" object.
+ * performed from the oldest prototype to the "source" object.
  * @param source The source object.
- * @returns A copy of "source" with squashed prototypes or null for non-object
- * input.
+ * @returns A copy of "source" with squashed prototypes or null if it is not an
+ * object.
  */
 export function squash(source: AnyObject): AnyObject | null {
-	if (typeof source === 'object' && source !== null) {
+	if (source !== null && typeof source === 'object') {
 		const prototypes = [];
 		let prototype = source;
 

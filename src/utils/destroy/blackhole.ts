@@ -7,7 +7,7 @@ function _blackhole(matter: any, gone: WeakSet<AnyObject>): void {
 		for (; index < itemCount; index++) {
 			const element = matter[index];
 
-			if (element instanceof Object || typeof element === 'object' && element !== null) {
+			if (element instanceof Object || element !== null && typeof element === 'object') {
 				if (!gone.has(element)) {
 					_blackhole(element, gone.add(element));
 				}
@@ -24,7 +24,7 @@ function _blackhole(matter: any, gone: WeakSet<AnyObject>): void {
 		const key = keys[index];
 		const element = matter[key];
 
-		if (element instanceof Object || typeof element === 'object' && element !== null) {
+		if (element instanceof Object || element !== null && typeof element === 'object') {
 			if (!gone.has(element)) {
 				_blackhole(element, gone.add(element));
 			}
@@ -41,7 +41,7 @@ function _blackhole(matter: any, gone: WeakSet<AnyObject>): void {
  * @param matter Value to be deeply dereferenced.
  */
 export function blackhole(matter: any): void {
-	if (matter instanceof Object || typeof matter === 'object' && matter !== null) {
+	if (matter instanceof Object || matter !== null && typeof matter === 'object') {
 		_blackhole(matter, new WeakSet().add(matter));
 	}
 }

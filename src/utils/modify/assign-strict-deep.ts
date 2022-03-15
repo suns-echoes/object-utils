@@ -9,8 +9,8 @@ function _assignStrictOneDeep(target: AnyObject, source: AnyObject): void {
 			const targetProp = target[key];
 			const sourceProp = source[key];
 
-			if (typeof targetProp === 'object' && targetProp !== null && !Array.isArray(targetProp)
-				&& typeof sourceProp === 'object' && sourceProp !== null && !Array.isArray(sourceProp)
+			if (targetProp !== null && typeof targetProp === 'object' && !Array.isArray(targetProp)
+				&& sourceProp !== null && typeof sourceProp === 'object' && !Array.isArray(sourceProp)
 			) {
 				_assignStrictOneDeep(targetProp, sourceProp);
 			}
@@ -33,13 +33,13 @@ function _assignStrictOneDeep(target: AnyObject, source: AnyObject): void {
  * @returns The modified target object.
  */
 export function assignStrictDeep(target: AnyObject, ...sources: AnyObject[]): AnyObject {
-	if (typeof target === 'object' && target !== null && !Array.isArray(target)) {
+	if (target !== null && typeof target === 'object' && !Array.isArray(target)) {
 		const sourceCount = sources.length;
 
 		for (let index = 0; index < sourceCount; index++) {
 			const source = sources[index];
 
-			if (typeof source === 'object' && source !== null && !Array.isArray(source)) {
+			if (source !== null && typeof source === 'object' && !Array.isArray(source)) {
 				_assignStrictOneDeep(target, source);
 			}
 		}

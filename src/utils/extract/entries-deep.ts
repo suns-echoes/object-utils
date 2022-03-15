@@ -13,7 +13,7 @@ function _entriesDeep(
 		for (; index < itemCount; index++) {
 			const item = source[index];
 
-			if (typeof item === 'object' && item !== null) {
+			if (item !== null && typeof item === 'object') {
 				_entriesDeep(
 					entries, item, delimiter,
 					delimiter ? `${rootKey}${index.toString(10)}` : [...rootKey, index.toString(10)],
@@ -35,7 +35,7 @@ function _entriesDeep(
 			const key = keys[index];
 			const prop = source[key];
 
-			if (typeof prop === 'object' && prop !== null) {
+			if (prop !== null && typeof prop === 'object') {
 				_entriesDeep(
 					entries, prop, delimiter,
 					delimiter ? `${rootKey}${key}` : [...rootKey, key],
@@ -62,7 +62,7 @@ function _entriesDeep(
 export function entriesDeep(source: AnyArray | AnyObject): [string[], any][] | null;
 export function entriesDeep(source: AnyArray | AnyObject, delimiter: string): [string, any][] | null;
 export function entriesDeep(source: AnyArray | AnyObject, delimiter = ''): AnyArray | null {
-	if (typeof source === 'object' && source !== null) {
+	if (source !== null && typeof source === 'object') {
 		const entries: [string | string[], any][] = [];
 
 		_entriesDeep(entries, source, delimiter, '');

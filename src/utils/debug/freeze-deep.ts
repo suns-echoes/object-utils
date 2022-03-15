@@ -11,7 +11,7 @@ export function freezeDeep(target: AnyArray | AnyObject): void {
 		for (; index < itemCount; index++) {
 			const item = target[index];
 
-			if (typeof item === 'object' && item !== null) {
+			if (item !== null && typeof item === 'object') {
 				freezeDeep(item);
 			}
 		}
@@ -24,7 +24,7 @@ export function freezeDeep(target: AnyArray | AnyObject): void {
 			const key = keys[index];
 			const prop = target[key];
 
-			if (typeof prop === 'object' && prop !== null) {
+			if (prop !== null && typeof prop === 'object') {
 				freezeDeep(prop);
 			}
 		}

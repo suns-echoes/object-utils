@@ -16,7 +16,7 @@ export function map<T extends AnyObject>(
 	source: T,
 	callback: (prop: T[keyof T], key: keyof T, object: T) => any,
 ): AnyObject | null {
-	if (typeof source === 'object' && source !== null && typeof callback === 'function') {
+	if (source !== null && typeof source === 'object' && typeof callback === 'function') {
 		const copy: AnyObject = {};
 		const keys = Object.keys(source);
 		const keyCount = keys.length;

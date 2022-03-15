@@ -2,7 +2,7 @@ const invariableDeepHandler = {
 	get(target: AnyObject, key: string): any {
 		const prop = target[key];
 
-		if (typeof prop === 'object' && prop !== null) {
+		if (prop !== null && typeof prop === 'object') {
 			return new Proxy(prop, this as unknown as ProxyHandler<any>);
 		}
 

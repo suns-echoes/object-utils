@@ -13,7 +13,7 @@ function _forEachDeep(
 		for (; index < itemCount; index++) {
 			const item = object[index];
 
-			if (typeof item === 'object' && item !== null) {
+			if (item !== null && typeof item === 'object') {
 				_forEachDeep(
 					item, callback, delimiter,
 					delimiter ? `${rootKey}${index.toString(10)}` : [...rootKey, index.toString(10)],
@@ -36,7 +36,7 @@ function _forEachDeep(
 			const key = keys[index];
 			const prop = object[key];
 
-			if (typeof prop === 'object' && prop !== null) {
+			if (prop !== null && typeof prop === 'object') {
 				_forEachDeep(
 					prop, callback, delimiter,
 					delimiter ? `${rootKey}${key}` : [...rootKey, key],
@@ -82,7 +82,7 @@ export function forEachDeep(
 	| ((prop: any, key: string, object: AnyArray | AnyObject) => void),
 	delimiter = '',
 ): void {
-	if (typeof object === 'object' && object !== null) {
+	if (object !== null && typeof object === 'object') {
 		_forEachDeep(object, callback, delimiter, delimiter ? '' : []);
 	}
 }

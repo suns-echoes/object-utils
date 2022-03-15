@@ -17,7 +17,7 @@ export function filter<T extends AnyObject>(
 	source: T,
 	callback: (prop: T[keyof T], key: string & keyof T, object: T) => boolean,
 ): AnyObject | null {
-	if (typeof source === 'object' && source !== null && typeof callback === 'function') {
+	if (source !== null && typeof source === 'object' && typeof callback === 'function') {
 		const copy: AnyObject = {};
 		const keys = Object.keys(source);
 		const keyCount = keys.length;

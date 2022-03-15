@@ -12,7 +12,7 @@ function _entriesStrictDeep(
 		const key = keys[index];
 		const prop = source[key];
 
-		if (typeof prop === 'object' && prop !== null && !Array.isArray(prop)) {
+		if (prop !== null && typeof prop === 'object' && !Array.isArray(prop)) {
 			_entriesStrictDeep(
 				entries, prop, delimiter,
 				delimiter ? `${rootKey}${key}` : [...rootKey, key],
@@ -39,7 +39,7 @@ function _entriesStrictDeep(
 export function entriesStrictDeep(source: AnyObject): [string[], any][] | null;
 export function entriesStrictDeep(source: AnyObject, delimiter: string): [string, any][] | null;
 export function entriesStrictDeep(source: AnyObject, delimiter = ''): AnyArray | null {
-	if (typeof source === 'object' && source !== null && !Array.isArray(source)) {
+	if (source !== null && typeof source === 'object' && !Array.isArray(source)) {
 		const entries: [string | string[], any][] = [];
 
 		_entriesStrictDeep(entries, source, delimiter, '');

@@ -14,7 +14,7 @@ function _eqlArrayDeep(a: any[], b: any[]): boolean {
 			if (Array.isArray(aItem) && Array.isArray(bItem)) {
 				isSame = _eqlArrayDeep(aItem, bItem);
 			}
-			else if (typeof aItem === 'object' && aItem !== null && typeof bItem === 'object' && bItem !== null) {
+			else if (aItem !== null && typeof aItem === 'object' && bItem !== null && typeof bItem === 'object') {
 				isSame = _eqlDeep(aItem, bItem);
 			}
 
@@ -50,7 +50,7 @@ function _eqlDeep(a: AnyObject, b: AnyObject): boolean {
 			if (Array.isArray(aProp) && Array.isArray(bProp)) {
 				isSame = _eqlArrayDeep(aProp, bProp);
 			}
-			else if (typeof aProp === 'object' && aProp !== null && typeof bProp === 'object' && bProp !== null) {
+			else if (aProp !== null && typeof aProp === 'object' && bProp !== null && typeof bProp === 'object') {
 				isSame = _eqlDeep(aProp, bProp);
 			}
 

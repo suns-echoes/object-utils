@@ -10,7 +10,7 @@ function _mergeOneArrayDeep(target: any[], source: any[]): void {
 		if (Array.isArray(targetItem) && Array.isArray(sourceItem)) {
 			_mergeOneArrayDeep(targetItem, sourceItem);
 		}
-		else if (typeof targetItem === 'object' && targetItem !== null && typeof sourceItem === 'object' && sourceItem !== null) {
+		else if (targetItem !== null && typeof targetItem === 'object' && sourceItem !== null && typeof sourceItem === 'object') {
 			_mergeOneDeep(targetItem, sourceItem);
 		}
 		else if (source[index] !== undefined) {
@@ -37,7 +37,7 @@ function _mergeOneDeep(target: AnyObject, source: AnyObject): void {
 			if (Array.isArray(targetProp) && Array.isArray(sourceProp)) {
 				_mergeOneArrayDeep(targetProp, sourceProp);
 			}
-			else if (typeof targetProp === 'object' && targetProp !== null && typeof sourceProp === 'object' && sourceProp !== null) {
+			else if (targetProp !== null && typeof targetProp === 'object' && sourceProp !== null && typeof sourceProp === 'object') {
 				_mergeOneDeep(targetProp, sourceProp);
 			}
 			else if (source[key] !== undefined) {
@@ -60,7 +60,7 @@ function _mergeOneDeep(target: AnyObject, source: AnyObject): void {
  * @returns The modified target object.
  */
 export function mergeDeep(target: AnyObject, ...sources: AnyObject[]): AnyObject {
-	if (typeof target === 'object' && target !== null) {
+	if (target !== null && typeof target === 'object') {
 		const sourceCount = sources.length;
 
 		for (let index = 0; index < sourceCount; index++) {
@@ -69,7 +69,7 @@ export function mergeDeep(target: AnyObject, ...sources: AnyObject[]): AnyObject
 			if (Array.isArray(target) && Array.isArray(source)) {
 				_mergeOneArrayDeep(target, source);
 			}
-			else if (typeof source === 'object' && source !== null) {
+			else if (source !== null && typeof source === 'object') {
 				_mergeOneDeep(target, source);
 			}
 		}

@@ -26,7 +26,7 @@ function _diffArrayDeep(a: any[], b: any[], missing: any): any[] | typeof Same {
 				else if (Array.isArray(aItem) && Array.isArray(bItem)) {
 					diff = _diffArrayDeep(aItem, bItem, missing);
 				}
-				else if (typeof aItem === 'object' && aItem !== null && typeof bItem === 'object' && bItem !== null) {
+				else if (aItem !== null && typeof aItem === 'object' && bItem !== null && typeof bItem === 'object') {
 					diff = _diffDeep(aItem, bItem, missing);
 				}
 
@@ -72,7 +72,7 @@ function _diffDeep(a: AnyObject, b: AnyObject, missing: any): AnyObject | typeof
 				else if (Array.isArray(aProp) && Array.isArray(bProp)) {
 					diff = _diffArrayDeep(aProp, bProp, missing);
 				}
-				else if (typeof aProp === 'object' && aProp !== null && typeof bProp === 'object' && bProp !== null) {
+				else if (aProp !== null && typeof aProp === 'object' && bProp !== null && typeof bProp === 'object') {
 					diff = _diffDeep(aProp, bProp, missing);
 				}
 

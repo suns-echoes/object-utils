@@ -9,7 +9,7 @@ export function partial<T extends AnyObject>(
 	source: T,
 	keys: string[],
 ): AnyObject | null {
-	if (typeof source === 'object' && source !== null && Array.isArray(keys)) {
+	if (source !== null && typeof source === 'object' && Array.isArray(keys)) {
 		const copy: AnyObject = {};
 		const sourceKeys = Object.keys(source);
 		const sourceKeyCount = sourceKeys.length;

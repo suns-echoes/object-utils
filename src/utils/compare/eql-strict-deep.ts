@@ -15,8 +15,8 @@ function _eqlStrictDeep(a: AnyObject, b: AnyObject): boolean {
 			const bProp = b[key];
 			let isSame = false;
 
-			if (typeof aProp === 'object' && aProp !== null && !Array.isArray(aProp)
-				&& typeof bProp === 'object' && bProp !== null && !Array.isArray(bProp)) {
+			if (aProp !== null && typeof aProp === 'object' && !Array.isArray(aProp)
+				&& bProp !== null && typeof bProp === 'object' && !Array.isArray(bProp)) {
 				isSame = _eqlStrictDeep(aProp, bProp);
 			}
 

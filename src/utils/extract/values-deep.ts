@@ -7,7 +7,7 @@ function _valuesDeep(values: AnyArray, object: AnyArray | AnyObject): void {
 		for (; index < itemCount; index++) {
 			const item = object[index];
 
-			if (typeof item === 'object' && item !== null) {
+			if (item !== null && typeof item === 'object') {
 				_valuesDeep(values, item);
 			}
 			else {
@@ -23,7 +23,7 @@ function _valuesDeep(values: AnyArray, object: AnyArray | AnyObject): void {
 			const key = keys[index];
 			const prop = object[key];
 
-			if (typeof prop === 'object' && prop !== null) {
+			if (prop !== null && typeof prop === 'object') {
 				_valuesDeep(values, prop);
 			}
 			else {
@@ -42,7 +42,7 @@ function _valuesDeep(values: AnyArray, object: AnyArray | AnyObject): void {
  * invalid.
  */
 export function valuesDeep(object: AnyArray | AnyObject): AnyArray | null {
-	if (typeof object === 'object' && object !== null) {
+	if (object !== null && typeof object === 'object') {
 		const values: AnyArray = [];
 
 		_valuesDeep(values, object);

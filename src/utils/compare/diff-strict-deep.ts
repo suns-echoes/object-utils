@@ -24,8 +24,8 @@ function _diffStrictDeep(a: AnyObject, b: AnyObject, missing: any): AnyObject | 
 				if (aProp === bProp) {
 					diff = Same;
 				}
-				else if (typeof aProp === 'object' && aProp !== null && !Array.isArray(aProp)
-					&& typeof bProp === 'object' && bProp !== null && !Array.isArray(bProp)
+				else if (aProp !== null && typeof aProp === 'object' && !Array.isArray(aProp)
+					&& bProp !== null && typeof bProp === 'object' && !Array.isArray(bProp)
 				) {
 					diff = _diffStrictDeep(aProp, bProp, missing);
 				}
