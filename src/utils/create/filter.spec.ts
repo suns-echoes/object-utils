@@ -1,15 +1,5 @@
 import { filter } from './filter';
 
-type t = keyof AnyObject;
-
-const d: { [key: string]: t } = {
-	'a': 2,
-	'b': 'c',
-};
-
-d.x = 2;
-d.y = 'a';
-d.z = Symbol('x');
 
 describe('filter', () => {
 	it('returns new object with filtered properties', () => {

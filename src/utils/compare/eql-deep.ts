@@ -1,36 +1,4 @@
-function _eqlArrayDeep(a: any[], b: any[]): boolean {
-	const length = a.length;
-
-	if (length !== b.length) {
-		return false;
-	}
-
-	for (let index = 0; index < length; index++) {
-		if (index in a && index in b) {
-			const aItem = a[index];
-			const bItem = b[index];
-			let isSame = false;
-
-			if (Array.isArray(aItem) && Array.isArray(bItem)) {
-				isSame = _eqlArrayDeep(aItem, bItem);
-			}
-			else if (typeof aItem === 'object' && aItem !== null && typeof bItem === 'object' && bItem !== null) {
-				isSame = _eqlDeep(aItem, bItem);
-			}
-
-			if (!isSame && aItem !== bItem) {
-				return false;
-			}
-		}
-		else if (!(index in a) && index in b || index in a && !(index in b)) {
-			return false;
-		}
-	}
-
-	return true;
-}
-
-function _eqlDeep(a: AnyObject, b: AnyObject): boolean {
+export function __eqlDeep(a: AnyObject, b: AnyObject): boolean {
 	const keys = Object.keys(a);
 
 	if (keys.length !== Object.keys(b).length) {
@@ -45,42 +13,42 @@ function _eqlDeep(a: AnyObject, b: AnyObject): boolean {
 		if (key in b) {
 			const aProp = a[key];
 			const bProp = b[key];
-			let isSame = false;
 
-			if (Array.isArray(aProp) && Array.isArray(bProp)) {
-				isSame = _eqlArrayDeep(aProp, bProp);
-			}
-			else if (typeof aProp === 'object' && aProp !== null && typeof bProp === 'object' && bProp !== null) {
-				isSame = _eqlDeep(aProp, bProp);
+			if (aProp === bProp) {
+				continue;
 			}
 
-			if (!isSame && aProp !== bProp) {
-				return false;
+			if (aProp !== null && bProp !== null
+				&& typeof aProp === 'object' && typeof bProp === 'object'
+				&& __eqlDeep(aProp, bProp)
+			) {
+				continue;
 			}
 		}
-		else {
-			return false;
-		}
+
+		return false;
 	}
 
 	return true;
 }
 
 /**
- * Performs deep equality check of two objects.
- * @param a The first object to compare.
- * @param b The second object to compare.
- * @returns The "true" if objects are equal, "false" otherwise.
+ * Performs deep equality check of two entities.
+ * Arrays will be compared as if they were generic objects so type difference
+ * (array vs object) will be ignored.
+ * @param a The first entity.
+ * @param b The second entity.
+ * @returns Returns "true" if entities are equal or "false" otherwise.
  */
 export function eqlDeep(a: any, b: any): boolean {
 	if (a === b) {
 		return true;
 	}
-	else if (Array.isArray(a) && Array.isArray(b)) {
-		return _eqlArrayDeep(a, b);
-	}
-	else if (typeof a === 'object' && a !== null && typeof b === 'object' && b !== null) {
-		return _eqlDeep(a, b);
+	else if (
+		a !== null && b !== null
+		&& typeof a === 'object' && typeof b === 'object'
+	) {
+		return __eqlDeep(a, b);
 	}
 
 	return false;

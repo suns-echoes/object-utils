@@ -4,108 +4,63 @@ import { Missing, Same } from '../constants';
 export { Missing, Same } from '../constants';
 
 
-function _diffArray(a: any[], b: any[], missing: any): any[] | typeof Same {
-	const lengthA = a.length;
-	const lengthB = b.length;
-	const lengthDiff = lengthA - lengthB;
-	const isALonger = lengthA > lengthB;
-	const diffArray = isALonger ? b.concat(new Array(lengthDiff).fill(missing)) : b.slice(0);
-	const commonLength = isALonger ? lengthB : lengthA;
-	let isSame = lengthDiff === 0;
-
-	for (let index = 0; index < commonLength; index++) {
-		if (index in b) {
-			const bItem = b[index];
-
-			if (index in a) {
-				const aItem = a[index];
-				let diffValue: any = bItem;
-
-				if (aItem === bItem) {
-					diffValue = Same;
-				}
-
-				diffArray[index] = diffValue;
-
-				if (diffValue !== Same) {
-					isSame = false;
-				}
-			}
-			else {
-				diffArray[index] = bItem;
-				isSame = false;
-			}
-		}
-		else {
-			diffArray[index] = missing;
-			isSame = false;
-		}
-	}
-
-	return isSame ? Same : diffArray;
-}
-
-function _diff(a: AnyObject, b: AnyObject, missing: any): AnyObject | typeof Same {
-	const diffObject: AnyObject = {};
+export function __diff<T extends AnyObject>(a: T, b: AnyObject, missing: any): T | typeof Same {
+	const isArray = Array.isArray(a);
+	const diffEntity: AnyObject = isArray ? [] : {};
 	const allKeys = [...new Set(Object.keys(a).concat(Object.keys(b)))];
 	const keyCount = allKeys.length;
-	let isSame = true;
+	let isSame: typeof Same | null = Same;
 
 	for (let index = 0; index < keyCount; index++) {
 		const key = allKeys[index];
 
 		if (key in b) {
-			const bProp = b[key];
-
 			if (key in a) {
 				const aProp = a[key];
-
-				let diffValue: any = bProp;
+				const bProp = b[key];
 
 				if (aProp === bProp) {
-					diffValue = Same;
+					if (isArray) {
+						diffEntity[key] = Same;
+					}
+
+					continue;
 				}
 
-				diffObject[key] = diffValue;
-
-				if (diffValue !== Same) {
-					isSame = false;
-				}
+				diffEntity[key] = bProp;
+				isSame = null;
 			}
 			else {
-				diffObject[key] = bProp;
-				isSame = false;
+				diffEntity[key] = b[key];
+				isSame = null;
 			}
 		}
 		else {
-			diffObject[key] = missing;
-			isSame = false;
+			diffEntity[key] = missing;
+			isSame = null;
 		}
 	}
 
-	return isSame ? Same : diffObject;
+	return isSame || <T>diffEntity;
 }
 
 /**
  * Find shallow difference between two entities.
- * In case of no difference in property or value, "Same" symbol will be
- * returned. The "Missing" symbol will be returned when property is present in
- * the "a" entity but missing in the "b" entity, unless provided different value
- * for missing properties.
+ * Arrays will be compared as if they were generic objects so type difference
+ * (array vs object) will be ignored.
+ * In case of no difference in property or value, the "Same" symbol will be
+ * returned. When property is present in the "a" entity but missing in the "b"
+ * entity the "Missing" symbol will be returned (or custom value if provided).
  * @param a The first entity.
  * @param b The second entity.
- * @returns A structure or value representing changes made between "a" and "b"
- * entities.
+ * @returns Returns changes found in the "b" entity with respect to "a" entity.
  */
-export function diff(a: any, b: any, missing: any = Missing): any {
+export function diff<T>(a: T, b: any, missing: any = Missing): T | typeof Same {
 	if (a === b) {
 		return Same;
 	}
-	else if (Array.isArray(a) && Array.isArray(b)) {
-		return _diffArray(a, b, missing);
-	}
-	else if (typeof a === 'object' && a !== null && typeof b === 'object' && b !== null) {
-		return _diff(a, b, missing);
+	else if (a !== null && b !== null && typeof a === 'object' && typeof b === 'object') {
+		return __diff(a, b, missing);
 	}
 
 	return b;

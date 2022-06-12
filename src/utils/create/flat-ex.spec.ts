@@ -1,7 +1,7 @@
-import { flatStrict } from './flat-strict';
+import { flatEx } from './flat-ex';
 
 
-describe('flatStrict', () => {
+describe('flatEx', () => {
 	it('returns fully flatten object', () => {
 		const a = [
 			1,
@@ -32,7 +32,7 @@ describe('flatStrict', () => {
 			},
 		};
 
-		expect(flatStrict(o, -1)).to.be.eql({
+		expect(flatEx(o, -1)).to.be.eql({
 			'a':     a,
 			'e.f':   5,
 			'e.g.h': 6,
@@ -67,7 +67,7 @@ describe('flatStrict', () => {
 			},
 		};
 
-		expect(flatStrict(o)).to.be.eql({
+		expect(flatEx(o)).to.be.eql({
 			'a':   a,
 			'e.f': 5,
 			'e.g': g,
@@ -104,7 +104,7 @@ describe('flatStrict', () => {
 			},
 		};
 
-		expect(flatStrict(o, -1, false)).to.be.eql({
+		expect(flatEx(o, -1, false)).to.be.eql({
 			'a': 6,
 			'f': 5,
 			'i': i,
@@ -113,7 +113,7 @@ describe('flatStrict', () => {
 
 	it('returns "null" if source is not an object or is an array', () => {
 		// @ts-ignore
-		expect(flatStrict('wot?!')).to.be.null;
-		expect(flatStrict(['wot?!'])).to.be.null;
+		expect(flatEx('wot?!')).to.be.null;
+		expect(flatEx(['wot?!'])).to.be.null;
 	});
 });

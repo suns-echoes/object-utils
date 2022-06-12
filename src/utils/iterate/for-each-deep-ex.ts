@@ -1,4 +1,4 @@
-function _forEachStrictDeep(
+function __forEachDeepEx(
 	object: AnyObject,
 	callback: AnyFunction,
 	delimiter: string | undefined,
@@ -12,8 +12,8 @@ function _forEachStrictDeep(
 		const key = keys[index];
 		const prop = object[key];
 
-		if (typeof prop === 'object' && prop !== null && !Array.isArray(prop)) {
-			_forEachStrictDeep(
+		if (prop !== null && typeof prop === 'object' && !Array.isArray(prop)) {
+			__forEachDeepEx(
 				prop, callback, delimiter,
 				delimiter ? `${rootKey}${key}` : [...rootKey, key],
 			);
@@ -30,35 +30,35 @@ function _forEachStrictDeep(
 
 
 /**
- * Executes the provided function once for each property (including nested
- * properties). This is strict version which treats arrays as non-object values.
+ * Executes the provided function once for each property including nested ones.
+ * Arrays will not be traversed.
  * @param object The object on which to execute the "callback".
  * @param callback The function to execute on each property.
  * It accepts three arguments:
- *   * prop - The current processed property.
- *   * key - The key of the current processed property. If the "delimiter" is
- *   provided "key" will be a delimited string and array of strings otherwise.
- *   * object - The object on which forEachStrictDeep() was called.
+ *   * prop - The currently processed property.
+ *   * key - The key of the currently processed property. If the "delimiter" is
+ *   provided "key" will be a delimited string, otherwise array of strings.
+ *   * object - The object on which forEachDeepEx() was called.
  * @param delimiter Optional string value to use as delimiter in callback "key"
  * parameter. If not specified the "key" will be an array of strings
  * representing property path.
  */
-export function forEachStrictDeep(
+export function forEachDeepEx(
 	object: AnyObject,
 	callback: (prop: any, key: string[], object: AnyObject) => void,
 ): void;
-export function forEachStrictDeep(
+export function forEachDeepEx(
 	object: AnyObject,
 	callback: (prop: any, key: string, object: AnyObject) => void,
 	delimiter: string,
 ): void;
-export function forEachStrictDeep(
+export function forEachDeepEx(
 	object: AnyObject,
 	callback: ((prop: any, key: string[], object: AnyObject) => void)
 	| ((prop: any, key: string, object: AnyObject) => void),
 	delimiter = '',
 ): void {
-	if (typeof object === 'object' && object !== null && !Array.isArray(object)) {
-		_forEachStrictDeep(object, callback, delimiter, delimiter ? '' : []);
+	if (object !== null && typeof object === 'object' && !Array.isArray(object)) {
+		__forEachDeepEx(object, callback, delimiter, delimiter ? '' : []);
 	}
 }

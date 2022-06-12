@@ -15,12 +15,38 @@ describe('cloneDeep', () => {
 
 	it('returns new cloned array', () => {
 		const o = { o: { o: { x: 'y', xp: 'v' } } };
-		const a = [1, o, 3];
+		const a = [1, o, [3]];
 		const c = cloneDeep(a)!;
 
 		expect(c).not.to.be.equal(a);
 		expect(c[1]).not.to.be.equal(a[1]);
+		expect(c[2]).not.to.be.equal(a[2]);
 		expect(c).to.be.eql(a);
+	});
+
+	it('returns continous array clone', () => {
+		const a = [];
+
+		a[1] = 1;
+
+		const c = cloneDeep(a)!;
+
+		expect(c).to.be.eql([undefined, 1]);
+		expect(c).not.to.be.equal(a);
+		expect(0 in c).to.be.true;
+	});
+
+	it('returns array clone including custom props', () => {
+		const a: AnyObject = [];
+
+		a.x = 1;
+		a.y = 2;
+
+		const c = cloneDeep(a)!;
+
+		expect(c).not.to.be.equal(a);
+		expect(c.x).to.be.equal(1);
+		expect(c.y).to.be.equal(2);
 	});
 
 	it('returns "null" for non-object input', () => {

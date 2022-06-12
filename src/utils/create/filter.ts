@@ -6,18 +6,17 @@
  * Return a value that coerces to "true" to keep the property or to "false"
  * otherwise.
  * It accepts three arguments:
- *   * prop - The current processed property.
- *   * key - The key of the current processed property.
+ *   * prop - The currently processed property.
+ *   * key - The key of the currently processed property.
  *   * object - The object on which filter() was called.
- * @returns A new object with the properties that pass the test. If no
- * properties pass the test, an empty object will be returned or "null" if
+ * @returns Returns a new object with properties that pass the test or "null" if
  * "source" is not an object.
  */
 export function filter<T extends AnyObject>(
 	source: T,
 	callback: (prop: T[keyof T], key: string & keyof T, object: T) => boolean,
 ): AnyObject | null {
-	if (typeof source === 'object' && source !== null && typeof callback === 'function') {
+	if (source !== null && typeof source === 'object' && typeof callback === 'function') {
 		const copy: AnyObject = {};
 		const keys = Object.keys(source);
 		const keyCount = keys.length;

@@ -21,7 +21,7 @@ const invariableHandler = {
  * Creates object proxy which will throw an error on any modification attempt on
  * top level.
  * @param target The object to be proxied.
- * @returns An object proxy.
+ * @returns Returns the object invariable proxy.
  */
 export function invariableProxy<T extends AnyArray | AnyObject>(target: T): T {
 	return new Proxy(target, invariableHandler as unknown as ProxyHandler<any>);

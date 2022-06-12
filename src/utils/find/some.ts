@@ -6,10 +6,10 @@
  * Return a value that coerces to "true" to for valid property or to "false"
  * otherwise.
  * It accepts three arguments:
- *   * prop - The current processed property.
- *   * key - The key of the current processed property.
+ *   * prop - The currently processed property.
+ *   * key - The key of the currently processed property.
  *   * object - The object on which some() was called.
- * @returns A "true" if property was found or "false" otherwise.
+ * @returns Returns "true" if property was found or "false" otherwise.
  */
 export function some<T extends AnyObject>(
 	object: T,

@@ -21,7 +21,7 @@
 		"eqeqeq": ["error", "always"],
 		"func-call-spacing": ["error", "never"],
 		"indent": ["error", "tab", { "SwitchCase": 1 }],
-		"key-spacing": ["error", { "multiLine": { "beforeColon": false, "afterColon": true }, "align": { "beforeColon": false, "afterColon": true, "on": "value" } }],
+		"key-spacing": ["off", { "multiLine": { "beforeColon": false, "afterColon": true }, "align": { "beforeColon": false, "afterColon": true, "on": "value" } }],
 		"keyword-spacing": ["error", { "after": true, "before": true }],
 		"linebreak-style": ["error", "unix"],
 		"lines-between-class-members": ["off"],
@@ -109,7 +109,7 @@
 					{ "blankLine": "always", "prev": ["var", "let", "const", "import"], "next": "*" },
 					{ "blankLine": "any", "prev": ["var", "let", "const"], "next": ["var", "let", "const"] },
 					{ "blankLine": "any", "prev": "import", "next": "import" },
-					{ "blankLine": "always", "prev": "*", "next": ["return", "export", "interface", "type"] },
+					{ "blankLine": "always", "prev": "*", "next": ["continue", "return", "export", "interface", "type"] },
 					{ "blankLine": "any", "prev": "export", "next": "export" },
 					{ "blankLine": "any", "prev": ["interface", "type"], "next": ["interface", "type"] }
 				],

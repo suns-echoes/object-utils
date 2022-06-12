@@ -3,7 +3,7 @@
  * optional value at the deepest level.
  * @param path The string with sub-keys separated by delimiter or the array with
  * consecutive sub-keys.
- * @returns A new object.
+ * @returns Returns a new object.
  */
 export function fromPath(path: KeyPath | PathKeys, value?: any, delimiter = '.'): AnyObject {
 	if (!path || path.length === 0 || path.length === 1 && path[0] === '') {

@@ -16,8 +16,6 @@ describe('eql', () => {
 		const b = { arr, b: true, o };
 
 		expect(eql(a, b)).to.be.true;
-		expect(eql(null, null)).to.be.true;
-		expect(eql(undefined, undefined)).to.be.true;
 	});
 
 	it('returns "true" for two equal array inputs', () => {
@@ -27,6 +25,11 @@ describe('eql', () => {
 		const b = [arr, true, o];
 
 		expect(eql(a, b)).to.be.true;
+	});
+
+	it('returns "true" for equal array and object inputs', () => {
+		expect(eql([1, 2], { 0: 1, 1: 2 })).to.be.true;
+		expect(eql({ 0: 1, 1: 2 }, [1, 2])).to.be.true;
 	});
 
 	it('returns "true" for two equal sparse array inputs', () => {

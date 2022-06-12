@@ -1,15 +1,16 @@
-function _cloneDeep(target: AnyObject, source: AnyObject): void {
+export function __cloneDeep(target: AnyObject, source: AnyObject): void {
 	const keys = Object.keys(source);
 	const keyConut = keys.length;
 
-	for (let index = 0; index < keyConut; index++) {
-		const key = keys[index];
+	for (let keyIndex = 0; keyIndex < keyConut; keyIndex++) {
+		const key = keys[keyIndex];
 		const sourceProp = source[key];
 
-		if (typeof sourceProp === 'object' && sourceProp !== null) {
-			const copyProp = Array.isArray(sourceProp) ? [] : {};
+		if (sourceProp !== null && typeof sourceProp === 'object') {
+			const isArray = Array.isArray(sourceProp);
+			const copy = isArray ? new Array(sourceProp.length).fill(undefined) : {};
 
-			_cloneDeep(target[key] = copyProp, sourceProp);
+			__cloneDeep(target[key] = copy, sourceProp);
 		}
 		else {
 			target[key] = sourceProp;
@@ -21,15 +22,15 @@ function _cloneDeep(target: AnyObject, source: AnyObject): void {
 /**
  * Creates deep clone of source object.
  * @param source The object to be cloned.
- * @returns An object clone or "null" if the "source" was not type of "object".
+ * @returns Returns an object containing the "source" clone or "null" if
+ * "source" is not an object.
  */
-export function cloneDeep(source: AnyObject): AnyObject | null {
-	if (typeof source === 'object' && source !== null) {
-		const copy: AnyObject = Array.isArray(source) ? [] : {};
+export function cloneDeep<T extends AnyArray | AnyObject>(source: T): T | null {
+	if (source !== null && typeof source === 'object') {
+		const isArray = Array.isArray(source);
+		const copy = <T>(isArray ? new Array(source.length).fill(undefined) : {});
 
-		if (typeof source === 'object') {
-			_cloneDeep(copy, source);
-		}
+		__cloneDeep(copy, source);
 
 		return copy;
 	}
