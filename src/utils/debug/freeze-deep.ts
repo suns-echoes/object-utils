@@ -3,12 +3,10 @@
  * @param target The object to freeze.
  */
 export function freezeDeep(target: AnyArray | AnyObject): void {
-	let index = 0;
-
 	if (Array.isArray(target)) {
 		const itemCount = target.length;
 
-		for (; index < itemCount; index++) {
+		for (let index = 0; index < itemCount; index++) {
 			const item = target[index];
 
 			if (item !== null && typeof item === 'object') {
@@ -20,7 +18,7 @@ export function freezeDeep(target: AnyArray | AnyObject): void {
 		const keys = Object.keys(target);
 		const keyCount = keys.length;
 
-		for (; index < keyCount; index++) {
+		for (let index = 0; index < keyCount; index++) {
 			const key = keys[index];
 			const prop = target[key];
 

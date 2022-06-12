@@ -1,16 +1,15 @@
 /**
- * Creates a new object with all property values rewritten by the provided
- * function.
+ * Creates a new object with all property values rewritten by the return from
+ * provided callback function.
  * @param source The object on which to perform mapping.
- * @param callback The predicate function to map each property of the object.
- * Return a value that coerces to "true" to keep the property or to "false"
- * otherwise.
+ * @param callback The function to map each property of the object.
+ * Return a value to pass it to the final object.
  * It accepts three arguments:
- *   * prop - The current processed property.
- *   * key - The key of the current processed property.
+ *   * prop - The currently processed property.
+ *   * key - The key of the currently processed property.
  *   * object - The object on which map() was called.
- * @returns A new object with the rewritten properties or "null" if "source" is
- * not an object.
+ * @returns Returns a new object with rewritten properties or "null" if "source"
+ * is not an object.
  */
 export function map<T extends AnyObject>(
 	source: T,

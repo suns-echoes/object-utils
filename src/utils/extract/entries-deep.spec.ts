@@ -3,7 +3,19 @@ import { entriesDeep } from './entries-deep';
 
 describe('entriesDeep', () => {
 	it('iterates through every property and sub-property (string path key)', () => {
-		const o = { a: [1, null, { b: true }], c: { d: false, e: 2 } };
+		const o = {
+			a: [
+				1,
+				null,
+				{
+					b: true,
+				},
+			],
+			c: {
+				d: false,
+				e: 2,
+			},
+		};
 
 		expect(entriesDeep(o, '.')).to.be.eql([
 			['a.0', 1],
@@ -15,7 +27,19 @@ describe('entriesDeep', () => {
 	});
 
 	it('iterates through every property and sub-property (array path key)', () => {
-		const o = { a: [1, null, { b: true }], c: { d: false, e: 2 } };
+		const o = {
+			a: [
+				1,
+				null,
+				{
+					b: true,
+				},
+			],
+			c: {
+				d: false,
+				e: 2,
+			},
+		};
 
 		expect(entriesDeep(o)).to.be.eql([
 			[['a', '0'], 1],
@@ -26,7 +50,7 @@ describe('entriesDeep', () => {
 		]);
 	});
 
-	it('returns null if source is not an object', () => {
+	it('returns null if input is not an object', () => {
 		// @ts-ignore
 		expect(entriesDeep('wot?!')).to.be.null;
 	});

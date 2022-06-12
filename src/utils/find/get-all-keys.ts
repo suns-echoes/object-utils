@@ -1,14 +1,13 @@
 /**
- * Returns set of all keys in provided source objects.
+ * Returns the list of all keys in provided source objects.
  * @param sources The objects to get keys from.
- * @returns The array containing all keys without repeats.
+ * @returns Returns the array containing all keys but discards repeated ones.
  */
 export function getAllKeys(...sources: any[]): string[] {
 	const sourceCount = sources.length;
-	let index = 1;
 	let keys = Object.keys(sources[0]);
 
-	for (; index < sourceCount; index++) {
+	for (let index = 1; index < sourceCount; index++) {
 		keys = keys.concat(Object.keys(sources[index]));
 	}
 

@@ -3,16 +3,16 @@
  *   * arrays with key/value pairs (i.e.: ['key1', value1, 'key2', value2, ...])
  *   * objects
  *   * key/value pairs (i.e.: 'key1', value1, 'key2', value2, ...)
- * @param items The list of items form which new object will be created.
  * Example:
  * ('key1', value1, ['key2', value2, ...], { 'key3': value3, ... }, ...)
+ * @param items The list of items form which new object will be created.
+ * @returns Returns a new object.
  */
 export function of(...items: (AnyArray | AnyObject | string | any)[]): AnyObject {
 	const itemCount = items.length;
-	let itemIndex = 0;
 	let object: AnyObject = {};
 
-	for (; itemIndex < itemCount; itemIndex++) {
+	for (let itemIndex = 0; itemIndex < itemCount; itemIndex++) {
 		const item = items[itemIndex];
 
 		if (typeof item === 'string') {
@@ -20,9 +20,8 @@ export function of(...items: (AnyArray | AnyObject | string | any)[]): AnyObject
 		}
 		else if (Array.isArray(item)) {
 			const subitemCount = item.length;
-			let subitemIndex = 0;
 
-			for (; subitemIndex < subitemCount; subitemIndex++) {
+			for (let subitemIndex = 0; subitemIndex < subitemCount; subitemIndex++) {
 				object[item[subitemIndex]] = item[++subitemIndex];
 			}
 		}

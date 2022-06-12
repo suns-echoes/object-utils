@@ -27,7 +27,7 @@ const invariableDeepHandler = {
  * Creates object proxy which will throw an error on any modification attempt on
  * any level.
  * @param target The object to be proxied.
- * @returns An object proxy.
+ * @returns Returns the object invariable proxy.
  */
 export function invariableProxyDeep<T extends AnyArray | AnyObject>(target: T): T {
 	return new Proxy(target, invariableDeepHandler as unknown as ProxyHandler<any>);

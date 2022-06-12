@@ -10,27 +10,35 @@ describe('eqlDeep', () => {
 	});
 
 	it('returns "true" for two equal object inputs', () => {
-		const a = { a: [1], b: true, c: { d: 1 } };
-		const b = { a: [1], b: true, c: { d: 1 } };
+		const a = { a: [], o: {}, b: true };
+		const b = { a: [], o: {}, b: true };
 
 		expect(eqlDeep(a, b)).to.be.true;
 	});
 
 	it('returns "true" for two equal array inputs', () => {
-		const a = [[1], true, { d: 1 }];
-		const b = [[1], true, { d: 1 }];
+		const a = [[], {}, true];
+		const b = [[], {}, true];
 
 		expect(eqlDeep(a, b)).to.be.true;
 	});
 
+	it('returns "true" for equal array and object inputs', () => {
+		const a = [[[], {}, false], { 0: [], 1: {}, 2: false }, true];
+		const b = [{ 0: [], 1: {}, 2: false }, [[], {}, false], true];
+
+		expect(eqlDeep(a, b)).to.be.true;
+		expect(eqlDeep(b, a)).to.be.true;
+		expect(eqlDeep([], {})).to.be.true;
+		expect(eqlDeep({}, [])).to.be.true;
+	});
+
 	it('returns "true" for two equal sparse array inputs', () => {
-		const sparse1 = [1];
-		const sparse2 = [1];
+		const sparse = [1];
 
-		sparse1[2] = 3;
-		sparse2[2] = 3;
+		sparse[2] = 3;
 
-		expect(eqlDeep(sparse1, sparse2)).to.be.true;
+		expect(eqlDeep(sparse, sparse)).to.be.true;
 	});
 
 	it('returns "false" for two different inputs', () => {
@@ -52,11 +60,10 @@ describe('eqlDeep', () => {
 
 		sparse[2] = 3;
 
-		const a = [[1, 2, 3], true];
-		const b = [[1, 2, 3]];
+		const a = [1, 2, 3];
 
-		expect(eqlDeep(a, b)).to.be.false;
-		expect(eqlDeep([1, 2, 3], sparse)).to.be.false;
+		expect(eqlDeep(a, [sparse])).to.be.false;
+		expect(eqlDeep([1, true], [1])).to.be.false;
 	});
 
 	it('returns "false" for two different object inputs', () => {
@@ -72,10 +79,6 @@ describe('eqlDeep', () => {
 
 		sparse[2] = 3;
 
-		const a = [[1, [2, [3]]]];
-		const b = [[1, [2, [4]]]];
-
-		expect(eqlDeep(a, b)).to.be.false;
-		expect(eqlDeep(sparse, [1, 2, 3])).to.be.false;
+		expect(eqlDeep([sparse], [1, 2, 3])).to.be.false;
 	});
 });

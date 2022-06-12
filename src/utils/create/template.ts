@@ -1,21 +1,19 @@
-function _templateArray(target: AnyArray, source: AnyArray): void {
+function __template_array(target: AnyArray, source: AnyArray): void {
 	const itemCount = source.length;
 
 	for (let index = 0; index < itemCount; index++) {
 		const item = source[index];
 
 		if (Array.isArray(item)) {
-			target[index] = new Array(item.length);
-			_templateArray(target[index], item);
+			__template_array(target[index] = new Array(item.length), item);
 		}
-		else if (typeof item === 'object' && item !== null) {
-			target[index] = {};
-			_templateObject(target[index], item);
+		else if (item !== null && typeof item === 'object') {
+			__template_object(target[index] = {}, item);
 		}
 	}
 }
 
-function _templateObject(target: AnyObject, source: AnyObject): void {
+function __template_object(target: AnyObject, source: AnyObject): void {
 	const keys = Object.keys(source);
 	const keyCount = keys.length;
 
@@ -24,35 +22,34 @@ function _templateObject(target: AnyObject, source: AnyObject): void {
 		const prop = source[key];
 
 		if (Array.isArray(prop)) {
-			target[key] = new Array(prop.length);
-			_templateArray(target[key], prop);
+			__template_array(target[key] = new Array(prop.length), prop);
 		}
-		else if (typeof prop === 'object' && prop !== null) {
-			target[key] = {};
-			_templateObject(target[key], prop);
+		else if (prop !== null && typeof prop === 'object') {
+			__template_object(target[key] = {}, prop);
 		}
 	}
 }
 
 
 /**
- * Creates new object without properties other than sub-objects based on
+ * Creates new object without properties other than sub-objects based on the
  * "source" object structure.
- * @param source The object used as template.
- * @returns A new object with structure based on template.
+ * @param source The object from which to create template.
+ * @returns Returns a new object with structure based on the "source" or "null" if
+ * "source" is not an object.
  */
 export function template(source: AnyArray | AnyObject): AnyArray | AnyObject | null {
 	if (Array.isArray(source)) {
 		const templateArray = new Array(source.length);
 
-		_templateArray(templateArray, source);
+		__template_array(templateArray, source);
 
 		return templateArray;
 	}
-	else if (typeof source === 'object' && source !== null) {
+	else if (source !== null && typeof source === 'object') {
 		const templateObject = {};
 
-		_templateObject(templateObject, source);
+		__template_object(templateObject, source);
 
 		return templateObject;
 	}

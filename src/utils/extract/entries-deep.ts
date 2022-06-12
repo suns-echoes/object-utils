@@ -1,49 +1,25 @@
-function _entriesDeep(
+function __entriesDeep(
 	entries: AnyArray,
-	source: AnyArray | AnyObject,
+	object: AnyObject,
 	delimiter: string | undefined,
 	pathKey: string | string[],
 ): void {
 	const rootKey = delimiter ? (pathKey !== '' ? `${pathKey}${delimiter}` : '') : pathKey;
-	let index = 0;
+	const keys = Object.keys(object);
+	const keyCount = keys.length;
 
-	if (Array.isArray(source)) {
-		const itemCount = source.length;
+	for (let index = 0; index < keyCount; index++) {
+		const key = keys[index];
+		const prop = object[key];
 
-		for (; index < itemCount; index++) {
-			const item = source[index];
-
-			if (item !== null && typeof item === 'object') {
-				_entriesDeep(
-					entries, item, delimiter,
-					delimiter ? `${rootKey}${index.toString(10)}` : [...rootKey, index.toString(10)],
-				);
-			}
-			else {
-				entries.push([
-					delimiter ? `${rootKey}${index.toString(10)}` : [...rootKey, index.toString(10)],
-					item,
-				]);
-			}
+		if (prop !== null && typeof prop === 'object') {
+			__entriesDeep(
+				entries, prop, delimiter,
+				delimiter ? `${rootKey}${key}` : [...rootKey, key],
+			);
 		}
-	}
-	else {
-		const keys = Object.keys(source);
-		const keyCount = keys.length;
-
-		for (; index < keyCount; index++) {
-			const key = keys[index];
-			const prop = source[key];
-
-			if (prop !== null && typeof prop === 'object') {
-				_entriesDeep(
-					entries, prop, delimiter,
-					delimiter ? `${rootKey}${key}` : [...rootKey, key],
-				);
-			}
-			else {
-				entries.push([delimiter ? `${rootKey}${key}` : [...rootKey, key], prop]);
-			}
+		else {
+			entries.push([delimiter ? `${rootKey}${key}` : [...rootKey, key], prop]);
 		}
 	}
 }
@@ -56,8 +32,8 @@ function _entriesDeep(
  * @param delimiter Optional string value to use as delimiter in string "key"
  * path. If not specified the "key" will be an array of strings representing
  * property path.
- * @returns An array containing [key, value] pairs for each property or "null"
- * when input is invalid.
+ * @returns Returns an array containing [key, value] pairs for each property or
+ * "null" when input is not an object.
  */
 export function entriesDeep(source: AnyArray | AnyObject): [string[], any][] | null;
 export function entriesDeep(source: AnyArray | AnyObject, delimiter: string): [string, any][] | null;
@@ -65,7 +41,7 @@ export function entriesDeep(source: AnyArray | AnyObject, delimiter = ''): AnyAr
 	if (source !== null && typeof source === 'object') {
 		const entries: [string | string[], any][] = [];
 
-		_entriesDeep(entries, source, delimiter, '');
+		__entriesDeep(entries, source, delimiter, '');
 
 		return entries;
 	}

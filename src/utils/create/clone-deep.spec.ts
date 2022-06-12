@@ -36,16 +36,17 @@ describe('cloneDeep', () => {
 		expect(0 in c).to.be.true;
 	});
 
-	it('returns sparse array clone', () => {
-		const a = [];
+	it('returns array clone including custom props', () => {
+		const a: AnyObject = [];
 
-		a[1] = 1;
+		a.x = 1;
+		a.y = 2;
 
-		const c = cloneDeep(a, true)!;
+		const c = cloneDeep(a)!;
 
-		expect(c).to.be.eql([undefined, 1]);
 		expect(c).not.to.be.equal(a);
-		expect(0 in c).to.be.false;
+		expect(c.x).to.be.equal(1);
+		expect(c.y).to.be.equal(2);
 	});
 
 	it('returns "null" for non-object input', () => {

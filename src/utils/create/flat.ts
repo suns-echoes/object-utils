@@ -1,18 +1,17 @@
-function _flat(
+function __flat(
 	target: AnyObject, source: AnyArray | AnyObject, depth: number,
 	delimiter: string | false, pathKey: string,
 ): void {
 	const rootKey = (delimiter && pathKey !== '') ? `${pathKey}${delimiter}` : '';
-	let index = 0;
 
 	if (Array.isArray(source)) {
 		const itemCount = source.length;
 
-		for (; index < itemCount; index++) {
+		for (let index = 0; index < itemCount; index++) {
 			const prop = source[index];
 
-			if (depth !== 0 && typeof prop === 'object' && prop !== null) {
-				_flat(target, prop, depth - 1, delimiter, `${rootKey}${index}`);
+			if (depth !== 0 && prop !== null && typeof prop === 'object') {
+				__flat(target, prop, depth - 1, delimiter, `${rootKey}${index}`);
 			}
 			else {
 				target[delimiter ? `${rootKey}${index}` : index] = prop;
@@ -23,12 +22,12 @@ function _flat(
 		const keys = Object.keys(source);
 		const keyCount = keys.length;
 
-		for (; index < keyCount; index++) {
+		for (let index = 0; index < keyCount; index++) {
 			const key = keys[index];
 			const prop = source[key];
 
-			if (depth !== 0 && typeof prop === 'object' && prop !== null) {
-				_flat(target, prop, depth - 1, delimiter, `${rootKey}${key}`);
+			if (depth !== 0 && prop !== null && typeof prop === 'object') {
+				__flat(target, prop, depth - 1, delimiter, `${rootKey}${key}`);
 			}
 			else {
 				target[delimiter ? `${rootKey}${key}` : key] = prop;
@@ -39,23 +38,24 @@ function _flat(
 
 
 /**
- * Creates a new object with all sub-properties merged into it recursively up to
- * the specified depth. If delimiter is specified (not falsy) the sub-keys will
- * be concatenated using it. Otherwise deepest properties will overwrite higher
- * level properties that have the same key.
+ * Creates a new object with all "source" object properties and ub-properties
+ * merged into it recursively up to the specified depth.
+ * If string  delimiter is specified the sub-keys will be concatenated using it,
+ * otherwise properties will be overwritten by deeper level properties with the
+ * same key.
  * @param source The source object.
  * @param depth The maximum number of levels of flattening, set to "-1" for no
  * limit.
  * @param delimiter The key path delimiter. If set to "false" or to empty string
- * deepest level properties will overwrite higher level properties that have the
+ * deeper level properties will overwrite higher level properties that have the
  * same key.
- * @returns A new flattened object or "null" if source is not an object.
+ * @returns A new flattened object or "null" if the "source" is not an object.
  */
 export function flat(source: AnyArray | AnyObject, depth = -1, delimiter: string | false = '.'): AnyObject | null {
-	if (typeof source === 'object' && source !== null) {
+	if (source !== null && typeof source === 'object') {
 		const target = {};
 
-		_flat(target, source, depth, delimiter, '');
+		__flat(target, source, depth, delimiter, '');
 
 		return target;
 	}

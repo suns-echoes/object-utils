@@ -3,7 +3,20 @@ import { forEachDeep } from './for-each-deep';
 
 describe('forEachDeep', () => {
 	it('iterates through every property and sub-property (string path key)', () => {
-		const o = { a: [1, null, { b: true }], c: { d: false, e: 2 } };
+		const o = {
+			a: [
+				1,
+				null,
+				{
+					b: true,
+				},
+			],
+			c: {
+				d: false,
+				e: 2,
+			},
+		};
+
 		const keys: string[] = [];
 
 		forEachDeep(o, (prop, key, object): void => {
@@ -19,11 +32,30 @@ describe('forEachDeep', () => {
 			}
 		}, '.');
 
-		expect(keys).to.be.eql(['a.0', 'a.1', 'a.2.b', 'c.d', 'c.e']);
+		expect(keys).to.be.eql([
+			'a.0',
+			'a.1',
+			'a.2.b',
+			'c.d',
+			'c.e',
+		]);
 	});
 
 	it('iterates through every property and sub-property (array path key)', () => {
-		const o = { a: [1, null, { b: true }], c: { d: false, e: 2 } };
+		const o = {
+			a: [
+				1,
+				null,
+				{
+					b: true,
+				},
+			],
+			c: {
+				d: false,
+				e: 2,
+			},
+		};
+
 		const keys: (string | number)[][] = [];
 
 		forEachDeep(o, (prop, key, object): void => {
@@ -41,6 +73,12 @@ describe('forEachDeep', () => {
 			}
 		});
 
-		expect(keys).to.be.eql([['a', '0'], ['a', '1'], ['a', '2', 'b'], ['c', 'd'], ['c', 'e']]);
+		expect(keys).to.be.eql([
+			['a', '0'],
+			['a', '1'],
+			['a', '2', 'b'],
+			['c', 'd'],
+			['c', 'e'],
+		]);
 	});
 });

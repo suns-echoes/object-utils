@@ -4,57 +4,12 @@ import { Missing, Same } from '../constants';
 export { Missing, Same } from '../constants';
 
 
-function _diffArrayDeep(a: any[], b: any[], missing: any): any[] | typeof Same {
-	const lengthA = a.length;
-	const lengthB = b.length;
-	const lengthDiff = lengthA - lengthB;
-	const isALonger = lengthA > lengthB;
-	const diffArray = isALonger ? b.concat(new Array(lengthDiff).fill(missing)) : b.slice(0);
-	const commonLength = isALonger ? lengthB : lengthA;
-	let isSame = lengthDiff === 0;
-
-	for (let index = 0; index < commonLength; index++) {
-		if (index in b) {
-			if (index in a) {
-				const aItem = a[index];
-				const bItem = b[index];
-				let diff: any = bItem;
-
-				if (aItem === bItem) {
-					diff = Same;
-				}
-				else if (Array.isArray(aItem) && Array.isArray(bItem)) {
-					diff = _diffArrayDeep(aItem, bItem, missing);
-				}
-				else if (aItem !== null && typeof aItem === 'object' && bItem !== null && typeof bItem === 'object') {
-					diff = _diffDeep(aItem, bItem, missing);
-				}
-
-				diffArray[index] = diff;
-
-				if (diff !== Same) {
-					isSame = false;
-				}
-			}
-			else {
-				diffArray[index] = b[index];
-				isSame = false;
-			}
-		}
-		else {
-			diffArray[index] = missing;
-			isSame = false;
-		}
-	}
-
-	return isSame ? Same : diffArray;
-}
-
-function _diffDeep(a: AnyObject, b: AnyObject, missing: any): AnyObject | typeof Same {
-	const diffObject: AnyObject = {};
+export function __diffDeep<T extends AnyObject>(a: T, b: AnyObject, missing: any): T | typeof Same {
+	const isArray = Array.isArray(a);
+	const diffTree: AnyObject = isArray ? [] : {};
 	const allKeys = [...new Set(Object.keys(a).concat(Object.keys(b)))];
 	const keyCount = allKeys.length;
-	let isSame = true;
+	let isSame: typeof Same | null = Same;
 
 	for (let index = 0; index < keyCount; index++) {
 		const key = allKeys[index];
@@ -64,58 +19,61 @@ function _diffDeep(a: AnyObject, b: AnyObject, missing: any): AnyObject | typeof
 				const aProp = a[key];
 				const bProp = b[key];
 
-				let diff: any = bProp;
-
 				if (aProp === bProp) {
-					diff = Same;
-				}
-				else if (Array.isArray(aProp) && Array.isArray(bProp)) {
-					diff = _diffArrayDeep(aProp, bProp, missing);
-				}
-				else if (aProp !== null && typeof aProp === 'object' && bProp !== null && typeof bProp === 'object') {
-					diff = _diffDeep(aProp, bProp, missing);
+					if (isArray) {
+						diffTree[key] = Same;
+					}
+
+					continue;
 				}
 
-				diffObject[key] = diff;
+				if (aProp !== null && bProp !== null && typeof aProp === 'object' && typeof bProp === 'object') {
+					const diff = __diffDeep(aProp, bProp, missing);
 
-				if (diff !== Same) {
-					isSame = false;
+					if (diff !== Same) {
+						diffTree[key] = diff;
+						isSame = null;
+					}
+					else if (isArray) {
+						diffTree[key] = Same;
+					}
+				}
+				else {
+					diffTree[key] = bProp;
+					isSame = null;
 				}
 			}
 			else {
-				diffObject[key] = b[key];
-				isSame = false;
+				diffTree[key] = b[key];
+				isSame = null;
 			}
 		}
 		else {
-			diffObject[key] = missing;
-			isSame = false;
+			diffTree[key] = missing;
+			isSame = null;
 		}
 	}
 
-	return isSame ? Same : diffObject;
+	return isSame || <T>diffTree;
 }
 
 /**
  * Find deep difference between two entities.
- * In case of no difference in property or value, "Same" symbol will be
- * returned. The "Missing" symbol will be returned when property is present in
- * the "a" entity but missing in the "b" entity, unless provided different value
- * for missing properties.
+ * Arrays will be compared as if they were generic objects so type difference
+ * (array vs object) will be ignored.
+ * In case of no difference in property or value, the "Same" symbol will be
+ * returned. When property is present in the "a" entity but missing in the "b"
+ * entity the "Missing" symbol will be returned (or custom value if provided).
  * @param a The first entity.
  * @param b The second entity.
- * @returns A structure or value representing changes made between "a" and "b"
- * entities.
+ * @returns Returns changes found in the "b" entity with respect to "a" entity.
  */
-export function diffDeep(a: any, b: any, missing: any = Missing): any {
+export function diffDeep<T>(a: T, b: any, missing: any = Missing): T | typeof Same {
 	if (a === b) {
 		return Same;
 	}
-	else if (Array.isArray(a) && Array.isArray(b)) {
-		return _diffArrayDeep(a, b, missing);
-	}
-	else if (a !== null && typeof a === 'object' && b !== null && typeof b === 'object') {
-		return _diffDeep(a, b, missing);
+	else if (a !== null && b !== null && typeof a === 'object' && typeof b === 'object') {
+		return __diffDeep(a, b, missing);
 	}
 
 	return b;

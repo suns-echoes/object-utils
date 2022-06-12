@@ -1,54 +1,29 @@
-function _forEachDeep(
-	object: AnyArray | AnyObject,
+function __forEachDeep(
+	object: AnyObject,
 	callback: AnyFunction,
 	delimiter: string | undefined,
 	pathKey: KeyPath | PathKeys,
 ): void {
 	const rootKey = delimiter ? (pathKey !== '' ? `${pathKey}${delimiter}` : '') : pathKey;
-	let index = 0;
+	const keys = Object.keys(object);
+	const keyCount = keys.length;
 
-	if (Array.isArray(object)) {
-		const itemCount = object.length;
+	for (let index = 0; index < keyCount; index++) {
+		const key = keys[index];
+		const prop = object[key];
 
-		for (; index < itemCount; index++) {
-			const item = object[index];
-
-			if (item !== null && typeof item === 'object') {
-				_forEachDeep(
-					item, callback, delimiter,
-					delimiter ? `${rootKey}${index.toString(10)}` : [...rootKey, index.toString(10)],
-				);
-			}
-			else {
-				callback(
-					item,
-					(delimiter ? `${rootKey}${index.toString(10)}` : [...rootKey, index.toString(10)]),
-					object,
-				);
-			}
+		if (prop !== null && typeof prop === 'object') {
+			__forEachDeep(
+				prop, callback, delimiter,
+				delimiter ? `${rootKey}${key}` : [...rootKey, key],
+			);
 		}
-	}
-	else {
-		const keys = Object.keys(object);
-		const keyCount = keys.length;
-
-		for (; index < keyCount; index++) {
-			const key = keys[index];
-			const prop = object[key];
-
-			if (prop !== null && typeof prop === 'object') {
-				_forEachDeep(
-					prop, callback, delimiter,
-					delimiter ? `${rootKey}${key}` : [...rootKey, key],
-				);
-			}
-			else {
-				callback(
-					prop,
-					(delimiter ? `${rootKey}${key}` : [...rootKey, key]),
-					object,
-				);
-			}
+		else {
+			callback(
+				prop,
+				(delimiter ? `${rootKey}${key}` : [...rootKey, key]),
+				object,
+			);
 		}
 	}
 }
@@ -59,8 +34,8 @@ function _forEachDeep(
  * @param object The object on which to execute the "callback".
  * @param callback The function to execute on each property.
  * It accepts three arguments:
- *   * prop - The current processed property.
- *   * key - The key of the current processed property. If the "delimiter" is
+ *   * prop - The currently processed property.
+ *   * key - The key of the currently processed property. If the "delimiter" is
  *   provided "key" will be a delimited string and array of strings otherwise.
  *   * object - The object on which forEachDeep() was called.
  * @param delimiter Optional string value to use as delimiter in callback "key"
@@ -83,6 +58,6 @@ export function forEachDeep(
 	delimiter = '',
 ): void {
 	if (object !== null && typeof object === 'object') {
-		_forEachDeep(object, callback, delimiter, delimiter ? '' : []);
+		__forEachDeep(object, callback, delimiter, delimiter ? '' : []);
 	}
 }

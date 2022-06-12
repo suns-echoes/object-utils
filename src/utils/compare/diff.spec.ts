@@ -2,66 +2,68 @@ import { diff, Missing, Same } from './diff';
 
 
 describe('diff', () => {
-	it('returns "Same" for two equal object inputs', () => {
-		const arr = [1, 2, 3];
-		const o = { aa: 1, bb: arr, cc: {} };
-		const a = { a: arr, b: true, o };
-		const b = { a: arr, b: true, o };
-
-		expect(diff(a, b)).to.be.equal(Same);
+	it('returns "Same" for two equal inputs', () => {
+		expect(diff(false, false)).to.be.equal(Same);
+		expect(diff(1, 1)).to.be.equal(Same);
+		expect(diff('a', 'a')).to.be.equal(Same);
+		expect(diff(Same, Same)).to.be.equal(Same);
 		expect(diff(null, null)).to.be.equal(Same);
 		expect(diff(undefined, undefined)).to.be.equal(Same);
 	});
 
-	it('returns "Same" for two equal array inputs', () => {
-		const o = { aa: 1, bb: false, cc: {} };
-		const a = [1, null, o];
-		const b = [1, null, o];
+	it('returns "Same" for two shallow equal objects', () => {
+		const x = {};
 
-		expect(diff(a, b)).to.be.equal(Same);
+		expect(diff([], [])).to.be.equal(Same);
+		expect(diff([], {})).to.be.equal(Same);
+		expect(diff({}, {})).to.be.equal(Same);
+		expect(diff({}, [])).to.be.equal(Same);
+		expect(diff([1], [1])).to.be.equal(Same);
+		expect(diff([1], { 0: 1 })).to.be.equal(Same);
+		expect(diff({ a: 1 }, { a: 1 })).to.be.equal(Same);
+		expect(diff({ 0: 1 }, [1])).to.be.equal(Same);
+		expect(diff({ 0: x }, [x])).to.be.equal(Same);
 	});
 
-	it('returns "Missing" when second input ommits object props', () => {
-		const a = { aa: true };
+	it('returns "Missing" in place of empty item in sparse array', () => {
+		const a = [1, 2];
+		const b = [];
+
+		b[1] = 2;
+
+		expect(diff(a, b)).to.be.eql([Missing, Same]);
+	});
+
+	it('returns "Missing" in place of ommited property', () => {
+		const a = { prop: true };
 		const b = {};
-		const d = { aa: Missing };
 
-		expect(diff(a, b)).to.be.eql(d);
+		expect(diff(a, b)).to.be.eql({ prop: Missing });
 	});
 
-	it('returns custom missing when second input ommits array items', () => {
-		const MISSING = 'MISSING';
-		const sparse = [1];
+	it('returns custom value in place of ommited property', () => {
+		const a = { prop: true };
+		const b = {};
 
-		sparse[2] = 3;
-
-		const a = [1, 2, 3];
-		const b = sparse;
-		const d = [Same, MISSING, Same];
-
-		expect(diff(a, b, MISSING)).to.be.eql(d);
+		expect(diff(a, b, 'MISS')).to.be.eql({ prop: 'MISS' });
 	});
 
-	it('returns differences (new values) for two different object inputs', () => {
-		const o = { aa: 1, bb: [1, 2, 3], cc: {} };
-		const a = { a: [1, 2], o, x: { y: 'z' } };
-		const b = { a: [1, 2, 3], b: true, o, x: { y: 'z' }  };
-		const d = { a: [1, 2, 3], b: true, o: Same, x: { y: 'z' }  };
-
-		expect(diff(a, b)).to.be.eql(d);
+	it('returns second value for two not equal inputs', () => {
+		expect(diff(false, 0)).to.be.equal(0);
+		expect(diff(1, true)).to.be.equal(true);
+		expect(diff('2', 2)).to.be.equal(2);
+		expect(diff(Same, Missing)).to.be.equal(Missing);
 		expect(diff(null, undefined)).to.be.equal(undefined);
+		expect(diff(undefined, null)).to.be.equal(null);
 	});
 
-	it('returns differences (new values) for two different array inputs', () => {
-		const sparse = [1];
+	it('returns diff for two different objects', () => {
+		const a: AnyArray = [];
+		const o = {};
 
-		sparse[2] = 3;
-		sparse[3] = 4;
-
-		const a = sparse;
-		const b = [1, 2, 4];
-		const d = [Same, 2, 4, Missing];
-
-		expect(diff(a, b)).to.be.eql(d);
+		expect(diff([1, [], {}], [1, a, o, 'new'])).to.be.eql([Same, a, o, 'new']);
+		expect(diff([1, [], {}], { 0: 1, 1: a, 2: o, 3: 'new' })).to.be.eql([Same, a, o, 'new']);
+		expect(diff({ x: 1, a: [], o: {} }, { x: 1, a, o, t: 'new' })).to.be.eql({ a, o, t: 'new' });
+		expect(diff({ 0: 1, 1: [], 2: {} }, [1, a, o, 'new'])).to.be.eql({ 1: a, 2: o, 3: 'new' });
 	});
 });

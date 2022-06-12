@@ -1,6 +1,6 @@
 {
 	"name": "@suns-echoes/object-utils",
-	"version": "0.4.0",
+	"version": "1.0.0",
 	"description": "The library of useful utilities for objects manipulations.",
 	"keywords": [
 		"object",
@@ -30,21 +30,21 @@
 		"node": "^16.14.0"
 	},
 	"devDependencies": {
-		"@types/chai": "^4.3.0",
-		"@types/mocha": "^9.1.0",
-		"@types/node": "^16.11.26",
+		"@types/chai": "^4.3.1",
+		"@types/mocha": "^9.1.1",
+		"@types/node": "^16.11.39",
 		"@types/sinon-chai": "^3.2.8",
-		"@typescript-eslint/eslint-plugin": "^5.15.0",
-		"@typescript-eslint/parser": "^5.15.0",
-		"c8": "^7.11.0",
+		"@typescript-eslint/eslint-plugin": "^5.27.1",
+		"@typescript-eslint/parser": "^5.27.1",
+		"c8": "^7.11.3",
 		"chai": "^4.3.6",
 		"cross-env": "^7.0.3",
-		"eslint": "^8.11.0",
+		"eslint": "^8.17.0",
 		"esm": "^3.2.25",
-		"mocha": "^9.2.2",
+		"mocha": "^10.0.0",
 		"sinon-chai": "^3.7.0",
-		"ts-node": "^10.7.0",
-		"typescript": "^4.6.2"
+		"ts-node": "^10.8.1",
+		"typescript": "^4.7.3"
 	},
 	"peerDependencies": {
 		"@suns-echoes/ts-types": "^0.0.1"

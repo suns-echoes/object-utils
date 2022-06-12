@@ -1,4 +1,10 @@
-function _isCyclic(entity: ObjectLike, beenThere: WeakSet<ObjectLike>): boolean {
+/**
+ * Checks if object has cyclic references.
+ * @param entity The object like entity to test (i.e.: array, object, function).
+ * @returns Returns "true" if "entity" has a cyclic reference or "false"
+ * otherwise.
+ */
+export function isCyclic(entity: ObjectLike, __beenThere: WeakSet<ObjectLike> = new WeakSet().add(entity)): boolean {
 	const keys = (<(string | symbol)[]>Object.keys(entity)).concat(Object.getOwnPropertySymbols(entity));
 	const keyCount = keys.length;
 
@@ -6,23 +12,11 @@ function _isCyclic(entity: ObjectLike, beenThere: WeakSet<ObjectLike>): boolean 
 		const property = entity[keys[index]];
 
 		if (property instanceof Object) {
-			if (beenThere.has(property)) {
-				return true;
-			}
-
-			return _isCyclic(property, beenThere.add(property));
+			return __beenThere.has(property)
+				? true
+				: isCyclic(property, __beenThere.add(property));
 		}
 	}
 
 	return false;
-}
-
-
-/**
- * Checks if object has cyclic references.
- * @param entity The object to check for cyclic references.
- * @returns The "true" if has cyclic references, "false" otherwise.
- */
-export function isCyclic(entity: ObjectLike): boolean {
-	return _isCyclic(entity, new WeakSet().add(entity));
 }

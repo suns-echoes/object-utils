@@ -1,17 +1,16 @@
 /**
- * Returns the first property in the provided object that satisfies the provided
- * testing function. If no values satisfy the testing function, "undefined" is
- * returned.
+ * Finds the property in the object that pass the test implemented by the
+ * provided function.
  * @param object The object on which to perform search.
- * @param callback A function to execute on each property in the object until
- * the function returns "true", indicating that the satisfying property was
- * found.
+ * @param callback The predicate function to test properties.
+ * Return a value that coerces to "true" to for valid property or to "false"
+ * otherwise.
  * It takes three arguments:
- *   * prop - The current processed property.
- *   * key - The key of the current processed property.
- *   * object - The object on which findKey() was called.
- * @returns The the first property in the object that satisfies the provided
- * testing function, "undefined" otherwise.
+ *   * prop - The currently processed property.
+ *   * key - The key of the currently processed property.
+ *   * object - The object on which find() was called.
+ * @returns Returns the first property found in the object that passes the test
+ * or "undefined" otherwise.
  */
 export function find<T extends AnyObject>(
 	object: T,

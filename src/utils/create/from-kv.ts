@@ -4,7 +4,7 @@ type KVIterable = Iterable<[key: string, value: any] | (string | number)[]> | (s
 /**
  * Creates a new object with properties matching the given key-value iterable.
  * @param kv The key-value array.
- * @returns A new object.
+ * @returns Returns a new object.
  */
 export function fromKV(kv: KVIterable): AnyObject {
 	if (kv && typeof kv[Symbol.iterator] === 'function') {

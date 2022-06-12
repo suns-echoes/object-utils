@@ -1,29 +1,4 @@
-function _mergeOneArrayDeep(target: any[], source: any[]): void {
-	const commonLength = Math.min(target.length, source.length);
-	const sourceLength = source.length;
-	let index = 0;
-
-	for (; index < commonLength; index++) {
-		const targetItem = target[index];
-		const sourceItem = source[index];
-
-		if (Array.isArray(targetItem) && Array.isArray(sourceItem)) {
-			_mergeOneArrayDeep(targetItem, sourceItem);
-		}
-		else if (targetItem !== null && typeof targetItem === 'object' && sourceItem !== null && typeof sourceItem === 'object') {
-			_mergeOneDeep(targetItem, sourceItem);
-		}
-		else if (source[index] !== undefined) {
-			target[index] = source[index];
-		}
-	}
-
-	for (; index < sourceLength; index++) {
-		target[index] = source[index];
-	}
-}
-
-function _mergeOneDeep(target: AnyObject, source: AnyObject): void {
+function __mergeOneDeep(target: AnyObject, source: AnyObject): void {
 	const sourceKeys = Object.keys(source);
 	const sourceKeyCount = sourceKeys.length;
 
@@ -34,11 +9,10 @@ function _mergeOneDeep(target: AnyObject, source: AnyObject): void {
 			const targetProp = target[key];
 			const sourceProp = source[key];
 
-			if (Array.isArray(targetProp) && Array.isArray(sourceProp)) {
-				_mergeOneArrayDeep(targetProp, sourceProp);
-			}
-			else if (targetProp !== null && typeof targetProp === 'object' && sourceProp !== null && typeof sourceProp === 'object') {
-				_mergeOneDeep(targetProp, sourceProp);
+			if (targetProp !== null && sourceProp !== null
+				&& typeof targetProp === 'object' && typeof sourceProp === 'object'
+			) {
+				__mergeOneDeep(targetProp, sourceProp);
 			}
 			else if (source[key] !== undefined) {
 				target[key] = source[key];
@@ -50,14 +24,16 @@ function _mergeOneDeep(target: AnyObject, source: AnyObject): void {
 	}
 }
 
+
 /**
- * Performs deep copy of all enumerable own properties from one or more source
- * objects to the target object but does not overwrite existing values when
- * source property has the "undefined" value assigned to it. It returns the
- * modified target object.
- * @param target The object to which merge the properties.
- * @param sources The objects providing source properties.
- * @returns The modified target object.
+ * Performs deep copy of all enumerable own properties and sub-properties from
+ * one or more "source" objects to the "target" object, but does not overwrite
+ * existing values when property from "source" has the "undefined" value
+ * assigned to it.
+ * It returns the modified target object.
+ * @param target The object to which merge the "sources".
+ * @param sources The objects providing source for merge.
+ * @returns The modified "target" object.
  */
 export function mergeDeep(target: AnyObject, ...sources: AnyObject[]): AnyObject {
 	if (target !== null && typeof target === 'object') {
@@ -66,11 +42,8 @@ export function mergeDeep(target: AnyObject, ...sources: AnyObject[]): AnyObject
 		for (let index = 0; index < sourceCount; index++) {
 			const source = sources[index];
 
-			if (Array.isArray(target) && Array.isArray(source)) {
-				_mergeOneArrayDeep(target, source);
-			}
-			else if (source !== null && typeof source === 'object') {
-				_mergeOneDeep(target, source);
+			if (source !== null && typeof source === 'object') {
+				__mergeOneDeep(target, source);
 			}
 		}
 	}

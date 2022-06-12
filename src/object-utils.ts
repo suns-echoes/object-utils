@@ -1,21 +1,23 @@
 import { Missing, Same } from './utils/constants';
 
 import { isCyclic } from './utils/check/is-cyclic';
-import { isLikeObject } from './utils/check/is-like-object';
+import { isObjectLike } from './utils/check/is-object-like';
 
 import { diff } from './utils/compare/diff';
 import { diffDeep } from './utils/compare/diff-deep';
-import { diffStrictDeep } from './utils/compare/diff-strict-deep';
+import { diffDeepEx } from './utils/compare/diff-deep-ex';
+import { diffDeepStrict } from './utils/compare/diff-deep-strict';
 import { eql } from './utils/compare/eql';
 import { eqlDeep } from './utils/compare/eql-deep';
-import { eqlStrictDeep } from './utils/compare/eql-strict-deep';
+import { eqlDeepEx } from './utils/compare/eql-deep-ex';
+import { eqlDeepStrict } from './utils/compare/eql-deep-strict';
 
 import { cloneDeep } from './utils/create/clone-deep';
-import { cloneExDeep } from './utils/create/clone-ex-deep';
-import { cloneStrictDeep } from './utils/create/clone-strict-deep';
+import { cloneDeepEx } from './utils/create/clone-deep-ex';
+import { cloneDeepStrict } from './utils/create/clone-deep-strict';
 import { filter } from './utils/create/filter';
 import { flat } from './utils/create/flat';
-import { flatStrict } from './utils/create/flat-strict';
+import { flatEx } from './utils/create/flat-ex';
 import { fromKV } from './utils/create/from-kv';
 import { fromKVArray } from './utils/create/from-kv-array';
 import { fromPath } from './utils/create/from-path';
@@ -25,7 +27,7 @@ import { partial } from './utils/create/partial';
 import { squash } from './utils/create/squash';
 import { squashReverse } from './utils/create/squash-reverse';
 import { template } from './utils/create/template';
-import { templateStrict } from './utils/create/template-strict';
+import { templateEx } from './utils/create/template-ex';
 
 import { freezeDeep } from './utils/debug/freeze-deep';
 import { invariableProxy } from './utils/debug/invariable-proxy';
@@ -34,9 +36,11 @@ import { invariableProxyDeep } from './utils/debug/invariable-proxy-deep';
 import { blackhole } from './utils/destroy/blackhole';
 
 import { entriesDeep } from './utils/extract/entries-deep';
-import { entriesStrictDeep } from './utils/extract/entries-strict-deep';
+import { entriesDeepEx } from './utils/extract/entries-deep-ex';
+import { entriesDeepStrict } from './utils/extract/entries-deep-strict';
 import { valuesDeep } from './utils/extract/values-deep';
-import { valuesStrictDeep } from './utils/extract/values-strict-deep';
+import { valuesDeepEx } from './utils/extract/values-deep-ex';
+import { valuesDeepStrict } from './utils/extract/values-deep-strict';
 
 import { any } from './utils/find/any';
 import { every } from './utils/find/every';
@@ -50,16 +54,19 @@ import { some } from './utils/find/some';
 
 import { forEach } from './utils/iterate/for-each';
 import { forEachDeep } from './utils/iterate/for-each-deep';
-import { forEachStrictDeep } from './utils/iterate/for-each-strict-deep';
+import { forEachDeepEx } from './utils/iterate/for-each-deep-ex';
+import { forEachDeepStrict } from './utils/iterate/for-each-deep-strict';
 
 import { assignDeep } from './utils/modify/assign-deep';
-import { assignStrictDeep } from './utils/modify/assign-strict-deep';
+import { assignDeepCloneDiff } from './utils/modify/assign-deep-clone-diff';
+import { assignDeepCloneDiffEx } from './utils/modify/assign-deep-clone-diff-ex';
+import { assignDeepCloneDiffStrict } from './utils/modify/assign-deep-clone-diff-strict';
+import { assignDeepEx } from './utils/modify/assign-deep-ex';
+import { assignDeepStrict } from './utils/modify/assign-deep-strict';
 import { defineInternalProperties } from './utils/modify/define-internal-properties';
 import { mergeDeep } from './utils/modify/merge-deep';
-import { mergeStrictDeep } from './utils/modify/merge-strict-deep';
-import { safeAssignDeepDiff } from './utils/modify/safe-assign-deep-diff';
-import { safeAssignExDeepDiff } from './utils/modify/safe-assign-ex-deep-diff';
-import { safeAssignStrictDeepDiff } from './utils/modify/safe-assign-strict-deep-diff';
+import { mergeDeepEx } from './utils/modify/merge-deep-ex';
+import { mergeDeepStrict } from './utils/modify/merge-deep-strict';
 
 
 export const ObjectUtils = {
@@ -68,21 +75,23 @@ export const ObjectUtils = {
 	Same,
 	// check
 	isCyclic,
-	isLikeObject,
+	isObjectLike,
 	// compare
 	diff,
 	diffDeep,
-	diffStrictDeep,
+	diffDeepEx,
+	diffDeepStrict,
 	eql,
 	eqlDeep,
-	eqlStrictDeep,
+	eqlDeepEx,
+	eqlDeepStrict,
 	// create
 	cloneDeep,
-	cloneStrictDeep,
-	cloneExDeep,
+	cloneDeepEx,
+	cloneDeepStrict,
 	filter,
 	flat,
-	flatStrict,
+	flatEx,
 	fromKV,
 	fromKVArray,
 	fromPath,
@@ -92,7 +101,7 @@ export const ObjectUtils = {
 	squash,
 	squashReverse,
 	template,
-	templateStrict,
+	templateEx,
 	// debug
 	freezeDeep,
 	invariableProxy,
@@ -101,9 +110,11 @@ export const ObjectUtils = {
 	blackhole,
 	// extract
 	entriesDeep,
-	entriesStrictDeep,
+	entriesDeepEx,
+	entriesDeepStrict,
 	valuesDeep,
-	valuesStrictDeep,
+	valuesDeepEx,
+	valuesDeepStrict,
 	// find
 	any,
 	every,
@@ -117,14 +128,17 @@ export const ObjectUtils = {
 	// iterate
 	forEach,
 	forEachDeep,
-	forEachStrictDeep,
+	forEachDeepEx,
+	forEachDeepStrict,
 	// modify
 	assignDeep,
-	assignStrictDeep,
+	assignDeepCloneDiff,
+	assignDeepCloneDiffEx,
+	assignDeepCloneDiffStrict,
+	assignDeepEx,
+	assignDeepStrict,
 	defineInternalProperties,
 	mergeDeep,
-	mergeStrictDeep,
-	safeAssignDeepDiff,
-	safeAssignExDeepDiff,
-	safeAssignStrictDeepDiff,
+	mergeDeepEx,
+	mergeDeepStrict,
 };
