@@ -19,3 +19,9 @@ as different types.
 ### 1.0.0 [Current release]
 
 The first stable release of this library.
+
+## License
+
+Licensed under MIT
+
+Copyright (c) 2021-2022 Aneta Suns
