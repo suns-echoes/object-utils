@@ -36,11 +36,10 @@ function __eqlDeepEx(a: AnyObject, b: AnyObject): boolean {
 
 /**
  * Performs deep equality check of two objects.
- * This is strict version which compares arrays by references and not by item
- * values.
+ * Arrays will be compared by reference (not by item values).
  * @param a The first object to compare.
  * @param b The second object to compare.
- * @returns Returns "true" if objects are equal or "false" otherwise.
+ * @returns Returns "true" if entities are equal or "false" otherwise.
  */
 export function eqlDeepEx(a: any, b: any): boolean {
 	if (a === b) {

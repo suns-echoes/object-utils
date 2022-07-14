@@ -3,6 +3,7 @@ import { makePackage } from '../utils/make-package.js';
 
 export const config = {
 	dist: './dist/',
+	debug: './debug/',
 	src:  './src/',
 
 	// Distributable version of package.json file.

@@ -9,7 +9,7 @@ function findImports(source) {
 	const matchAliasedPart = `\\s*${matchIdentifierPart}${matchAliasPart}`;
 	const matchFilePathPart = '[\'"][^\'"\\n]+[\'"]';
 	const matchImport = new RegExp(
-		'^[ \t]*import\\s*'
+		'^[ \t]*(?:import|export)\\s*'
 		+ `(?:${matchFilePathPart}(\\s*;)?|`
 		+ `(?:${matchIdentifierPart}|`
 		+ `(?:${matchIdentifierPart}\\s*,\\s*)?${matchModuleAliasPart}|`
@@ -19,7 +19,8 @@ function findImports(source) {
 		+ `\\s*\\})\\s*from\\s*${matchFilePathPart}(\\s*;)?)`, 'gm',
 	);
 
-	const matchDefaultImport = /import\s*([a-zA-Z_$][\w$]*)/;
+	const matchStatementType = /(import|export)/;
+	const matchDefaultImport = /(?:import|export)\s*([a-zA-Z_$][\w$]*)/;
 	const matchModuleAlias = new RegExp(`\\*\\s+as\\s+(${matchIdentifierPart})`);
 	const matchNamedEntities = /[a-zA-Z_$][\w$]*(\s+as\s+[a-zA-Z_$][\w$]*)?/g;
 	const matchFilePath = '[\'"]([^\'"\\n]+)[\'"]';
@@ -29,7 +30,8 @@ function findImports(source) {
 
 	while ((match = matchImport.exec(source)) !== null) {
 		const { 0: statement, index } = match;
-		const defName = statement.match(matchDefaultImport);
+		const type = statement.match(matchStatementType);
+		const defaultName = statement.match(matchDefaultImport);
 		const filepath = statement.match(matchFilePath)[1];
 		const namedEntities = statement.substring(statement.indexOf('{'), statement.indexOf('}')).match(matchNamedEntities);
 		let moduleAlias = statement.match(matchModuleAlias);
@@ -52,8 +54,9 @@ function findImports(source) {
 
 		matches.push({
 			statement,
+			type,
 			members: {
-				default: defName ? defName[1] : null,
+				default: defaultName ? defaultName[1] : null,
 				moduleAlias,
 				named,
 			},
@@ -86,29 +89,32 @@ function findRequires(source) {
 	return matches;
 }
 
-function hasMatchingFile(path) {
+function hasMatchingFile(path, extension) {
 	try {
 		const filename = basename(path);
 
-		return readdirSync(dirname(path)).includes(`${filename}.js`);
+		return readdirSync(dirname(path)).includes(`${filename}${extension}`);
 	}
 	catch {}
 
 	return false;
 }
 
-function shouldAddFileExtension(rootpath, filepath) {
+function shouldAddFileExtension(rootpath, filepath, extension) {
 	const path = join(rootpath, filepath);
 
 	if (!existsSync(path)) {
-		return hasMatchingFile(path);
+		return hasMatchingFile(path, extension);
 	}
 
 	return false;
 }
 
 
-export function addFileExtensionsToImports(sourceFilePath) {
+export function addFileExtensionsToImports(sourceFilePath, extension = '.js') {
+	/** RENAME **/
+
+
 	const code = readFileSync(sourceFilePath, { encoding: 'utf8' });
 	const importsInfo = [...findImports(code), ...findRequires(code)]
 		.map(({ filepath, index, statement }) => {
@@ -122,9 +128,9 @@ export function addFileExtensionsToImports(sourceFilePath) {
 	let lastIndex = 0;
 
 	importsInfo.forEach(({ filepath, index }) => {
-		const extension = shouldAddFileExtension(dirname(sourceFilePath), filepath) ? '.js' : '';
+		const ext = shouldAddFileExtension(dirname(sourceFilePath), filepath, extension) ? extension : '';
 
-		recoded += code.substring(lastIndex, index) + extension;
+		recoded += code.substring(lastIndex, index) + ext;
 		lastIndex = index;
 	});
 

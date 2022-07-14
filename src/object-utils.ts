@@ -45,7 +45,9 @@ import { valuesDeepStrict } from './utils/extract/values-deep-strict';
 import { any } from './utils/find/any';
 import { every } from './utils/find/every';
 import { find } from './utils/find/find';
+import { findAll } from './utils/find/find-all';
 import { findKey } from './utils/find/find-key';
+import { findAllKeys } from './utils/find/find-all-keys';
 import { getAllKeys } from './utils/find/get-all-keys';
 import { goto } from './utils/find/goto';
 import { includes } from './utils/find/includes';
@@ -56,13 +58,16 @@ import { forEach } from './utils/iterate/for-each';
 import { forEachDeep } from './utils/iterate/for-each-deep';
 import { forEachDeepEx } from './utils/iterate/for-each-deep-ex';
 import { forEachDeepStrict } from './utils/iterate/for-each-deep-strict';
+import { getOwnPropertyIteratorDeep } from './utils/iterate/get-own-property-iterator-deep';
+import { getOwnPropertyIteratorDeepEx } from './utils/iterate/get-own-property-iterator-deep-ex';
+import { getOwnPropertyIteratorDeepStrict } from './utils/iterate/get-own-property-iterator-deep-strict';
 
 import { assignDeep } from './utils/modify/assign-deep';
+import { assignDeepEx } from './utils/modify/assign-deep-ex';
+import { assignDeepStrict } from './utils/modify/assign-deep-strict';
 import { assignDeepCloneDiff } from './utils/modify/assign-deep-clone-diff';
 import { assignDeepCloneDiffEx } from './utils/modify/assign-deep-clone-diff-ex';
 import { assignDeepCloneDiffStrict } from './utils/modify/assign-deep-clone-diff-strict';
-import { assignDeepEx } from './utils/modify/assign-deep-ex';
-import { assignDeepStrict } from './utils/modify/assign-deep-strict';
 import { defineInternalProperties } from './utils/modify/define-internal-properties';
 import { mergeDeep } from './utils/modify/merge-deep';
 import { mergeDeepEx } from './utils/modify/merge-deep-ex';
@@ -119,7 +124,9 @@ export const ObjectUtils = {
 	any,
 	every,
 	find,
+	findAll,
 	findKey,
+	findAllKeys,
 	getAllKeys,
 	goto,
 	includes,
@@ -130,13 +137,16 @@ export const ObjectUtils = {
 	forEachDeep,
 	forEachDeepEx,
 	forEachDeepStrict,
+	getOwnPropertyIteratorDeep,
+	getOwnPropertyIteratorDeepEx,
+	getOwnPropertyIteratorDeepStrict,
 	// modify
 	assignDeep,
+	assignDeepEx,
+	assignDeepStrict,
 	assignDeepCloneDiff,
 	assignDeepCloneDiffEx,
 	assignDeepCloneDiffStrict,
-	assignDeepEx,
-	assignDeepStrict,
 	defineInternalProperties,
 	mergeDeep,
 	mergeDeepEx,

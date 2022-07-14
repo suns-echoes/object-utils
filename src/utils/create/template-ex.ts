@@ -15,10 +15,11 @@ function __templateEx(target: AnyObject, source: AnyObject): void {
 
 /**
  * Creates new object without properties other than sub-objects based on the
- * "source" object structure but exclude arrays.
+ * source object structure.
+ * Arrays will not be processed.
  * @param source The object from which to create template.
- * @returns Returns a new object with structure based on the "source" or "null" if
- * "source" is not an object.
+ * @returns Returns a new object with structure based on the source or "null" if
+ * the source is not an object.
  */
 export function templateEx(source: AnyObject): AnyObject | null {
 	if (source !== null && typeof source === 'object' && !Array.isArray(source)) {

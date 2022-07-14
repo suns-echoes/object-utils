@@ -58,15 +58,18 @@ export function __diffDeep<T extends AnyObject>(a: T, b: AnyObject, missing: any
 }
 
 /**
- * Find deep difference between two entities.
- * Arrays will be compared as if they were generic objects so type difference
- * (array vs object) will be ignored.
- * In case of no difference in property or value, the "Same" symbol will be
- * returned. When property is present in the "a" entity but missing in the "b"
- * entity the "Missing" symbol will be returned (or custom value if provided).
+ * Finds the deep difference between two entities.
+ * Arrays will be traversed by own enumerable properties rather than iterable
+ * items.
+ * In case of no difference in properties with the same key, the "Same" symbol
+ * will be returned. When property is present in the first entity but missing in
+ * the second entity the "Missing" symbol will be returned (or custom value if
+ * provided).
  * @param a The first entity.
  * @param b The second entity.
- * @returns Returns changes found in the "b" entity with respect to "a" entity.
+ * @param missing The value to use in place of missing properties, the "Missing"
+ * symbol is used by default.
+ * @returns Returns changes found between first and second entity.
  */
 export function diffDeep<T>(a: T, b: any, missing: any = Missing): T | typeof Same {
 	if (a === b) {

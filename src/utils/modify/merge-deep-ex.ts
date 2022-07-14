@@ -28,15 +28,15 @@ function __mergeOneDeepEx(target: AnyObject, source: AnyObject): void {
 
 /**
  * Performs deep copy of all enumerable own properties and sub-properties from
- * one or more "source" objects to the "target" object, but does not overwrite
- * existing values when property from "source" has the "undefined" value
+ * one or more source objects to the target object, but does not overwrite
+ * existing values when property from the source has the "undefined" value
  * assigned to it.
- * Arrays will not be merged and "source" properties that are arrays will
- * overwrite "target" properties.
+ * Generic objects and arrays will overwrite each other. Arrays will not be
+ * traversed but will be assigned by reference.
  * It returns the modified target object.
- * @param target The object to which merge the "sources".
+ * @param target The object to which merge the source objects.
  * @param sources The objects providing source for merge.
- * @returns The modified "target" object.
+ * @returns The modified target object.
  */
 export function mergeDeepEx(target: AnyObject, ...sources: AnyObject[]): AnyObject {
 	if (target !== null && typeof target === 'object' && !Array.isArray(target)) {

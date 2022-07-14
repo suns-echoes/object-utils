@@ -38,9 +38,9 @@ function __flat(
 
 
 /**
- * Creates a new object with all "source" object properties and ub-properties
+ * Creates a new object with the source object properties and sub-properties
  * merged into it recursively up to the specified depth.
- * If string  delimiter is specified the sub-keys will be concatenated using it,
+ * If string delimiter is specified the sub-keys will be concatenated using it,
  * otherwise properties will be overwritten by deeper level properties with the
  * same key.
  * @param source The source object.
@@ -49,7 +49,7 @@ function __flat(
  * @param delimiter The key path delimiter. If set to "false" or to empty string
  * deeper level properties will overwrite higher level properties that have the
  * same key.
- * @returns A new flattened object or "null" if the "source" is not an object.
+ * @returns A new flattened object or "null" if the source is not an object.
  */
 export function flat(source: AnyArray | AnyObject, depth = -1, delimiter: string | false = '.'): AnyObject | null {
 	if (source !== null && typeof source === 'object') {

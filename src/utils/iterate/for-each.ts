@@ -1,6 +1,8 @@
 /**
  * Executes the provided function once for each property.
- * @param object The object on which to execute the "callback".
+ * Arrays will be traversed by own enumerable properties rather than iterable
+ * items.
+ * @param object The object on which to execute the callback.
  * @param callback The function to execute on each property.
  * It accepts three arguments:
  *   * prop - The currently processed property.

@@ -38,9 +38,9 @@ function __valuesDeepStrict_object(values: AnyArray, object: AnyObject): void {
 
 
 /**
- * Returns an array of source object own enumerable properties including nested
+ * Returns an array of the object own enumerable properties including nested
  * ones.
- * Arrays will be checked only for iterable items.
+ * Arrays will be traversed only by iterable items.
  * @param object The object whose properties are to be returned.
  * @returns Returns an array containing values of each property or "null" when
  * input is not an object.

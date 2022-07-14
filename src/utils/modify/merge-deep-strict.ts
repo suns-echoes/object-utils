@@ -79,18 +79,15 @@ function __mergeOneDeepStrict_object(target: AnyObject, source: AnyObject): void
 
 /**
  * Performs deep copy of all enumerable own properties and sub-properties from
- * one or more "source" objects to the "target" object, but does not overwrite
- * existing values when property from "source" has the "undefined" value
+ * one or more source objects to the target object, but does not overwrite
+ * existing values when property from the source has the "undefined" value
  * assigned to it.
- * If the "target" and the "source" properties are of different type (one is
- * array and other is generic object) the "target" property will be overwritten
- * by the "source" property. If both are arrays only iterable items will be
- * copied (other properties will be ignored), and all "empty" items will be
- * assigned "undefined" value.
+ * Generic objects and arrays will overwrite each other. Only iterable items
+ * will be assigned from arrays.
  * It returns the modified target object.
- * @param target The object to which merge the "sources".
+ * @param target The object to which merge the source objects.
  * @param sources The objects providing source for merge.
- * @returns The modified "target" object.
+ * @returns The modified target object.
  */
 export function mergeDeepStrict(target: AnyObject, ...sources: AnyObject[]): AnyObject {
 	if (target !== null) {

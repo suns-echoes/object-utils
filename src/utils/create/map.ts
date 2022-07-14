@@ -8,8 +8,8 @@
  *   * prop - The currently processed property.
  *   * key - The key of the currently processed property.
  *   * object - The object on which map() was called.
- * @returns Returns a new object with rewritten properties or "null" if "source"
- * is not an object.
+ * @returns Returns a new object with rewritten properties or "null" if the
+ * source is not an object.
  */
 export function map<T extends AnyObject>(
 	source: T,

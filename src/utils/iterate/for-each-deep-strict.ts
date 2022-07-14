@@ -1,16 +1,16 @@
 function __forEachDeepStrict_array(
-	object: AnyArray,
+	array: AnyArray,
 	callback: AnyFunction,
 	delimiter: string | undefined,
 	pathKey: KeyPath | PathKeys,
 ): void {
 	const rootKey = delimiter ? (pathKey !== '' ? `${pathKey}${delimiter}` : '') : pathKey;
 
-	if (Array.isArray(object)) {
-		const itemCount = object.length;
+	if (Array.isArray(array)) {
+		const itemCount = array.length;
 
 		for (let index = 0; index < itemCount; index++) {
-			const item = object[index];
+			const item = array[index];
 
 			if (Array.isArray(item)) {
 				__forEachDeepStrict_array(
@@ -28,7 +28,7 @@ function __forEachDeepStrict_array(
 				callback(
 					item,
 					(delimiter ? `${rootKey}${index.toString(10)}` : [...rootKey, index.toString(10)]),
-					object,
+					array,
 				);
 			}
 		}
@@ -74,17 +74,18 @@ function __forEachDeepStrict_object(
 
 /**
  * Executes the provided function once for each property including nested ones.
- * Arrays will be checked only for iterable items.
- * @param object The object on which to execute the "callback".
+ * Arrays will be traversed only by iterable items.
+ * @param object The object on which to execute the callback.
  * @param callback The function to execute on each property.
  * It accepts three arguments:
  *   * prop - The currently processed property.
- *   * key - The key of the currently processed property. If the "delimiter" is
- *   provided "key" will be a delimited string and array of strings otherwise.
+ *   * key - The key of the currently processed property. If the delimiter is
+ *   provided the key will be a delimited string, otherwise it will be an array
+ *   of strings.
  *   * object - The object on which forEachDeepStrict() was called.
- * @param delimiter Optional string value to use as delimiter in callback "key"
- * parameter. If not specified the "key" will be an array of strings
- * representing property path.
+ * @param delimiter Optional string value to use as delimiter in callback key
+ * parameter. If not specified the key will be an array of strings representing
+ * property path.
  */
 export function forEachDeepStrict(
 	object: AnyArray | AnyObject,

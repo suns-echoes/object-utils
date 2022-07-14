@@ -1,7 +1,7 @@
 /**
  * Checks if object has cyclic references.
  * @param entity The object like entity to test (i.e.: array, object, function).
- * @returns Returns "true" if "entity" has a cyclic reference or "false"
+ * @returns Returns "true" if object has a cyclic reference or "false"
  * otherwise.
  */
 export function isCyclic(entity: ObjectLike, __beenThere: WeakSet<ObjectLike> = new WeakSet().add(entity)): boolean {

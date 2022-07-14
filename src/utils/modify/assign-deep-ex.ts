@@ -26,15 +26,13 @@ function __assignOneDeepEx(target: AnyObject, source: AnyObject): void {
 
 /**
  * Performs deep copy of all enumerable own properties and sub-properties from
- * one or more "source" objects to the "target" object, but does not overwrite
- * existing values when property from "source" has the "undefined" value
- * assigned to it.
- * Array items nor properties will not be assigned and "source" properties that
- * are arrays will overwrite "target" properties.
+ * one or more source objects to the target object.
+ * Generic objects and arrays will overwrite each other. Arrays will not be
+ * traversed but will be assigned by reference.
  * It returns the modified target object.
- * @param target The object to which assign the "sources".
+ * @param target The object to which assign the source objects.
  * @param sources The objects providing source for assign.
- * @returns The modified "target" object.
+ * @returns The modified target object.
  */
 export function assignDeepEx(target: AnyObject, ...sources: AnyObject[]): AnyObject {
 	if (target !== null && typeof target === 'object' && !Array.isArray(target)) {

@@ -31,16 +31,19 @@ function __forEachDeep(
 
 /**
  * Executes the provided function once for each property including nested ones.
- * @param object The object on which to execute the "callback".
+ * Arrays will be traversed by own enumerable properties rather than iterable
+ * items.
+ * @param object The object on which to execute the callback.
  * @param callback The function to execute on each property.
  * It accepts three arguments:
  *   * prop - The currently processed property.
- *   * key - The key of the currently processed property. If the "delimiter" is
- *   provided "key" will be a delimited string and array of strings otherwise.
+ *   * key - The key of the currently processed property. If the delimiter is
+ *   provided the key will be a delimited string, otherwise it will be an array
+ *   of strings.
  *   * object - The object on which forEachDeep() was called.
- * @param delimiter Optional string value to use as delimiter in callback "key"
- * parameter. If not specified the "key" will be an array of strings
- * representing property path.
+ * @param delimiter Optional string value to use as delimiter in callback key
+ * parameter. If not specified the key will be an array of strings representing
+ * property path.
  */
 export function forEachDeep(
 	object: AnyArray | AnyObject,

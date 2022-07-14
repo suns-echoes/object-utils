@@ -66,15 +66,17 @@ export function __assignDeepCloneDiff(target: AnyObject, source: AnyObject): Any
 
 
 /**
- * Compares the "target" and the "source" object trees and assigns cloned
- * differences to the "target". Changes made to "target" will be returned as
- * diff tree.
- * If the "target" or the "source" is not an object a type error will be thrown.
+ * Compares the target and the source object trees and assigns cloned
+ * differences to the target. Changes made to target will be returned as diff
+ * tree.
+ * Arrays will be traversed by own enumerable properties rather than iterable
+ * items.
+ * If the target or the source is not an object a type error will be thrown.
  * @param target The object to which assign differences.
  * @param source The object used as source of changes.
- * @returns The object containing tree of changes made to "target". It may share
- * object instances with "target". If no changes were found the "Same" symbol
- * will be returned.
+ * @returns Returns a new object containing tree of changes made to the target
+ * It may share objects instances with the target. If no changes were found the
+ * "Same" symbol will be returned.
  */
 export function assignDeepCloneDiff(
 	target: AnyArray | AnyObject,

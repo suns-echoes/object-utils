@@ -17,11 +17,11 @@ export function __cloneDeepEx(target: AnyObject, source: AnyObject): void {
 
 
 /**
- * Creates deep clone of source object (excluding arrays).
- * Arrays will not be cloned but rather assigned by reference.
+ * Creates deep clone of the source object.
+ * Arrays will be copied by reference (not by content).
  * @param source The object to be cloned.
- * @returns Returns an object containing the "source" clone or "null" if
- * "source" is not an object.
+ * @returns Returns a new object containing the cloned source object or "null"
+ * if the source is not an object.
  */
 export function cloneDeepEx(source: AnyObject): AnyObject | null {
 	if (source !== null && typeof source === 'object' && !Array.isArray(source)) {

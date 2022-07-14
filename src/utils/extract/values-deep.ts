@@ -17,7 +17,7 @@ function __valuesDeep(values: AnyArray, object: AnyObject): void {
 
 
 /**
- * Returns an array of source object own enumerable properties including nested
+ * Returns an array of the object own enumerable properties including nested
  * ones.
  * @param object The object whose properties are to be returned.
  * @returns Returns an array containing values for each property or "null" when

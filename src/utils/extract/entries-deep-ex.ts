@@ -26,15 +26,16 @@ function __entriesDeepEx(
 
 
 /**
- * Returns an array of [key, value] pairs of source object own enumerable
- * properties including nested ones (excluding arrays).
+ * Returns an array of [key, value] pairs of the source object own enumerable
+ * properties including nested ones.
  * Arrays will not be traversed.
  * @param object The object whose properties are to be returned.
- * @param delimiter Optional string value to use as delimiter in string "key"
- * path. If not specified the "key" will be an array of strings representing
- * property path.
+ * @param delimiter Optional string value used as delimiter in the string key
+ * path.
+ * If not specified the key will be an array of strings representing property
+ * path.
  * @returns Returns an array containing [key, value] pairs for each property or
- * "null" when input is not an object.
+ * "null" if input is not an object.
  */
 export function entriesDeepEx(object: AnyObject): [string[], any][] | null;
 export function entriesDeepEx(object: AnyObject, delimiter: string): [string, any][] | null;

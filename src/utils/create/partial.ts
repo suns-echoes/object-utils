@@ -1,9 +1,9 @@
 /**
- * Creates new object with selected keys from "source" object.
+ * Creates new object with selected keys from the source object.
  * @param source The source object.
  * @param keys The list of keys to copy.
- * @returns Returns a new object with copy of selected keys from the "source" or
- * "null" if "source" is not an object.
+ * @returns Returns a new object with copy of selected properties from the
+ * source object or "null" if the source is not an object.
  */
 export function partial<T extends AnyObject>(
 	source: T,
