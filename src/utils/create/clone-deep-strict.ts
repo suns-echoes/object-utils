@@ -38,12 +38,11 @@ export function __cloneDeepStrict_object(target: AnyObject, source: AnyObject): 
 
 
 /**
- * Creates deep clone of source object.
- * Arrays will have cloned only iterable items (other properties will be
- * ignored), and all "empty" items will be assigned "undefined" value.
+ * Creates deep clone of the source object.
+ * Only iterable items will be copied from arrays.
  * @param source The object to be cloned.
- * @returns Returns an object containing the "source" clone or "null" if
- * "source" is not an object.
+ * @returns Returns a new object containing the cloned source object or "null"
+ * if the source is not an object.
  */
 export function cloneDeepStrict<T extends AnyObject | AnyArray>(source: T): T | null {
 	if (Array.isArray(source)) {

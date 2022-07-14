@@ -107,14 +107,18 @@ export function __diffDeepStrict_object(a: AnyObject, b: AnyObject, missing: any
 }
 
 /**
- * Find deep difference between two entities.
- * Arrays will be treated as different type than the generic objects.
- * In case of no difference in property or value, the "Same" symbol will be
- * returned. When property is present in the "a" entity but missing in the "b"
- * entity the "Missing" symbol will be returned (or custom value if provided).
+ * Finds the deep difference between two entities.
+ * Generic object and arrays will be treated as different types and arrays will
+ * be traversed only by iterable items.
+ * In case of no difference in properties with the same key, the "Same" symbol
+ * will be returned. When property is present in the first entity but missing in
+ * the second entity the "Missing" symbol will be returned (or custom value if
+ * provided).
  * @param a The first entity.
  * @param b The second entity.
- * @returns Returns changes found in the "b" entity with respect to "a" entity.
+ * @param missing The value to use in place of missing properties, the "Missing"
+ * symbol is used by default.
+ * @returns Returns changes found between first and second entity.
  */
 export function diffDeepStrict(a: any, b: any, missing: any = Missing): any {
 	if (a === b) {

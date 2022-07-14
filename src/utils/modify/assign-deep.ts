@@ -25,12 +25,13 @@ function __assignOneDeep(target: AnyObject, source: AnyObject): void {
 
 /**
  * Performs deep copy of all enumerable own properties and sub-properties from
- * one or more "source" objects to the "target" object overwriting original
- * values.
+ * one or more source objects to the target object.
+ * Arrays will be traversed by own enumerable properties rather than iterable
+ * items.
  * It returns the modified target object.
- * @param target The object to which assign the "sources".
+ * @param target The object to which assign the source objects.
  * @param sources The objects providing source for assign.
- * @returns The modified "target" object.
+ * @returns The modified target object.
  */
 export function assignDeep(target: AnyObject, ...sources: AnyObject[]): AnyObject {
 	if (target !== null && typeof target === 'object') {

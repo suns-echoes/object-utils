@@ -1,6 +1,6 @@
 /**
  * Finds the key of the first property in the object that matches the
- * "searchElement" value.
+ * searchElement value.
  * @param object The object on which to perform search.
  * @param searchElement The value to search for.
  * @returns The key of the first property in the object that matches provided

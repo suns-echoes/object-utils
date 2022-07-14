@@ -51,17 +51,17 @@ export function __assignDeepCloneDiffEx(target: AnyObject, source: AnyObject): A
 
 
 /**
- * Compares the "target" and the "source" object trees and assigns cloned
- * differences to the "target". Changes made to "target" will be returned as
- * diff tree.
- * Array items nor properties will not be assigned and "source" properties that
- * are arrays will overwrite "target" properties.
- * If the "target" or the "source" is not an object a type error will be thrown.
+ * Compares the target and the source object trees and assigns cloned
+ * differences to the target. Changes made to target will be returned as diff
+ * tree.
+ * Generic objects and arrays will overwrite each other. Arrays will not be
+ * traversed but will be assigned by reference.
+ * If the target or the source is not an object a type error will be thrown.
  * @param target The object to which assign differences.
  * @param source The object used as source of changes.
- * @returns The object containing tree of changes made to "target". It may share
- * object instances with "target". If no changes were found the "Same" symbol
- * will be returned.
+ * @returns Returns a new object containing tree of changes made to the target
+ * It may share objects instances with the target. If no changes were found the
+ * "Same" symbol will be returned.
  */
 export function assignDeepCloneDiffEx(
 	target: AnyArray | AnyObject,

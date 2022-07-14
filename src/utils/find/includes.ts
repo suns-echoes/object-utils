@@ -1,5 +1,5 @@
 /**
- * Finds if object has property that matches the "searchElement" value.
+ * Finds if object has property that matches the searchElement value.
  * @param object The object on which to perform search.
  * @param searchElement The value to search for.
  * @returns Returns "true" if property was found or "false" otherwise.

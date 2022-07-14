@@ -1,6 +1,6 @@
 /**
- * Creates a new object with all properties that pass the test implemented by
- * the provided function.
+ * Creates a new object from the source object with copy of properties that pass
+ * the test implemented by the provided function.
  * @param source The object on which to perform filtering.
  * @param callback The predicate function to test each property of the object.
  * Return a value that coerces to "true" to keep the property or to "false"
@@ -10,7 +10,7 @@
  *   * key - The key of the currently processed property.
  *   * object - The object on which filter() was called.
  * @returns Returns a new object with properties that pass the test or "null" if
- * "source" is not an object.
+ * the source is not an object.
  */
 export function filter<T extends AnyObject>(
 	source: T,

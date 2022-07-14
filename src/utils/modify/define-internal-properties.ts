@@ -16,12 +16,12 @@ interface Attributes {
 
 /**
  * Creates and assigns new object (by default: hidden (non-enumerable) and
- * unchangable) to the given "context" at the given "key" property.
+ * unchangeable) to the given context at the given key.
  * @param context The object like entity to which add the new property.
  * @param key The string, number or symbol name of the property.
  * @param properties The object with properties descriptor map.
  * @param attributes Optional, the object attributes.
- * @returns Returns teg newly assigned object.
+ * @returns Returns the newly assigned object.
  */
 export function defineInternalProperties<THidden extends object>(
 	context: any,

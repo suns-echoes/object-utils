@@ -20,10 +20,12 @@ export function __cloneDeep(target: AnyObject, source: AnyObject): void {
 
 
 /**
- * Creates deep clone of source object.
+ * Creates deep clone of the source object.
+ * Arrays will be traversed by own enumerable properties rather than iterable
+ * items.
  * @param source The object to be cloned.
- * @returns Returns an object containing the "source" clone or "null" if
- * "source" is not an object.
+ * @returns Returns a new object containing the cloned source object or "null"
+ * if the source is not an object.
  */
 export function cloneDeep<T extends AnyArray | AnyObject>(source: T): T | null {
 	if (source !== null && typeof source === 'object') {

@@ -1,7 +1,7 @@
 {
 	"name": "@suns-echoes/object-utils",
-	"version": "1.0.0",
-	"description": "The library of useful utilities for objects manipulations.",
+	"version": "1.1.0",
+	"description": "The library of useful utilities for object manipulations.",
 	"keywords": [
 		"object",
 		"utilities",
@@ -11,6 +11,7 @@
 		"build": "npm run test && npm run check && node -r esm ./scripts/build-pre.js && npm run build:cjs && npm run build:esm && node -r esm ./scripts/build-post.js",
 		"build:cjs": "tsc --project ./tsconfig.dist.cjs.json",
 		"build:esm": "tsc --project ./tsconfig.dist.esm.json",
+		"debug": "node -r esm ./scripts/debug-pre.js && tsc --project ./tsconfig.debug.json",
 		"test": "cross-env TS_NODE_PROJECT=./tsconfig.test.json TS_NODE_FILES=true mocha --exit -r ts-node/register -r chai/register-expect.js -r ./setup/setup.ts",
 		"coverage": "c8 npm run test",
 		"lint": "eslint .",
@@ -32,19 +33,19 @@
 	"devDependencies": {
 		"@types/chai": "^4.3.1",
 		"@types/mocha": "^9.1.1",
-		"@types/node": "^16.11.39",
+		"@types/node": "^16.11.44",
 		"@types/sinon-chai": "^3.2.8",
-		"@typescript-eslint/eslint-plugin": "^5.27.1",
-		"@typescript-eslint/parser": "^5.27.1",
+		"@typescript-eslint/eslint-plugin": "^5.30.6",
+		"@typescript-eslint/parser": "^5.30.6",
 		"c8": "^7.11.3",
 		"chai": "^4.3.6",
 		"cross-env": "^7.0.3",
-		"eslint": "^8.17.0",
+		"eslint": "^8.19.0",
 		"esm": "^3.2.25",
 		"mocha": "^10.0.0",
 		"sinon-chai": "^3.7.0",
-		"ts-node": "^10.8.1",
-		"typescript": "^4.7.3"
+		"ts-node": "^10.9.1",
+		"typescript": "^4.7.4"
 	},
 	"peerDependencies": {
 		"@suns-echoes/ts-types": "^0.0.1"

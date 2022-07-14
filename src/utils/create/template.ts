@@ -33,10 +33,10 @@ function __template_object(target: AnyObject, source: AnyObject): void {
 
 /**
  * Creates new object without properties other than sub-objects based on the
- * "source" object structure.
+ * source object structure.
  * @param source The object from which to create template.
- * @returns Returns a new object with structure based on the "source" or "null" if
- * "source" is not an object.
+ * @returns Returns a new object with structure based on the source or "null" if
+ * the source is not an object.
  */
 export function template(source: AnyArray | AnyObject): AnyArray | AnyObject | null {
 	if (Array.isArray(source)) {

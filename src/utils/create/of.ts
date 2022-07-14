@@ -1,5 +1,5 @@
 /**
- * Creates new object from list of:
+ * Creates a new object from list of:
  *   * arrays with key/value pairs (i.e.: ['key1', value1, 'key2', value2, ...])
  *   * objects
  *   * key/value pairs (i.e.: 'key1', value1, 'key2', value2, ...)

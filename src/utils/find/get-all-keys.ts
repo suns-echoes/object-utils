@@ -1,5 +1,5 @@
 /**
- * Returns the list of all keys in provided source objects.
+ * Returns the list of all keys in the objects.
  * @param sources The objects to get keys from.
  * @returns Returns the array containing all keys but discards repeated ones.
  */

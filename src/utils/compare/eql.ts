@@ -25,8 +25,8 @@ export function __eql(a: AnyObject, b: AnyObject): boolean {
 
 /**
  * Performs shallow equality check of two entities.
- * Arrays will be compared as if they were generic objects so type difference
- * (array vs object) will be ignored.
+ * Arrays will be traversed by own enumerable properties rather than iterable
+ * items.
  * @param a The first entity.
  * @param b The second entity.
  * @returns Returns "true" if entities are equal or "false" otherwise.

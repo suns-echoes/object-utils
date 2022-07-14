@@ -82,10 +82,11 @@ export function __eqlDeepStrict_object(a: AnyObject, b: AnyObject): boolean {
 
 /**
  * Performs deep equality check of two objects.
- * Arrays will be treated as different type than the generic objects.
+ * Generic object and arrays will be treated as different types and arrays will
+ * be traversed only by iterable items.
  * @param a The first object to compare.
  * @param b The second object to compare.
- * @returns Returns "true" if objects are equal or "false" otherwise.
+ * @returns Returns "true" if entities are equal or "false" otherwise.
  */
 export function eqlDeepStrict(a: any, b: any): boolean {
 	if (a === b) {

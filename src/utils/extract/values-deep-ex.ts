@@ -17,8 +17,8 @@ function __valuesDeepEx(values: AnyArray, object: AnyObject): void {
 
 
 /**
- * Returns an array of source object own enumerable properties including nested
- * ones (excluding arrays).
+ * Returns an array of the object own enumerable properties including nested
+ * ones.
  * Arrays will not be traversed.
  * @param object The object whose properties are to be returned.
  * @returns Returns an array containing values of each property or "null" if

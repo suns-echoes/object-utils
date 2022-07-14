@@ -118,20 +118,17 @@ export function __assignDeepCloneDiffStrict_object(target: AnyObject, source: An
 
 
 /**
- * Compares the "target" and the "source" object trees and assigns cloned
- * differences to the "target". Changes made to "target" will be returned as
- * diff tree.
- * If the "target" and the "source" properties are of different type (one is
- * array and other is generic object) the "target" property will be overwritten
- * by the "source" property. If both are arrays only iterable items will be
- * copied (other properties will be ignored), and all "empty" items will be
- * assigned "undefined" value.
- * If the "target" or the "source" is not an object a type error will be thrown.
+ * Compares the target and the source object trees and assigns cloned
+ * differences to the target. Changes made to target will be returned as diff
+ * tree.
+ * Generic objects and arrays will overwrite each other. Only iterable items
+ * will be assigned from arrays.
+ * If the target or the source is not an object a type error will be thrown.
  * @param target The object to which assign differences.
  * @param source The object used as source of changes.
- * @returns The object containing tree of changes made to "target". It may share
- * object instances with "target". If no changes were found the "Same" symbol
- * will be returned.
+ * @returns Returns a new object containing tree of changes made to the target
+ * It may share objects instances with the target. If no changes were found the
+ * "Same" symbol will be returned.
  */
 export function assignDeepCloneDiffStrict(
 	target: AnyArray | AnyObject,
